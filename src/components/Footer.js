@@ -14,8 +14,8 @@ align-items: center;
 `;
 
 const FooterTopContainerDiv = styled.div`
-width: 768px;
-height: 140px;
+width: 948px;
+height: 200px;
 background-color: #d1c6c6;
 display: flex;
 flex-direction: column;
@@ -33,9 +33,9 @@ background-color: #ebfea9;
 
 const FooterTop = styled.div`
 background-color: #fec6a9;
-width: 728px;
+width: 900px;
 justify-content: space-between;
-height: 100px;
+height: 140px;
 display: flex;
 flex-direction: row;
 `;
@@ -82,7 +82,7 @@ align-items: center;
 justify-content: center;
 width: 100vw;
 height: 400px;
-background-color: black;
+background-color: #252525;
 `;
 
 
