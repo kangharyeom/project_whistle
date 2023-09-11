@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import Header from './components/Header';
-import Board from './components/Board';
+
 import Footer from './components/Footer';
 
 import Login from './pages/Login';
@@ -25,18 +25,9 @@ const handleLogout = () => {
   setIsLoggedIn(false);
 };
 
-const images = [
-  'image1.jpg',
-  'image2.jpg',
-  'image3.jpg',
-  // 추가 이미지 경로들
-];
-
-
   return (
     <BrowserRouter >
       <Header isLoggedIn={isLoggedIn} onLogin={handleLogin} onLogout={handleLogout} />
-      <Board/>
         <Routes>
           <Route path="/log-in" element={<Login />} />
           <Route path="/matching" element={<Matching />} />

@@ -1,0 +1,154 @@
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import 'react-day-picker/dist/style.css';
+import IconButton from '@mui/material/IconButton';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+
+const StyledCalender = styled.div`
+  z-index: 9;
+  width: 100vw;
+`;
+
+const CalenderContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const DayButtons = styled.div`
+  width: 700px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+`;
+
+function calculateWeekDates(startDate) {
+  const startOfWeek = new Date(startDate);
+  startOfWeek.setHours(0, 0, 0, 0);
+  const endOfWeek = new Date(startOfWeek);
+  endOfWeek.setDate(startOfWeek.getDate() + 6);
+  endOfWeek.setHours(23, 59, 59, 999);
+
+  return { startOfWeek, endOfWeek };
+}
+
+const CalendarButton = styled.button`
+  background-color: ${(props) => (props.isToday ? '#f8c19f' : 'white')};
+  border-top: none;
+  border-left: none;
+  border-right: 1px solid #d8d8d8;
+  border-bottom: 1px solid #d8d8d8;
+  cursor: pointer;
+  margin: 10px;
+  padding: 0;
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  display: flex;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  color: ${(props) =>
+    props.isSaturday ? 'blue' : props.isHoliday ? 'red' : 'black'};
+`;
+
+function isHoliday(date) {
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  const holidays = [
+    `${year}-01-01`,
+    `${year}-03-01`,
+    `${year}-05-05`,
+    `${year}-06-06`,
+    `${year}-08-15`,
+    `${year}-10-03`,
+    `${year}-10-09`,
+    `${year}-12-25`,
+  ];
+  const dateString = `${year}-${month < 10 ? '0' + month : month}-${
+    day < 10 ? '0' + day : day
+  }`;
+  return holidays.includes(dateString) || date.getDay() === 0;
+}
+
+function WeeklyCalendar() {
+  const [startDate, setStartDate] = useState(new Date());
+  const today = new Date();
+  const { startOfWeek, endOfWeek } = calculateWeekDates(startDate);
+  const days = [];
+  let currentDate = new Date(startOfWeek);
+
+  const handleDayClick = (date) => {
+    console.log(`날짜를 클릭했습니다: ${date}`);
+  };
+
+  const handlePrevWeek = () => {
+    const prevWeekStartDate = new Date(startDate);
+    prevWeekStartDate.setDate(startDate.getDate() - 7);
+    setStartDate(prevWeekStartDate);
+  };
+
+  const handleNextWeek = () => {
+    const nextWeekStartDate = new Date(startDate);
+    nextWeekStartDate.setDate(startDate.getDate() + 7);
+    setStartDate(nextWeekStartDate);
+  };
+
+  while (currentDate <= endOfWeek) {
+    const dayOfWeek = currentDate.toLocaleDateString('en-US', { weekday: 'short' });
+    days.push(
+      <CalendarButton
+        className="calendar-day"
+        key={currentDate.toISOString()}
+        onClick={() => handleDayClick(currentDate)}
+        isToday={currentDate.toDateString() === today.toDateString()}
+        isSaturday={currentDate.getDay() === 6}
+        isHoliday={isHoliday(currentDate)}
+      >
+        <div>{dayOfWeek}</div>
+        {currentDate.getDate()}
+      </CalendarButton>
+      
+    );
+
+    currentDate.setDate(currentDate.getDate() + 1);
+  }
+
+  return (
+    <div className="weekly-calendar">
+      <DayButtons>
+      <div className="calendar-header">
+        <IconButton onClick={handlePrevWeek}>
+          <ArrowBackIcon />
+        </IconButton>
+        </div>
+        <div>
+      </div>
+      <div className="calendar-body" style={{ display: 'flex', flexWrap: 'wrap' }}>
+        {days}
+      </div>
+      <IconButton onClick={handleNextWeek}>
+          <ArrowForwardIcon />
+        </IconButton>
+    </DayButtons>
+    </div>
+  );
+}
+
+const Calendar = () => {
+  return (
+    <StyledCalender>
+      <CalenderContainer>
+        <WeeklyCalendar />
+      </CalenderContainer>
+    </StyledCalender>
+  );
+};
+
+export default Calendar;

@@ -1,3 +1,14 @@
+@font-face {
+  font-family: "NotoSansKR-Black";
+  font-weight: normal;
+  src: url("./assets/fonts/NotoSansKR-Black.ttf");
+}
+
+:root {
+	--font-googleGugi: "googleGugi";
+	--font-NotoSansKR-Black: "NotoSansKR-Black";
+}
+
 body {
   width: 1264px;
   margin: 0;

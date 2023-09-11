@@ -8,6 +8,7 @@ import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
 
+
 const StyledHeader = styled.div`
 width: 100vw;
 display: flex;
@@ -18,19 +19,17 @@ align-items: center;
 // 컨테이너
 
 const HeaderContainer = styled.div`
+z-index: 10;
 width: 100vw;
-height: 100px;
+height: 20px;
 display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
 `;
 
-
-
 // 헤더 상단
 const HeaderTopContainer = styled.div`
-z-index: 1;
 border-top: 3px solid #125b9f;
 border-bottom: 4px solid #EBEBEB;
 position: fixed;
@@ -39,7 +38,7 @@ position: fixed;
     right: 0;
 background-color: white;
 width: 100vw;
-height: 90px;
+height: 60px;
 display: flex;
 justify-content: center;
 align-items: center;
@@ -47,8 +46,8 @@ align-items: center;
 `;
 
 const HeaderTop = styled.div`
-width: 1264px;
-height: 60px;
+width: 1024px;
+height: 40px;
 display: flex;
 align-items: center;
 flex-direction: row;
@@ -60,15 +59,14 @@ display: flex;
 justify-content: center;
 align-items: center;
 width: 60px;
-height: 100%;
 `;
 
 const HeaderTopSearch = styled.div`
 display: flex;
 justify-content: center;
 align-items: center;
-width: 600px;
-height: 60px;
+width: 540px;
+height: 40px;
 `;
 
 const HeaderTopLoginButton = styled.div`
@@ -79,33 +77,19 @@ width: 60px;
 height: 100%;
 `;
 
-
-
-// 헤더 중간
-
-const HeaderMiddle = styled.div`
-
-`;
-
-
-
-// 헤더 하단
-
-const HeaderBottom = styled.div`
-
-`;
-
-
-
-const Header = ({ isLoggedIn, handleLogin }) => {
+const Header = () => {
    
-
     // 동작
     const navigate = useNavigate();
 
     const handleClick = () => {
     // 클릭 시 "/matching" 페이지로 이동
     navigate('/matching');
+    };
+    
+    const handleLogin = () => {
+    // 클릭 시 "/login" 페이지로 이동
+    navigate('/log-in');
     };
 
     return (   
@@ -115,7 +99,7 @@ const Header = ({ isLoggedIn, handleLogin }) => {
                     <HeaderTop id="HeaderTopId">
                             <HeaderTopLogo id="HeaderLogoId">
                             <IconButton onClick={handleClick}>
-                                    <img width={240} src="/images/whistle-letter.png" alt="Whistle" />
+                                    <img width={160} src="/images/whistle-letter.png" alt="Whistle" />
                                 </IconButton>
                             </HeaderTopLogo>
                             <HeaderTopSearch id="HeaderSearchId">
@@ -129,16 +113,11 @@ const Header = ({ isLoggedIn, handleLogin }) => {
                                 </HeaderTopSearch>
                             <HeaderTopLoginButton id="HeaderLoginButtonId" >
                                 <IconButton onClick={handleLogin}>
-                                    <img width={50} src="/images/free-icon-soccer-jersey-212273.png" alt="Whistle" />
+                                    <img width={40} src="/images/free-icon-soccer-jersey-212273.png" alt="Whistle" />
                                 </IconButton>
                                 </HeaderTopLoginButton>
                     </HeaderTop >
                 </HeaderTopContainer>
-                <HeaderMiddle id="HeaderMiddleId">
-                       
-                </HeaderMiddle>
-                <HeaderBottom id="HeaderBottomId">
-                </HeaderBottom >
             </HeaderContainer>
         </StyledHeader>
     );
