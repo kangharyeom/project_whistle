@@ -5,9 +5,9 @@ import IconButton from '@mui/material/IconButton';
 import * as l from '../style/LoginStyle'
 
 const Login = () => {
-
     const handleClick = () => {
-    // 클릭 시 "/matching" 페이지로 이동
+        const externalURL = 'http://ec2-3-36-251-38.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/google'
+        window.location.href = externalURL;
     };
 
     return (   
