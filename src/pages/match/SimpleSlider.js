@@ -1,4 +1,5 @@
 import React from "react";
+
 import Carousel from 'react-material-ui-carousel';
 
 const SimpleSlider = () => {
@@ -16,7 +17,7 @@ const SimpleSlider = () => {
 
   return (
     <div>
-<Carousel indicators={false}>
+<Carousel indicators={false} swipe={true} >
     {
         items.map(
             (item, i) =>

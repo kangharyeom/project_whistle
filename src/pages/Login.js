@@ -1,130 +1,67 @@
 import React from 'react';
 
-import styled from 'styled-components';
-
 import IconButton from '@mui/material/IconButton';
 
-
-
-const StyledLogin = styled.div`
-width: 100vw;
-background-color: #F0FFFF;
-padding-top: 40px;
-height: 100vw;
-display: flex;
-flex-direction: column;
-align-items: center;
-`;
-
-const LoginContainer = styled.div`
-border-bottom: 8px solid #EBEBEB;
-border-top: 1px solid #EBEBEB;
-border-left: 1px solid #EBEBEB;
-border-right: 6px solid #EBEBEB;
-border-radius: 20px;
-height: 600px;
-width: 400px;
-background-color: white;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-`;
-
-const LoginColumn = styled.div`
-margin: 60px 0 60px 0;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-`;
-
-const LoginKaKao = styled.div`
-`;
-
-const LoginGoogle = styled.div`
-`;
-
-const LoginNaver = styled.div`
-`;
-
-const SignUp = styled.div`
- border-bottom: 2px solid #EBEBEB;
- padding-bottom: 10px;
- display: flex;
-flex-direction: row;
-justify-content: center;
-align-items: center;
- height: 20px;
- width: 200px;
-`;
-
-const LoginRow = styled.div`
-display: flex;
-flex-direction: row;
-justify-content: center;
-align-items: center;
-`;
+import * as l from '../style/LoginStyle'
 
 const Login = () => {
-
 
     const handleClick = () => {
     // 클릭 시 "/matching" 페이지로 이동
     };
 
     return (   
-        <StyledLogin>
-            <LoginContainer>
+        <l.StyledLogin>
+            <l.LoginContainer>
                 <IconButton onClick={handleClick}>
                     <img width={240} src="/images/whistle-letter.png" alt="Whistle" />
                 </IconButton>
                 
-                <LoginColumn>
-                    <LoginKaKao>
+                <l.LoginColumn>
+                    <l.LoginKaKao>
                         <IconButton onClick={handleClick}>
                             <img width={200} src="/images/kakao.png" alt="Whistle" />
                         </IconButton>
-                    </LoginKaKao>
+                    </l.LoginKaKao>
                    
-                    <LoginNaver>
+                    <l.LoginNaver>
                         <IconButton onClick={handleClick}>
                             <img width={200} src="/images/naver.png" alt="Whistle" />
                         </IconButton>
-                    </LoginNaver>
+                    </l.LoginNaver>
 
-                    <LoginGoogle>
+                    <l.LoginGoogle>
                         <IconButton onClick={handleClick}>
                             <img width={200} src="/images/google.png" alt="Whistle" />
                         </IconButton>
-                    </LoginGoogle>
-                </LoginColumn>
+                    </l.LoginGoogle>
+                </l.LoginColumn>
 
-                <SignUp>
+                <l.SignUp>
                     회원가입
-                </SignUp>
+                </l.SignUp>
 
-                <LoginRow>
-                    <LoginKaKao>
+                <l.LoginRow>
+                    <l.LoginKaKao>
                         <IconButton onClick={handleClick}>
                             <img width={60} src="/images/kakao-small.png" alt="kakao" />
                         </IconButton>
-                    </LoginKaKao>
+                    </l.LoginKaKao>
                    
-                    <LoginNaver>
+                    <l.LoginNaver>
                         <IconButton onClick={handleClick}>
                             <img width={60} src="/images/naver-small.png" alt="naver" />
                         </IconButton>
-                    </LoginNaver>
+                    </l.LoginNaver>
 
-                    <LoginGoogle>
+                    <l.LoginGoogle>
                         <IconButton onClick={handleClick}>
-                            <img width={70} src="/images/google-small.png" alt="google" />
+                            <img width={70} src="/images/google-small.png" alt="Whistle" />
                         </IconButton>
-                    </LoginGoogle>
-                </LoginRow>
-            </LoginContainer>
-        </StyledLogin>
+                    </l.LoginGoogle>
+                </l.LoginRow>
+            </l.LoginContainer>
+        </l.StyledLogin>
     );
 }
   

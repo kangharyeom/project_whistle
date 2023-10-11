@@ -55,7 +55,7 @@ const BoardCategory = () => {
                         <Tab style={{ width: '180px', fontSize: '18px', fontWeight:'bold'}} label="경기 매칭" />
                         <Tab style={{ width: '180px', fontSize: '18px', fontWeight:'bold'}} label="리그" />
                         <Tab style={{ width: '180px', fontSize: '18px', fontWeight:'bold'}} label="랭킹" />
-                        <Tab style={{ width: '180px', fontSize: '18px', fontWeight:'bold'}} label="팀원 모집" />
+                        <Tab style={{ width: '180px', fontSize: '18px', fontWeight:'bold'}} label="팀 소개" />
                         <Tab style={{ width: '180px', fontSize: '18px', fontWeight:'bold'}} label="자유 게시판" />
                     </Tabs>
                 </BoardCategoryMiddle>

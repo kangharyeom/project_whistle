@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import "react-day-picker/dist/style.css";
-
 import SimpleSlider from './SimpleSlider'
 import BoardCategory from '../board/BoardCategory';
 import BoardSports from '../board/BoardSports';
