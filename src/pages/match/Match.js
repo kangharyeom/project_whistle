@@ -5,22 +5,22 @@ import SimpleSlider from './SimpleSlider'
 import BoardCategory from '../board/BoardCategory';
 import BoardSports from '../board/BoardSports';
 import Stat from '../board/stat/Stat';
-import Calender from '../matching/Calender';
+import Calender from './Calender';
 
-const StyledMatching = styled.div`
+const StyledMatch = styled.div`
 z-index: 9;
 margin-top: 70px;
 width: 100vw;
 `;
 
-const MatchingContainer = styled.div`
+const MatchContainer = styled.div`
 margin-top: 30px;
 display: flex;
 flex-direction: column;
 align-items: center;
 `;
 
-const MatchingTop = styled.div`
+const MatchTop = styled.div`
 background-color: #F0FFFF;
 display: flex;
 align-items: center;
@@ -28,15 +28,15 @@ justify-content: center;
 width: 100vw;
 `;
 
-const MatchingTopAdvertisement = styled.div`
+const MatchTopAdvertisement = styled.div`
   width: 868px;
   height: 360px;
 `;
 
-const MatchingBody = styled.div`
+const MatchBody = styled.div`
 `;
 
-const MatchingBodyCalender = styled.div`
+const MatchBodyCalender = styled.div`
 width: 100vw;
 margin: 10px 0 10px 0;
 height: 120px;
@@ -46,28 +46,28 @@ flex-direction: column;
 align-items: center;
 `;
 
-const Matching = () => { // 명명된 내보내기 사용
+const Match = () => { // 명명된 내보내기 사용
 
   return (
-    <StyledMatching>
+    <StyledMatch>
         <BoardSports/>
-        <MatchingContainer>
-          <MatchingTop>
-            <MatchingTopAdvertisement>
+        <MatchContainer>
+          <MatchTop>
+            <MatchTopAdvertisement>
               <SimpleSlider/>
-            </MatchingTopAdvertisement>
-          </MatchingTop>
+            </MatchTopAdvertisement>
+          </MatchTop>
         
-          <MatchingBody>
+          <MatchBody>
             <BoardCategory/>
-            <MatchingBodyCalender>
+            <MatchBodyCalender>
               <Calender/>
-            </MatchingBodyCalender>
-          </MatchingBody>
+            </MatchBodyCalender>
+          </MatchBody>
           <Stat/>
-        </MatchingContainer>
-    </StyledMatching>
+        </MatchContainer>
+    </StyledMatch>
   );
 }
 
-export default Matching;
+export default Match;
