@@ -4,7 +4,7 @@ import Header from './components/Header';
 
 import Footer from './components/Footer';
 
-import Login from './pages/Login';
+import Login from './pages/login/Login';
 import Match from './pages/match/Match';
 
 import './App.css';

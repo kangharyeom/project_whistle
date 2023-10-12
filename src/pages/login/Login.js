@@ -1,13 +1,53 @@
-import React from 'react';
-
+import React, { useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 
-import * as l from '../style/LoginStyle'
+import * as l from '../../style/LoginStyle'
 
 const Login = () => {
-    const handleClick = () => {
+    const handleClickGoogleLogin = () => {
         const externalURL = 'http://ec2-3-36-251-38.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/google'
         window.location.href = externalURL;
+    };
+
+    const handleClick = () => {
+        const externalURL = 'http://ec2-3-36-251-38.ap-northeast-2.compute.amazonaws.com:8080'
+        window.location.href = externalURL;
+    };
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+     const handleLogin = async (e) => {
+        e.preventDefault();
+
+        try {
+            const response = await fetch('http://ec2-3-36-251-38.ap-northeast-2.compute.amazonaws.com:8080/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email: email,
+                    password: password,
+                }),
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                const authToken = data.token; // 가정: 서버에서 토큰을 'token' 필드로 응답한다고 가정
+    
+                // 토큰을 로컬 스토리지에 저장
+                localStorage.setItem('authToken', authToken);
+    
+                console.log('로그인 성공!');
+                const externalURL = 'https://dev.dovfpqk67sdce.amplifyapp.com'
+                window.location.href = externalURL;
+            } else {
+                console.error('로그인 실패!');
+            }
+        } catch (error) {
+            console.error('에러 발생:', error);
+        }
     };
 
     return (   
@@ -18,6 +58,19 @@ const Login = () => {
                 </IconButton>
                 
                 <l.LoginColumn>
+                    <input
+                        type="email" // 이메일 형식을 입력받을 때에는 type을 email로 지정하는 것이 좋습니다.
+                        placeholder="이메일"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                    <input
+                        type="password"
+                        placeholder="패스워드"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <button type="submit" onClick={handleLogin}>로그인</button>
                     <l.LoginKaKao>
                         <IconButton onClick={handleClick}>
                             <img width={200} src="/images/kakao.png" alt="Whistle" />
@@ -31,7 +84,7 @@ const Login = () => {
                     </l.LoginNaver>
 
                     <l.LoginGoogle>
-                        <IconButton onClick={handleClick}>
+                        <IconButton onClick={handleClickGoogleLogin}>
                             <img width={200} src="/images/google.png" alt="Whistle" />
                         </IconButton>
                     </l.LoginGoogle>
