@@ -1,64 +1,76 @@
-import React, { useState } from 'react';
-
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-
-
-const StyledBoardSports = styled.div`
-width: 100vw;
-height: 40px;
-display: flex;
-justify-content: center;
-flex-direction: column;
-align-items: center;
+const StyledBoard = styled.div`
+    z-index: 9;
+    margin-top: 70px;
+    width: 100vw;
 `;
 
-const BoardSportsContainer = styled.div`
-width: 100vw;
-display: flex;
-flex-direction: column;
-align-items: center;
+const BoardContainer = styled.div`
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `;
-const BoardSportsTop = styled.div`
+
+const BoardTop = styled.div`
+    background-color: #F0FFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
 `;
-const BoardSports = () => {
 
-    // 동작
-    const [topValue, setTopValue] = useState(0); // Initialize the active tab index
+const BoardBody = styled.div`
+`;
 
-    const TopHandleChange = (event, newValue) => {
-        // Update the active tab index when a tab is clicked
-        setTopValue(newValue);
-      };
-    
-    return (   
-        <StyledBoardSports>
-            <BoardSportsContainer>
-                <BoardSportsTop>
-                    <Tabs
-                        value={topValue}
-                        onChange={TopHandleChange}
-                        showThumbs={false}
-                        variant="scrollable"
-                        scrollButtons="auto"
-                        allowScrollButtonsMobile
-                        aria-label="scrollable force tabs example"
-                        centered
-                    >
-                        <Tab icon={ <img src="/images/pictogram-icon-football.png" alt="축구" width={'36px'} />} style={{width: '160px', fontWeight:'bold', fontSize: '18px'}} label="축구" />
-                        <Tab icon={ <img src="/images/pictogram-icon-football.png" alt="풋살"  width={'36px'}/>} style={{width: '160px', fontWeight:'bold', fontSize: '18px'}}  label="풋살" />
-                        {/* <Tab icon={ <img src="/images/pictogram-icon-baseball.png" alt="야구"  width={'36px'}/>} style={{width: '160px', fontWeight:'bold', fontSize: '18px'}}  label="야구" />
-                        <Tab icon={ <img src="/images/pictogram-icon-basketball.png" alt="농구"  width={'36px'}/>} style={{width: '160px', fontWeight:'bold', fontSize: '18px'}}  label="농구" />
-                        <Tab icon={ <img src="/images/pictogram-icon-volleyball.png" alt="그 외"  width={'36px'}/>} style={{width: '160px', fontWeight:'bold', fontSize: '18px'}}  label="그 외" /> */}
-                    </Tabs>
-                </BoardSportsTop>
-            </BoardSportsContainer>
-            
-        </StyledBoardSports>
+const Board = () => {
+    const [matches, setMatches] = useState([]);
+    const [pageInfo, setPageInfo] = useState({});
 
-);
-}
-  
-export default BoardSports;
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch('http://ec2-3-36-251-38.ap-northeast-2.compute.amazonaws.com:8080/api/matches?page=1&size=40');
+                if (response.ok) {
+                    const jsonData = await response.json();
+                    setMatches(jsonData.data); // 응답에서 matches 배열을 가져와 state에 저장
+                    setPageInfo(jsonData.pageInfo); // 응답에서 pageInfo 객체를 가져와 state에 저장
+                } else {
+                    console.error('데이터를 가져오는 데 실패했습니다.');
+                }
+            } catch (error) {
+                console.error('에러 발생:', error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    return (
+        <StyledBoard>
+            <BoardContainer>
+                <BoardTop>
+                    <h1>경기 일정</h1>
+                </BoardTop>
+                <BoardBody>
+                    {matches.map(match => (
+                        <div key={match.matchId}>
+                            <h2>매치 ID: {match.matchId}</h2>
+                            <p>홈 팀 이름: {match.homeTeamName}</p>
+                            <p>매치 시간: {match.matchTime}</p>
+                            {/* 필요한 다른 데이터들도 여기서 표시할 수 있습니다 */}
+                        </div>
+                    ))}
+                </BoardBody>
+                <div>
+                    <p>현재 페이지: {pageInfo.page}</p>
+                    <p>전체 페이지 수: {pageInfo.totalPages}</p>
+                </div>
+            </BoardContainer>
+        </StyledBoard>
+    );
+};
+
+export default Board;

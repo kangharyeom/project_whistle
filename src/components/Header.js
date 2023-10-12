@@ -25,8 +25,8 @@ const Header = () => {
     }, []);
 
     const handleClick = () => {
-    // 클릭 시 "/matching" 페이지로 이동
-    navigate('/matching');
+    // 클릭 시 "/match" 페이지로 이동
+    navigate('/match');
     };
     
     const handleLogin = () => {
