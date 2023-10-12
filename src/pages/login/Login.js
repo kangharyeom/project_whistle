@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import IconButton from '@mui/material/IconButton';
 
 import * as l from '../../style/LoginStyle'
@@ -10,7 +11,7 @@ const Login = () => {
     };
 
     const handleClick = () => {
-        const externalURL = 'http://ec2-3-36-251-38.ap-northeast-2.compute.amazonaws.com:8080'
+        const externalURL = 'https://dev.dovfpqk67sdce.amplifyapp.com';
         window.location.href = externalURL;
     };
 
@@ -18,6 +19,7 @@ const Login = () => {
     const [password, setPassword] = useState('');
 
      const handleLogin = async (e) => {
+        const externalURL = 'https://dev.dovfpqk67sdce.amplifyapp.com';
         e.preventDefault();
 
         try {
@@ -40,13 +42,16 @@ const Login = () => {
                 localStorage.setItem('authToken', authToken);
     
                 console.log('로그인 성공!');
-                const externalURL = 'https://dev.dovfpqk67sdce.amplifyapp.com'
                 window.location.href = externalURL;
             } else {
                 console.error('로그인 실패!');
+                alert('아이디와 비밀번호를 확인해주세요')
+                window.location.href = externalURL+'/log-in';
+                
             }
         } catch (error) {
             console.error('에러 발생:', error);
+            alert('error')
         }
     };
 
@@ -91,7 +96,9 @@ const Login = () => {
                 </l.LoginColumn>
 
                 <l.SignUp>
-                    회원가입
+                    <Link to="/signup"> {/* react-router-dom의 Link 컴포넌트를 사용하여 회원가입 페이지로 이동 */}
+                        회원가입
+                    </Link>
                 </l.SignUp>
 
                 <l.LoginRow>

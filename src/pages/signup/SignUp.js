@@ -1,249 +1,101 @@
-import React, { useState, useRef } from "react";
-import { css } from "@emotion/react";
-import { useForm } from "react-hook-form";
-import { useNavigate, Link } from "react-router-dom";
-import { signUp, checkEmail } from "../../util/axiosUser";
-import {
-    LoginpageBg,
-    LoginpageContainer,
-    LoginLogoContainer,
-    LoginContainer,
-    LoginLabelBox,
-    LoginInputBox,
-} from "./LoginStyle";
-import Button from "../components/Button";
-import SocialButton from "./SocialButton";
-import { GachiGalleImgSrc } from "../../sampleImage";
-
-const defaultValues = {
-    email: "",
-    email_subscribe: true,
-    nickname: "",
-    password: "",
-    phone: "",
-};
+import React, { useState } from 'react';
+import IconButton from '@mui/material/IconButton';
+import * as s from '../../style/SignUpSytle';
 
 const SignUp = () => {
-    const navigate = useNavigate();
+    const [email, setEmail] = useState('');
+    const [name, setName] = useState('');
+    const [loginId, setLoginId] = useState('');
+    const [password, setPassword] = useState('');
+    const [phone, setPhone] = useState('');
+    const [position, setPosition] = useState('');
 
-    const [phoneNum, setphoneNum] = useState("");
-
-    const handlePhone = (value) => {
-        const regex = /^[0-9\b -]{0,11}$/;
-
-        if (regex.test(value)) {
-            setphoneNum(value);
-        }
-
-        value = value.replace(/[^0-9]/g, "");
-
-        let result = [];
-        let restNumber = "";
-
-        // 지역번호와 나머지 번호로 나누기
-        if (value.startsWith("02")) {
-            // 서울 02 지역번호
-            result.push(value.substr(0, 2));
-            restNumber = value.substring(2);
-        } else if (value.startsWith("1")) {
-            // 지역 번호가 없는 경우
-            // 1xxx-yyyy
-            restNumber = value;
-        } else {
-            // 나머지 3자리 지역번호
-            // 0xx-yyyy-zzzz
-            result.push(value.substr(0, 3));
-            restNumber = value.substring(3);
-        }
-
-        if (restNumber.length === 7) {
-            // 7자리만 남았을 때는 xxx-yyyy
-            result.push(restNumber.substring(0, 3));
-            result.push(restNumber.substring(3));
-        } else {
-            result.push(restNumber.substring(0, 4));
-            result.push(restNumber.substring(4));
-        }
-
-        setphoneNum(result.filter((val) => val).join("-"));
+    const handleClick = () => {
+        const externalURL = 'https://dev.dovfpqk67sdce.amplifyapp.com/';
+        window.location.href = externalURL;
     };
 
-    const checkUserEmail = async (e) => {
-        const emailregex = /\S+@\S+\.\S+/;
+    const handleSignUp = async () => {
+        const externalURL = 'https://dev.dovfpqk67sdce.amplifyapp.com';
+        try {
+            const response = await fetch('http://ec2-3-36-251-38.ap-northeast-2.compute.amazonaws.com:8080/api/users/join', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email: email,
+                    name: name,
+                    loginId: loginId,
+                    password: password,
+                    phone: phone,
+                    position: position,
+                }),
+            });
 
-        e.preventDefault();
-        if (emailregex.test(email.current)) {
-            checkEmail(email.current);
+            if (response.ok) {
+                console.log('회원가입 성공!');
+                alert("회원가입이 성공적으로 완료되었습니다.")
+                window.location.href = externalURL+"/log-in"
+            } else {
+                console.error('회원가입 실패!');
+                alert("잘못된 정보를 입력하였습니다.")
+            }
+        } catch (error) {
+            console.error('에러 발생:', error);
+            alert("에러가 발생했습니다.")
         }
     };
 
-    const onSignUpSubmit = async (data) => {
-        signUp(data).then(() => {
-            navigate("/login");
-        });
-    };
-
-    const {
-        register,
-        watch,
-        handleSubmit,
-        formState: { errors },
-    } = useForm({ mode: "onChange", defaultValues });
-
-    const email = useRef();
-    email.current = watch("email");
-
-    const password = useRef();
-    password.current = watch("password");
-
-    return (
-        <div css={LoginpageBg}>
-            <div css={LoginpageContainer}>
-                <div css={LoginLogoContainer}>
-                    <Link to={"/"}>
-                        <img src={GachiGalleImgSrc.logo_img} alt="logo" />
-                    </Link>
-                </div>
-                <form css={LoginContainer}>
-                    <label htmlFor="email" css={LoginLabelBox}>
-                        이메일
-                    </label>
-                    <div css={SignupEmailBox}>
-                        <input
-                            id="email"
-                            type="email"
-                            name="email"
-                            placeholder="test@email.com"
-                            {...register("email", {
-                                required: "이메일은 필수 입력입니다",
-                                pattern: {
-                                    value: /\S+@\S+\.\S+/,
-                                    message: "이메일 형식에 맞지 않습니다",
-                                },
-                            })}
-                        />
-                        <Button
-                            type="button"
-                            width="100px"
-                            color="white"
-                            text="중복검사"
-                            padding="10px"
-                            bdradius="50px"
-                            boxShadow="1px 2px 2px rgb(0,0,0,0.3)"
-                            ftsize="0.8rem"
-                            onClick={checkUserEmail}
-                        />
-                    </div>
-                    {errors.email && <small role="alert">{errors.email.message}</small>}
-                    <label htmlFor="password" css={LoginLabelBox}>
-                        비밀번호
-                    </label>
+    return (   
+        <s.StyledSignUp>
+            <s.SignUpContainer>
+                <IconButton onClick={handleClick}>
+                    <img width={240} src="/images/whistle-letter.png" alt="Whistle" />
+                </IconButton>
+                
+                <s.SignUpColumn>
                     <input
-                        id="password"
-                        type="password"
-                        name="password"
-                        placeholder="비밀번호"
-                        {...register("password", {
-                            required: "비밀번호는 필수 입력입니다",
-                            minLength: {
-                                value: 8,
-                                message: "8자리 이상 비밀번호를 사용하세요",
-                            },
-                        })}
-                        css={LoginInputBox}
+                        type="email"
+                        placeholder="이메일"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                     />
-                    {errors.password && <small role="alert">{errors.password.message}</small>}
-                    <label htmlFor="password" css={LoginLabelBox}>
-                        비밀번호 확인
-                    </label>
                     <input
-                        id="passwordConfirm"
-                        type="password"
-                        name="passwordConfirm"
-                        placeholder="비밀번호 확인"
-                        {...register("passwordConfirm", {
-                            required: "비밀번호를 확인해주세요",
-                            validate: (value) => value === password.current,
-                        })}
-                        css={LoginInputBox}
-                    />
-                    {errors.passwordConfirm && (
-                        <small role="alert">"비밀번호가 일치하지 않습니다."</small>
-                    )}
-                    <label htmlFor="password" css={LoginLabelBox}>
-                        닉네임
-                    </label>
-                    <input
-                        id="nickname"
                         type="text"
-                        name="nickname"
-                        placeholder="닉네임을 입력해주세요"
-                        {...register("nickname", {
-                            required: "닉네임을 입력해주세요",
-                        })}
-                        css={LoginInputBox}
+                        placeholder="이름"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
                     />
-                    {errors.nickname && <small role="alert">{errors.nickname.message}</small>}
-                    <label htmlFor="password" css={LoginLabelBox}>
-                        휴대폰 번호
-                    </label>
                     <input
-                        id="phone"
-                        type="tel"
-                        name="phone"
-                        value={phoneNum}
-                        placeholder="010-1234-5678"
-                        {...register("phone", {
-                            onChange: (e) => {
-                                handlePhone(e.target.value);
-                            },
-                            required: "휴대폰 번호를 입력해주세요",
-                        })}
-                        css={LoginInputBox}
+                        type="text"
+                        placeholder="아이디"
+                        value={loginId}
+                        onChange={(e) => setLoginId(e.target.value)}
                     />
-                    {errors.phone && <small role="alert">{errors.phonenum.message}</small>}
-                    <SocialButton />
-                    <Button
-                        type="button"
-                        width="100px"
-                        color="white"
-                        text="Sign Up"
-                        margin="30px"
-                        padding="10px"
-                        bdradius="50px"
-                        boxShadow="1px 2px 2px 1px rgb(0,0,0,0.3)"
-                        onClick={handleSubmit(onSignUpSubmit)}
+                    <input
+                        type="password"
+                        placeholder="패스워드"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                     />
-                </form>
-            </div>
-        </div>
+                    <input
+                        type="text"
+                        placeholder="전화번호"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                    />
+                    <input
+                        type="text"
+                        placeholder="포지션"
+                        value={position}
+                        onChange={(e) => setPosition(e.target.value)}
+                    />
+                    <button type="submit" onClick={handleSignUp}>회원가입</button>
+                </s.SignUpColumn>
+            </s.SignUpContainer>
+        </s.StyledSignUp>
     );
 };
-
-const SignupEmailBox = css`
-    box-sizing: initial;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    width: 80%;
-    height: 30px;
-    margin-bottom: 20px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
-
-    input {
-        width: 80%;
-        height: 30px;
-        font-size: 1rem;
-        border: none;
-        outline: none;
-    }
-
-    button {
-        width: 20%;
-        height: 30px;
-        margin-bottom: 10px;
-    }
-`;
 
 export default SignUp;
