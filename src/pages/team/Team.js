@@ -7,20 +7,20 @@ import BoardCategory from '../board/BoardCategory';
 import BoardSports from '../board/SportsCategory';
 import Stat from '../board/stat/Stat';
 
-const StyledLeague = styled.div`
+const StyledTeam = styled.div`
   z-index: 9;
   margin-top: 70px;
   width: 100vw;
 `;
 
-const LeagueContainer = styled.div`
+const TeamContainer = styled.div`
   margin-top: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
-const LeagueTop = styled.div`
+const TeamTop = styled.div`
   background-color: #F0FFFF;
   display: flex;
   align-items: center;
@@ -28,12 +28,12 @@ const LeagueTop = styled.div`
   width: 100vw;
 `;
 
-const LeagueTopAdvertisement = styled.div`
+const TeamTopAdvertisement = styled.div`
   width: 868px;
   height: 360px;
 `;
 
-const LeagueSchedule = styled.div`
+const TeamSchedule = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -41,9 +41,9 @@ const LeagueSchedule = styled.div`
   width: 100vw;
 `;
 
-const LeagueBody = styled.div``;
+const TeamBody = styled.div``;
 
-const LeagueBodyCalender = styled.div`
+const TeamBodyCalender = styled.div`
   width: 100vw;
   margin: 10px 0 10px 0;
   height: 120px;
@@ -53,17 +53,17 @@ const LeagueBodyCalender = styled.div`
   align-items: center;
 `;
 
-const League = () => {
-  const [Leaguees, setLeaguees] = useState([]);
+const Team = () => {
+  const [teames, setTeames] = useState([]);
   const [pageInfo, setPageInfo] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://ec2-3-36-251-38.ap-northeast-2.compute.amazonaws.com:8080/api/leaguees?page=1&size=40');
+        const response = await fetch('http://ec2-3-36-251-38.ap-northeast-2.compute.amazonaws.com:8080/api/teames?page=1&size=40');
         if (response.ok) {
           const jsonData = await response.json();
-          setLeaguees(jsonData.data);
+          setTeames(jsonData.data);
           setPageInfo(jsonData.pageInfo);
         } else {
           console.error('데이터를 가져오는 데 실패했습니다.');
@@ -77,42 +77,42 @@ const League = () => {
   }, []);
 
   return (
-    <StyledLeague>
+    <StyledTeam>
       <BoardSports />
-      <LeagueContainer>
-        <LeagueTop>
-          <LeagueTopAdvertisement>
+      <TeamContainer>
+        <TeamTop>
+          <TeamTopAdvertisement>
             <SimpleSlider />
-          </LeagueTopAdvertisement>
-        </LeagueTop>
+          </TeamTopAdvertisement>
+        </TeamTop>
 
-        <LeagueBody>
+        <TeamBody>
           <BoardCategory />
-          <LeagueBodyCalender>
-          </LeagueBodyCalender>
+          <TeamBodyCalender>
+          </TeamBodyCalender>
 
-          <LeagueSchedule>
-            {Leaguees.map(League => (
-              <div key={League.LeagueId}>
+          <TeamSchedule>
+            {teames.map(team => (
+              <div key={team.teamId}>
                 {/* 각 매치 ID에 대한 링크를 생성합니다. */}
-                <Link to={`/League-detail/${League.LeagueId}`}>
-                  <h2>매치 ID: {League.LeagueId}</h2>
+                <Link to={`/team-detail/${team.teamId}`}>
+                  <h2>매치 ID: {team.TeamId}</h2>
                 </Link>
-                <p>홈 팀 이름: {League.homeTeamName}</p>
-                <p>매치 시간: {League.LeagueTime}</p>
+                <p>홈 팀 이름: {team.homeTeamName}</p>
+                <p>매치 시간: {team.TeamTime}</p>
               </div>
             ))}
             <div>
               <p>현재 페이지: {pageInfo.page}</p>
               <p>전체 페이지 수: {pageInfo.totalPages}</p>
             </div>
-          </LeagueSchedule>
-        </LeagueBody>
+          </TeamSchedule>
+        </TeamBody>
 
         <Stat />
-      </LeagueContainer>
-    </StyledLeague>
+      </TeamContainer>
+    </StyledTeam>
   );
 };
 
-export default League;
+export default Team;

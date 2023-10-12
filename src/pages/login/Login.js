@@ -5,7 +5,7 @@ import IconButton from '@mui/material/IconButton';
 import * as l from '../../style/LoginStyle'
 
 const Login = () => {
-    const basicURL = 'http://localhost:3000/';
+    const basicURL = 'http://localhost:3000';
     // const basicURL = 'https://dev.dovfpqk67sdce.amplifyapp.com';
 
     const handleClickGoogleLogin = () => {
