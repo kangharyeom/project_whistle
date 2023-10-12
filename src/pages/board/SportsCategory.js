@@ -6,7 +6,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 
 
-const StyledBoardSports = styled.div`
+const StyledSportsCategory = styled.div`
 width: 100vw;
 height: 40px;
 display: flex;
@@ -15,15 +15,15 @@ flex-direction: column;
 align-items: center;
 `;
 
-const BoardSportsContainer = styled.div`
+const SportsCategoryContainer = styled.div`
 width: 100vw;
 display: flex;
 flex-direction: column;
 align-items: center;
 `;
-const BoardSportsTop = styled.div`
+const SportsCategoryTop = styled.div`
 `;
-const BoardSports = () => {
+const SportsCategory = () => {
 
     // 동작
     const [topValue, setTopValue] = useState(0); // Initialize the active tab index
@@ -34,9 +34,9 @@ const BoardSports = () => {
       };
     
     return (   
-        <StyledBoardSports>
-            <BoardSportsContainer>
-                <BoardSportsTop>
+        <StyledSportsCategory>
+            <SportsCategoryContainer>
+                <SportsCategoryTop>
                     <Tabs
                         value={topValue}
                         onChange={TopHandleChange}
@@ -53,12 +53,12 @@ const BoardSports = () => {
                         <Tab icon={ <img src="/images/pictogram-icon-basketball.png" alt="농구"  width={'36px'}/>} style={{width: '160px', fontWeight:'bold', fontSize: '18px'}}  label="농구" />
                         <Tab icon={ <img src="/images/pictogram-icon-volleyball.png" alt="그 외"  width={'36px'}/>} style={{width: '160px', fontWeight:'bold', fontSize: '18px'}}  label="그 외" /> */}
                     </Tabs>
-                </BoardSportsTop>
-            </BoardSportsContainer>
+                </SportsCategoryTop>
+            </SportsCategoryContainer>
             
-        </StyledBoardSports>
+        </StyledSportsCategory>
 
 );
 }
   
-export default BoardSports;
+export default SportsCategory;

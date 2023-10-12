@@ -1,5 +1,4 @@
-import React from 'react';
-
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import IconButton from '@mui/material/IconButton';
@@ -10,9 +9,20 @@ import SearchIcon from '@mui/icons-material/Search';
 import * as h from "../style/HeaderStyle";
 
 const Header = () => {
-   
     // 동작
     const navigate = useNavigate();
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    useEffect(() => {
+        const authToken = localStorage.getItem('authToken');
+
+        // 토큰이 있으면 로그인 상태로 간주합니다.
+        if (authToken) {
+            setIsLoggedIn(true);
+        } else {
+            setIsLoggedIn(false);
+        }
+    }, []);
 
     const handleClick = () => {
     // 클릭 시 "/matching" 페이지로 이동
@@ -22,6 +32,18 @@ const Header = () => {
     const handleLogin = () => {
     // 클릭 시 "/login" 페이지로 이동
     navigate('/log-in');
+    };
+
+    const handleLogout = () => {
+        // 로그아웃 로직을 처리한 후, 홈 페이지로 리다이렉트
+        // 로그아웃 로직을 처리하고나면 아래의 코드를 호출
+        // logout();
+
+        // 로그아웃 시 토큰을 제거합니다.
+        localStorage.removeItem('authToken');
+        setIsLoggedIn(false);
+
+        navigate('/');
     };
 
     return (   
@@ -43,10 +65,18 @@ const Header = () => {
                                 }}
                                 />
                                 </h.HeaderTopSearch>
-                            <h.HeaderTopLoginButton id="HeaderLoginButtonId" >
-                                    <IconButton onClick={handleLogin}>
-                                        <img width={40} src="/images/free-icon-soccer-jersey-212273.png" alt="로그인" />
-                                    </IconButton>
+                                 <h.HeaderTopLoginButton id="HeaderLoginButtonId">
+                                    {isLoggedIn ? (
+                                        // 로그인 상태이면서 authorization이 있는 경우 로그아웃 버튼 렌더링
+                                        <IconButton onClick={handleLogout}>
+                                            <img width={40} src="/images/logout-icon.png" alt="로그아웃" />
+                                        </IconButton>
+                                    ) : (
+                                        // 로그인 상태가 아닌 경우 로그인 버튼 렌더링
+                                        <IconButton onClick={handleLogin}>
+                                            <img width={40} src="/images/free-icon-soccer-jersey-212273.png" alt="로그인" />
+                                        </IconButton>
+                                    )}
                                 </h.HeaderTopLoginButton>
                     </h.HeaderTop >
                 </h.HeaderTopContainer>

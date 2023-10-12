@@ -5,25 +5,26 @@ import IconButton from '@mui/material/IconButton';
 import * as l from '../../style/LoginStyle'
 
 const Login = () => {
+    const basicURL = 'http://localhost:3000/';
+    // const basicURL = 'https://dev.dovfpqk67sdce.amplifyapp.com';
+
     const handleClickGoogleLogin = () => {
         const externalURL = 'http://ec2-3-36-251-38.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/google'
         window.location.href = externalURL;
     };
 
     const handleClick = () => {
-        const externalURL = 'https://dev.dovfpqk67sdce.amplifyapp.com';
-        window.location.href = externalURL;
+        window.location.href = basicURL;
     };
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
      const handleLogin = async (e) => {
-        const externalURL = 'https://dev.dovfpqk67sdce.amplifyapp.com';
         e.preventDefault();
 
         try {
-            const response = await fetch('https://ec2-3-36-251-38.ap-northeast-2.compute.amazonaws.com:8080/api/login', {
+            const response = await fetch('http://ec2-3-36-251-38.ap-northeast-2.compute.amazonaws.com:8080/api/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -35,24 +36,23 @@ const Login = () => {
             });
 
             if (response.ok) {
-                const data = await response.json();
-                const authToken = data.token; // 가정: 서버에서 토큰을 'token' 필드로 응답한다고 가정
-    
-                // 토큰을 로컬 스토리지에 저장
+                const authToken = response.headers.get('Authorization'); // Authorization 헤더에서 토큰을 가져옴
                 localStorage.setItem('authToken', authToken);
-    
+                console.log('토큰 값:', authToken);
+                
                 console.log('로그인 성공!');
-                window.location.href = externalURL;
+                alert('로그인 성공');
+                window.location.href = basicURL;
             } else {
                 console.error('로그인 실패!');
                 alert('아이디와 비밀번호를 확인해주세요')
-                window.location.href = externalURL+'/log-in';
+                window.location.href = basicURL+'/log-in';
                 
             }
         } catch (error) {
             console.error('에러 발생:', error);
             alert('에러 발생했습니다. 다시 시도해주세요.');
-            window.location.href = externalURL+'/log-in';
+            window.location.href = basicURL+'/log-in';
         }
     };
 

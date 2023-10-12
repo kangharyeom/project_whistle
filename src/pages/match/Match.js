@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import SimpleSlider from './SimpleSlider'
 import BoardCategory from '../board/BoardCategory';
-import BoardSports from '../board/BoardSports';
+import BoardSports from '../board/SportsCategory';
 import Stat from '../board/stat/Stat';
 import Calender from './Calender';
 

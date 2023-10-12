@@ -10,13 +10,14 @@ const SignUp = () => {
     const [phone, setPhone] = useState('');
     const [position, setPosition] = useState('');
 
+    const basicURL = 'http://localhost:3000/';
+    // const basicURL = 'https://dev.dovfpqk67sdce.amplifyapp.com';
+
     const handleClick = () => {
-        const externalURL = 'https://dev.dovfpqk67sdce.amplifyapp.com/';
-        window.location.href = externalURL;
+        window.location.href = basicURL;
     };
 
     const handleSignUp = async () => {
-        const externalURL = 'https://dev.dovfpqk67sdce.amplifyapp.com';
         try {
             const response = await fetch('http://ec2-3-36-251-38.ap-northeast-2.compute.amazonaws.com:8080/api/users/join', {
                 method: 'POST',
@@ -36,10 +37,11 @@ const SignUp = () => {
             if (response.ok) {
                 console.log('회원가입 성공!');
                 alert("회원가입이 성공적으로 완료되었습니다.")
-                window.location.href = externalURL+"/log-in"
+                window.location.href = basicURL+"/log-in"
             } else {
                 console.error('회원가입 실패!');
                 alert("잘못된 정보를 입력하였습니다.")
+                window.location.href = basicURL+"/signup"
             }
         } catch (error) {
             console.error('에러 발생:', error);
