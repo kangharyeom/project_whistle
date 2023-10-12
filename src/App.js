@@ -9,7 +9,7 @@ import SignUp from './pages/signup/SignUp';
 import Match from './pages/match/Match';
 import MatchPost from './pages/match/MatchPost';
 import MatchDetail from './pages/match/MatchPost';
-import League from './pages/league/league';
+import League from './pages/league/League';
 import Team from './pages/team/Team';
 
 import './App.css';
