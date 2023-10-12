@@ -23,7 +23,7 @@ const Login = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch('http://ec2-3-36-251-38.ap-northeast-2.compute.amazonaws.com:8080/api/login', {
+            const response = await fetch('https://ec2-3-36-251-38.ap-northeast-2.compute.amazonaws.com:8080/api/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -51,7 +51,8 @@ const Login = () => {
             }
         } catch (error) {
             console.error('에러 발생:', error);
-            alert('error')
+            alert('에러 발생했습니다. 다시 시도해주세요.');
+            window.location.href = externalURL+'/log-in';
         }
     };
 
