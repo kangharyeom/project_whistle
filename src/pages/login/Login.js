@@ -5,11 +5,10 @@ import IconButton from '@mui/material/IconButton';
 import * as l from '../../style/LoginStyle'
 
 const Login = () => {
-    const basicURL = 'http://localhost:3000';
-    // const basicURL = 'https://dev.dovfpqk67sdce.amplifyapp.com';
+    const basicURL = process.env.REACT_APP_API_ENDPOINT;
 
     const handleClickGoogleLogin = () => {
-        const externalURL = 'http://ec2-3-36-251-38.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/google'
+        const externalURL = process.env.REACT_APP_SERVER_API_ENDPOINT+'/authorization/google'
         window.location.href = externalURL;
     };
 
@@ -24,7 +23,7 @@ const Login = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch('http://ec2-3-36-251-38.ap-northeast-2.compute.amazonaws.com:8080/api/login', {
+            const response = await fetch(process.env.REACT_APP_SERVER_API_ENDPOINT+'/api/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -34,6 +33,9 @@ const Login = () => {
                     password: password,
                 }),
             });
+
+            console.log('로컬'+process.env.REACT_APP_API_ENDPOINT)
+            console.log('서버'+process.env.REACT_APP_SERVER_API_ENDPOINT)
 
             if (response.ok) {
                 const authToken = response.headers.get('Authorization'); // Authorization 헤더에서 토큰을 가져옴

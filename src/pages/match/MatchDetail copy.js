@@ -25,7 +25,7 @@ const MatchDetail = () => {
   useEffect(() => {
     const fetchMatchData = async () => {
       try {
-        const response = await fetch(`http://ec2-3-36-251-38.ap-northeast-2.compute.amazonaws.com:8080/api/matches/${matchId}`);
+        const response = await fetch(process.env.REACT_APP_SERVER_API_ENDPOINT+`/api/matches/${matchId}`);
         if (response.ok) {
           const jsonData = await response.json();
           setMatchData(jsonData); // 가져온 데이터를 state에 저장

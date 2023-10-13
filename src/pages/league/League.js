@@ -60,7 +60,7 @@ const League = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://ec2-3-36-251-38.ap-northeast-2.compute.amazonaws.com:8080/api/leaguees?page=1&size=40');
+        const response = await fetch(process.env.REACT_APP_SERVER_API_ENDPOINT+'/api/leaguees?page=1&size=40');
         if (response.ok) {
           const jsonData = await response.json();
           setLeaguees(jsonData.data);

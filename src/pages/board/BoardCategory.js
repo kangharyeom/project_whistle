@@ -25,8 +25,7 @@ const BoardCategoryContainer = styled.div`
 const BoardCategoryMiddle = styled.div``;
 
 const BoardCategory = () => {
-  const basicURL = 'http://localhost:3000';
-   // const basicURL = 'https://dev.dovfpqk67sdce.amplifyapp.com';
+  const basicURL = process.env.REACT_APP_API_ENDPOINT;
 
   const [middleValue, setMiddleValue] = useState(0);
 

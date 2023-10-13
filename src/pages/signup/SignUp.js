@@ -10,8 +10,7 @@ const SignUp = () => {
     const [phone, setPhone] = useState('');
     const [position, setPosition] = useState('');
 
-    const basicURL = 'http://localhost:3000/';
-    // const basicURL = 'https://dev.dovfpqk67sdce.amplifyapp.com';
+    const basicURL = process.env.REACT_APP_API_ENDPOINT;
 
     const handleClick = () => {
         window.location.href = basicURL;
@@ -19,7 +18,7 @@ const SignUp = () => {
 
     const handleSignUp = async () => {
         try {
-            const response = await fetch('http://ec2-3-36-251-38.ap-northeast-2.compute.amazonaws.com:8080/api/users/join', {
+            const response = await fetch(process.env.REACT_APP_SERVER_API_ENDPOINT+'/api/users/join', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
