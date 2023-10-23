@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledStat = styled.div`
-width: 100vw;
+width: 470px;
 display: flex;
 flex-direction: column;
 justify-content: center;
@@ -22,7 +22,7 @@ border-bottom: 6px solid #a1c8fb;
 border-right: 4px solid #a1c8fb;
 border-top: 1px solid #a1c8fb;
 background-color: #e1eefe;
-width: 648px;
+width: 460px;
 height: 140px;
 border-radius: 20px;
 display: flex;
@@ -32,7 +32,7 @@ align-items: center;
 `;
 
 export const StatInfo = styled.div`
-width: 500px;
+width: 460px;
 justify-content: space-between;
 height: 100px;
 display: flex;
@@ -49,7 +49,7 @@ margin-bottom: 30px;
 export const StatInfoTopLeft = styled.div`
 margin-left: 20px;
 display: flex;
-width: 240px;
+width: 200px;
 justify-content: left;
 `;
 
@@ -63,7 +63,7 @@ flex-direction: row;
 
 export const StatInfoBottomLeft = styled.div`
 margin-left: 20px;
-width: 240px;
+width: 100px;
 `;
 
 export const StatInfoBottomRight = styled.div`
@@ -82,8 +82,8 @@ export const TeamTotalScore = styled.div`
 `;
 
 export const TeamManagement = styled.div`
-width: 100px;
-height: 100px;
+width: 80px;
+height: 80px;
 display: flex;
 flex-direction: row;
 align-items: center;
@@ -93,6 +93,6 @@ justify-content: space-around;
 export const StatMyTeam = styled.div`
 align-items: center;
 justify-content: center;
-width: 90px;
-height: 90px;
+width: 80px;
+height: 80px;
 `;
