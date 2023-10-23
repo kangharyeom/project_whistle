@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 import SimpleSlider from '../match/SimpleSlider';
 import BoardCategory from '../board/BoardCategory';
-import BoardSports from '../board/SportsCategory';
 import Stat from '../board/stat/Stat';
 
 const StyledLeague = styled.div`
@@ -25,11 +24,11 @@ const LeagueTop = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100vw;
+  width: 470px;
 `;
 
 const LeagueTopAdvertisement = styled.div`
-  width: 868px;
+  width: 470px;
   height: 360px;
 `;
 
@@ -38,20 +37,11 @@ const LeagueSchedule = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100vw;
+  width: 470px;
 `;
 
 const LeagueBody = styled.div``;
 
-const LeagueBodyCalender = styled.div`
-  width: 100vw;
-  margin: 10px 0 10px 0;
-  height: 120px;
-  display: flex;
-  place-items: center;
-  flex-direction: column;
-  align-items: center;
-`;
 
 const League = () => {
   const [Leaguees, setLeaguees] = useState([]);
@@ -85,7 +75,6 @@ const League = () => {
 
   return (
     <StyledLeague>
-      <BoardSports />
       <LeagueContainer>
         <LeagueTop>
           <LeagueTopAdvertisement>
@@ -95,8 +84,6 @@ const League = () => {
 
         <LeagueBody>
           <BoardCategory />
-          <LeagueBodyCalender>
-          </LeagueBodyCalender>
 
           <LeagueSchedule>
             {Leaguees.map(league => (

@@ -4,12 +4,10 @@ import styled from 'styled-components';
 
 import SimpleSlider from '../match/SimpleSlider';
 import BoardCategory from '../board/BoardCategory';
-import BoardSports from '../board/SportsCategory';
 import Stat from '../board/stat/Stat';
 
 const StyledTeam = styled.div`
   z-index: 9;
-  margin-top: 70px;
   width: 100vw;
 `;
 
@@ -25,12 +23,11 @@ const TeamTop = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100vw;
+  width: 470px;
 `;
 
 const TeamTopAdvertisement = styled.div`
-  width: 868px;
-  height: 360px;
+  width: 470px;
 `;
 
 const TeamSchedule = styled.div`
@@ -38,13 +35,13 @@ const TeamSchedule = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100vw;
+  width: 470px;
 `;
 
 const TeamBody = styled.div``;
 
 const TeamBodyCalender = styled.div`
-  width: 100vw;
+  width: 470px;
   margin: 10px 0 10px 0;
   height: 120px;
   display: flex;
@@ -86,7 +83,6 @@ const Team = () => {
 
   return (
     <StyledTeam>
-      <BoardSports />
       <TeamContainer>
         <TeamTop>
           <TeamTopAdvertisement>
