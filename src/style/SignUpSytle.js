@@ -1,17 +1,23 @@
 import styled from "styled-components";
 
 export const StyledSignUp = styled.div`
-margin-top: 40px;
 width: 100vw;
-background-color: #F0FFFF;
-padding-top: 40px;
-height: 100vw;
 display: flex;
 flex-direction: column;
 align-items: center;
 `;
 
 export const SignUpContainer = styled.div`
+width: 470px;
+height: 700px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+background-color: #F0FFFF;
+`;
+
+export const SignUpColumn = styled.div`
 border-bottom: 8px solid #EBEBEB;
 border-top: 1px solid #EBEBEB;
 border-left: 1px solid #EBEBEB;
@@ -24,14 +30,7 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-`;
-
-export const SignUpColumn = styled.div`
-margin: 60px 0 60px 0;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
+gap : 40px
 `;
 
 export const SignUpKaKao = styled.div`
@@ -50,8 +49,6 @@ export const SignUp = styled.div`
 flex-direction: row;
 justify-content: center;
 align-items: center;
- height: 20px;
- width: 200px;
 `;
 
 export const SignUpRow = styled.div`

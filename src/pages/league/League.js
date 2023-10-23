@@ -8,12 +8,10 @@ import Stat from '../board/stat/Stat';
 
 const StyledLeague = styled.div`
   z-index: 9;
-  margin-top: 70px;
   width: 100vw;
 `;
 
 const LeagueContainer = styled.div`
-  margin-top: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;

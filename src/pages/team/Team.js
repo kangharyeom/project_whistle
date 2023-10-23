@@ -12,7 +12,6 @@ const StyledTeam = styled.div`
 `;
 
 const TeamContainer = styled.div`
-  margin-top: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;

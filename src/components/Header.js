@@ -53,7 +53,7 @@ const Header = () => {
                     <h.HeaderTop id="HeaderTopId">
                             <h.HeaderTopLogo id="HeaderLogoId">
                             <IconButton onClick={handleClick}>
-                                    <img width={120} src="/images/whistle-letter.png" alt="Whistle" />
+                                    <img width={150} src="/images/whistle-letter.png" alt="Whistle" />
                                 </IconButton>
                             </h.HeaderTopLogo>
                             <h.HeaderTopSearch id="HeaderSearchId">
@@ -69,12 +69,12 @@ const Header = () => {
                                     {isLoggedIn ? (
                                         // 로그인 상태이면서 authorization이 있는 경우 로그아웃 버튼 렌더링
                                         <IconButton onClick={handleLogout}>
-                                            <img width={40} src="/images/logout-icon.png" alt="로그아웃" />
+                                            <img width={40} src="/images/jersey-red.png" alt="로그아웃" />
                                         </IconButton>
                                     ) : (
                                         // 로그인 상태가 아닌 경우 로그인 버튼 렌더링
                                         <IconButton onClick={handleLogin}>
-                                            <img width={30} src="/images/free-icon-soccer-jersey-212273.png" alt="로그인" />
+                                            <img width={40} src="/images/jersey-blue.png" alt="로그인" />
                                         </IconButton>
                                     )}
                                 </h.HeaderTopLoginButton>

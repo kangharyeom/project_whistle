@@ -5,56 +5,39 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import 'react-time-picker/dist/TimePicker.css';
 
-import SimpleSlider from '../match/SimpleSlider';
-import BoardCategory from '../board/BoardCategory';
-import BoardSports from '../board/SportsCategory';
-import Stat from '../board/stat/Stat';
-
 const StyledMatchPost = styled.div`
-  z-index: 9;
-  margin-top: 70px;
   width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const MatchPostContainer = styled.div`
-  margin-top: 30px;
+  width: 470px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-`;
-
-const MatchPostTop = styled.div`
   background-color: #F0FFFF;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100vw;
 `;
 
-const MatchPostTopAdvertisement = styled.div`
-  width: 868px;
-  height: 360px;
-`;
-
-const MatchPostSchedule = styled.div`
+const MatchPostBody = styled.div`
+  width: 470px;
+  height: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100vw;
+  background-color: #F0FFFF;
 `;
 
-const MatchPostBody = styled.div``;
-
-const MatchPostBodyCalender = styled.div`
-  width: 100vw;
-  margin: 10px 0 10px 0;
-  height: 120px;
+const MatchPostBodySelect = styled.select`
+  width: 470px;
   display: flex;
-  place-items: center;
   flex-direction: column;
   align-items: center;
+  justify-items: center;
+  background-color: #F0FFFF;
 `;
+
 
 const MatchPost = () => {
   const basicURL = process.env.REACT_APP_API_ENDPOINT;
@@ -162,78 +145,60 @@ const MatchPost = () => {
   };
 
   return (
-    <StyledMatchPost>
-      <BoardSports />
-      <MatchPostContainer>
-        <MatchPostTop>
-          <MatchPostTopAdvertisement>
-            <SimpleSlider />
-          </MatchPostTopAdvertisement>
-        </MatchPostTop>
+    <StyledMatchPost id ='StyledMatchPost'>
+      <MatchPostContainer id = 'MatchPostContainer'>
 
-        <MatchPostBody>
-          <BoardCategory />
-          <MatchPostBodyCalender>
-            {/* 여기에 캘린더 컴포넌트 추가 */}
-          </MatchPostBodyCalender>
-
-          <MatchPostSchedule>
-            <div>
-             
-              <select
-                name="locationType"
-                value={locationType}
-                onChange={handleInputChange}
-              >
-                <option value="">지역</option>
-                {locationTypeOptions.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
-            
+        <MatchPostBody id ='MatchPostBody'>
+          지역 :
+          <MatchPostBodySelect
+            name="locationType"
+            value={locationType}
+            onChange={handleInputChange}
+            >
+            {locationTypeOptions.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+            </MatchPostBodySelect>
+        
+          <div>
+            <label>Date:</label>
+            <DatePicker
+              selected={selectedDate}
+              onChange={handleDateChange}
+              dateFormat="yyyy/MM/dd"
+              placeholderText="Select date"
+            />
+              <label>Time:</label>
               <div>
-                <label>Date:</label>
-                <DatePicker
-                  selected={selectedDate}
-                  onChange={handleDateChange}
-                  dateFormat="yyyy/MM/dd"
-                  placeholderText="Select date"
-                />
-                 <label>Time:</label>
-                  <div>
-                    <select
-                      value={selectedHour}
-                      onChange={(e) => setSelectedHour(e.target.value)}
-                    >
-                      {hourOptions.map((hour) => (
-                        <option key={hour} value={hour}>
-                          {hour}
-                        </option>
-                      ))}
-                    </select>
+                <select
+                  value={selectedHour}
+                  onChange={(e) => setSelectedHour(e.target.value)}
+                >
+                  {hourOptions.map((hour) => (
+                    <option key={hour} value={hour}>
+                      {hour}
+                    </option>
+                  ))}
+                </select>
 
-                    <select
-                      value={selectedMinute}
-                      onChange={(e) => setSelectedMinute(e.target.value)}
-                    >
-                      {minuteOptions.map((minute) => (
-                        <option key={minute} value={minute}>
-                          {minute}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
+                <select
+                  value={selectedMinute}
+                  onChange={(e) => setSelectedMinute(e.target.value)}
+                >
+                  {minuteOptions.map((minute) => (
+                    <option key={minute} value={minute}>
+                      {minute}
+                    </option>
+                  ))}
+                </select>
+              </div>
 
-                  <p>Selected Time: {selectedHour}:{selectedMinute}</p>
-                </div>
-              <button onClick={handleCreateMatch}>경기 생성</button>
+              <p>Selected Time: {selectedHour}:{selectedMinute}</p>
             </div>
-          </MatchPostSchedule>
+          <button onClick={handleCreateMatch}>경기 생성</button>
         </MatchPostBody>
-
-        <Stat />
       </MatchPostContainer>
     </StyledMatchPost>
   );

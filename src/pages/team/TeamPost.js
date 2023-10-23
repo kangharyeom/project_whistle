@@ -1,51 +1,25 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import SimpleSlider from '../match/SimpleSlider';
-import BoardCategory from '../board/BoardCategory';
-import BoardSports from '../board/SportsCategory';
-import Stat from '../board/stat/Stat';
-
 const StyledTeam = styled.div`
-  z-index: 9;
-  margin-top: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100vw;
 `;
 
 const TeamContainer = styled.div`
-  margin-top: 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const TeamTop = styled.div`
+  width: 470px;
   background-color: #F0FFFF;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100vw;
-`;
-
-const TeamTopAdvertisement = styled.div`
-  width: 868px;
-  height: 360px;
-`;
-
-const TeamSchedule = styled.div`
-  display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  width: 100vw;
 `;
 
-const TeamBody = styled.div``;
-
-const TeamBodyCalender = styled.div`
-  width: 100vw;
+const TeamBody = styled.div`
+  width: 470px;
   margin: 10px 0 10px 0;
-  height: 120px;
+  height: 500px;
   display: flex;
   place-items: center;
   flex-direction: column;
@@ -147,21 +121,9 @@ const TeamPost = () => {
 
   return (
     <StyledTeam>
-      <BoardSports />
       <TeamContainer>
-        <TeamTop>
-          <TeamTopAdvertisement>
-            <SimpleSlider />
-          </TeamTopAdvertisement>
-        </TeamTop>
 
         <TeamBody>
-          <BoardCategory />
-          <TeamBodyCalender>
-            {/* 여기에 캘린더 컴포넌트 추가 */}
-          </TeamBodyCalender>
-
-          <TeamSchedule>
             <div>
               <input
                 type="text"
@@ -256,10 +218,7 @@ const TeamPost = () => {
               </select>
               <button onClick={handleCreateTeam}>팀 생성</button>
             </div>
-          </TeamSchedule>
         </TeamBody>
-
-        <Stat />
       </TeamContainer>
     </StyledTeam>
   );

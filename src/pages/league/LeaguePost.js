@@ -3,19 +3,17 @@ import styled from 'styled-components';
 
 import DatePicker from 'react-datepicker';
 
-import SimpleSlider from '../match/SimpleSlider';
-import BoardCategory from '../board/BoardCategory';
-import BoardSports from '../board/SportsCategory';
-import Stat from '../board/stat/Stat';
-
 const StyledLeaguePost = styled.div`
   z-index: 9;
-  margin-top: 70px;
   width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const LeaguePostContainer = styled.div`
   margin-top: 30px;
+  width: 470px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,32 +24,15 @@ const LeaguePostTop = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100vw;
+  width: 470px;
 `;
 
-const LeaguePostTopAdvertisement = styled.div`
-  width: 868px;
-  height: 360px;
-`;
-
-const LeaguePostSchedule = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100vw;
-`;
-
-const LeaguePostBody = styled.div``;
-
-const LeaguePostBodyCalender = styled.div`
-  width: 100vw;
-  margin: 10px 0 10px 0;
-  height: 120px;
-  display: flex;
-  place-items: center;
-  flex-direction: column;
-  align-items: center;
+const LeaguePostBody = styled.div`
+ width: 470px;
+ display: flex;
+ place-items: center;
+ flex-direction: column;
+ align-items: center;
 `;
 
 const LeaguePost = () => {
@@ -162,21 +143,12 @@ const LeaguePost = () => {
 
   return (
     <StyledLeaguePost>
-      <BoardSports />
       <LeaguePostContainer>
         <LeaguePostTop>
-          <LeaguePostTopAdvertisement>
-            <SimpleSlider />
-          </LeaguePostTopAdvertisement>
         </LeaguePostTop>
 
         <LeaguePostBody>
-          <BoardCategory />
-          <LeaguePostBodyCalender>
-            {/* 여기에 캘린더 컴포넌트 추가 */}
-          </LeaguePostBodyCalender>
 
-          <LeaguePostSchedule>
             <div>
               <input
                 type="text"
@@ -272,10 +244,8 @@ const LeaguePost = () => {
               </select>
               <button onClick={handleCreateLeague}>팀 생성</button>
             </div>
-          </LeaguePostSchedule>
         </LeaguePostBody>
 
-        <Stat />
       </LeaguePostContainer>
     </StyledLeaguePost>
   );

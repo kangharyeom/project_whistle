@@ -13,6 +13,7 @@ import League from './pages/league/League';
 import LeaguePost from './pages/league/LeaguePost';
 import Team from './pages/team/Team';
 import TeamPost from './pages/team/TeamPost';
+import Ranking from './pages/ranking/Ranking';
 
 import './App.css';
 
@@ -33,6 +34,7 @@ const App = () => {
           <Route path="/league-post" element={<LeaguePost />} />
           <Route path="/team" element={<Team />} />
           <Route path="/team-post" element={<TeamPost />} />
+          <Route path="/ranking" element={<Ranking />} />
         </Routes>
       <Footer />
     </BrowserRouter>

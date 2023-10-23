@@ -11,7 +11,6 @@ justify-content: center;
 // 컨테이너
 
 export const HeaderContainer = styled.div`
-z-index: 10;
 width: 470px;
 display: flex;
 flex-direction: column;
@@ -21,7 +20,7 @@ align-items: center;
 
 // 헤더 상단
 export const HeaderTopContainer = styled.div`
-border-top: 3px solid #125b9f;
+border-top: 4px solid #125b9f;
 border-bottom: 4px solid #EBEBEB;
 background-color: white;
 width: 470px;

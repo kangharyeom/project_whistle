@@ -25,7 +25,7 @@ const BoardCategory = () => {
 
   const [middleValue, setMiddleValue] = useState(0);
 
-  const MiddleHandleChange = (event, newValue) => {
+  const MiddleHandleChange = (newValue) => {
     setMiddleValue(newValue);
   };
 
@@ -43,7 +43,7 @@ const BoardCategory = () => {
   };
 
   const handleClickRank = () => {
-    window.location.href = `${basicURL}/rank`;
+    window.location.href = `${basicURL}/ranking`;
   };
 
   const handleClickBoard = () => {
@@ -58,16 +58,15 @@ const BoardCategory = () => {
             indicatorColor='primary'
             value={middleValue}
             onChange={MiddleHandleChange}
-            scrollButtons="1"
             allowScrollButtonsMobile
             aria-label="scrollable auto tabs example"
             centered
           >
-            <Tab style={{ width: '100px', fontSize: '14px', fontWeight:'bold'}}  onClick={handleClickMatch} label="경기 매칭" />
-            <Tab style={{ width: '80px', fontSize: '14px', fontWeight:'bold' }} onClick={handleClickLeague} label="리그" />
-            <Tab style={{ width: '80px', fontSize: '14px', fontWeight:'bold'}}  onClick={handleClickTeams} label="팀" />
-            <Tab style={{ width: '80px', fontSize: '14px', fontWeight:'bold'}}  onClick={handleClickRank} label="랭킹" />
-            <Tab style={{ width: '110px', fontSize: '14px', fontWeight:'bold'}}  onClick={handleClickBoard} label="자유게시판" />
+            <Tab style={{ width: '40px', fontSize: '16px', fontWeight:'bold'}}  onClick={handleClickMatch} label="경기" />
+            <Tab style={{ width: '40px', fontSize: '16px', fontWeight:'bold' }} onClick={handleClickLeague} label="리그" />
+            <Tab style={{ width: '40px', fontSize: '16px', fontWeight:'bold'}}  onClick={handleClickTeams} label="팀" />
+            <Tab style={{ width: '40px', fontSize: '16px', fontWeight:'bold'}}  onClick={handleClickRank} label="랭킹" />
+            <Tab style={{ width: '120px', fontSize: '16px', fontWeight:'bold'}}  onClick={handleClickBoard} label="자유게시판" />
           </Tabs>
         </BoardCategoryMiddle>
       </BoardCategoryContainer>

@@ -49,11 +49,11 @@ const SignUp = () => {
     return (   
         <s.StyledSignUp>
             <s.SignUpContainer>
+                
+                <s.SignUpColumn>
                 <IconButton onClick={handleClick}>
                     <img width={240} src="/images/whistle-letter.png" alt="Whistle" />
                 </IconButton>
-                
-                <s.SignUpColumn>
                     <input
                         type="email"
                         placeholder="이메일"
