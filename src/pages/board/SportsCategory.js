@@ -7,8 +7,7 @@ import Tab from '@mui/material/Tab';
 
 
 const StyledSportsCategory = styled.div`
-width: 100vw;
-height: 40px;
+width: 470px;
 display: flex;
 justify-content: center;
 flex-direction: column;
@@ -16,7 +15,7 @@ align-items: center;
 `;
 
 const SportsCategoryContainer = styled.div`
-width: 100vw;
+width: 470px;
 display: flex;
 flex-direction: column;
 align-items: center;
@@ -47,8 +46,8 @@ const SportsCategory = () => {
                         aria-label="scrollable force tabs example"
                         centered
                     >
-                        <Tab icon={ <img src="/images/pictogram-icon-football.png" alt="축구" width={'36px'} />} style={{width: '160px', fontWeight:'bold', fontSize: '18px'}} label="축구" />
-                        <Tab icon={ <img src="/images/pictogram-icon-football.png" alt="풋살"  width={'36px'}/>} style={{width: '160px', fontWeight:'bold', fontSize: '18px'}}  label="풋살" />
+                        <Tab icon={ <img src="/images/pictogram-icon-football.png" alt="축구" width={'30px'} />} style={{width: '60px', fontWeight:'bold', fontSize: '18px'}} label="축구" />
+                        <Tab icon={ <img src="/images/pictogram-icon-football.png" alt="풋살"  width={'30px'}/>} style={{width: '60px', fontWeight:'bold', fontSize: '18px'}}  label="풋살" />
                         {/* <Tab icon={ <img src="/images/pictogram-icon-baseball.png" alt="야구"  width={'36px'}/>} style={{width: '160px', fontWeight:'bold', fontSize: '18px'}}  label="야구" />
                         <Tab icon={ <img src="/images/pictogram-icon-basketball.png" alt="농구"  width={'36px'}/>} style={{width: '160px', fontWeight:'bold', fontSize: '18px'}}  label="농구" />
                         <Tab icon={ <img src="/images/pictogram-icon-volleyball.png" alt="그 외"  width={'36px'}/>} style={{width: '160px', fontWeight:'bold', fontSize: '18px'}}  label="그 외" /> */}

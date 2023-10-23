@@ -1,11 +1,9 @@
 import styled from "styled-components";
 
 export const StyledLogin = styled.div`
-margin-top: 40px;
 width: 100vw;
 background-color: #F0FFFF;
-padding-top: 40px;
-height: 100vw;
+padding: 40px 0 40px 0 ;
 display: flex;
 flex-direction: column;
 align-items: center;
@@ -18,7 +16,7 @@ border-left: 1px solid #EBEBEB;
 border-right: 6px solid #EBEBEB;
 border-radius: 20px;
 height: 600px;
-width: 400px;
+width: 380px;
 background-color: white;
 display: flex;
 flex-direction: column;

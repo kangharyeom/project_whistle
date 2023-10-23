@@ -1,27 +1,25 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import DatePicker from 'react-datepicker';
-
 import SimpleSlider from '../match/SimpleSlider';
 import BoardCategory from '../board/BoardCategory';
 import BoardSports from '../board/SportsCategory';
 import Stat from '../board/stat/Stat';
 
-const StyledLeaguePost = styled.div`
+const StyledTeam = styled.div`
   z-index: 9;
   margin-top: 70px;
   width: 100vw;
 `;
 
-const LeaguePostContainer = styled.div`
+const TeamContainer = styled.div`
   margin-top: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
-const LeaguePostTop = styled.div`
+const TeamTop = styled.div`
   background-color: #F0FFFF;
   display: flex;
   align-items: center;
@@ -29,12 +27,12 @@ const LeaguePostTop = styled.div`
   width: 100vw;
 `;
 
-const LeaguePostTopAdvertisement = styled.div`
+const TeamTopAdvertisement = styled.div`
   width: 868px;
   height: 360px;
 `;
 
-const LeaguePostSchedule = styled.div`
+const TeamSchedule = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -42,9 +40,9 @@ const LeaguePostSchedule = styled.div`
   width: 100vw;
 `;
 
-const LeaguePostBody = styled.div``;
+const TeamBody = styled.div``;
 
-const LeaguePostBodyCalender = styled.div`
+const TeamBodyCalender = styled.div`
   width: 100vw;
   margin: 10px 0 10px 0;
   height: 120px;
@@ -54,30 +52,31 @@ const LeaguePostBodyCalender = styled.div`
   align-items: center;
 `;
 
-const LeaguePost = () => {
+const TeamPost = () => {
   const basicURL = process.env.REACT_APP_API_ENDPOINT;
   const userId = parseInt(localStorage.getItem('userId'));
-  const teamId = 1;
-  const [leagueName, setLeagueName] = useState('');
+  const [teamName, setTeamName] = useState('');
   const [ageType, setAgeType] = useState('');
   const [locationType, setLocationType] = useState('');
   const [sportsType, setSportsType] = useState('');
   const [levelType, setLevelType] = useState('');
-  const [period, setPeriod] = useState('');
-  const [matchCount, setMatchCount] = useState('');
+  const [formation, setFormation] = useState('');
+  const [uniformType, setUniformType] = useState('');
   const [frequency, setFrequency] = useState('');
   
   const ageTypeOptions = ['TEENAGER', 'UNIVERSITY_STUDENT', 'OFFICE_WORKER', 'EARLY_SOCCER'];
   const locationTypeOptions = ['SEOUL', 'INCHEON', 'DAEGU', 'BUSAN', 'GWANGJU', 'DAEJEON', 'GYEONGGI', 'JEJU', 'ULSAN', 'CHUNGCHEONGNAM', 'CHUNGCHEONGBUK', 'GYEONGSANGBUK', 'GYEONGSANGNAM', 'JEOLLABUK', 'JEOLLANAM', 'GANGWON'];
   const sportsTypeOptions = [ 'SOCCER', 'FUTSAL', 'BASEBALL', 'BASKETBALL'];
   const levelTypeOptions = ['LOWEST', 'LOWER', 'MIDDLE', 'UPPER', 'HIGHEST'];
+  const formationOptions = [  'NONE', 'FOUR_ONE_TWO_ONE_TWO', 'FOUR_ONE_TWO_TREE', 'FOUR_ONE_TWO_THREE', 'FOUR_TWO_TWO_TWO', 'FOUR_TWO_TREE_ONE', 'FOUR_TREE_TWO_ONE', 'FOUR_THREE_THREE', 'FOUR_FOUR_TWO', 'FOUR_FOUR_ONE_ONE', 'FOUR_FIVE_ONE'];
+  const uniformTypeOptions = [ 'NONE', 'RED', 'ORANGE', 'YELLOW', 'GREEN', 'BLUE', 'PURPLE', 'BLACK', 'WHITE'];
   const frequencyOptions = ['NONE', 'WEEK_DAY', 'WEEK_END', 'ANY_TIME', 'SUNDAY', 'MONDAY','TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     switch (name) {
-      case 'leagueName':
-        setLeagueName(value);
+      case 'teamName':
+        setTeamName(value);
         break;
       case 'ageType':
         setAgeType(value);
@@ -91,25 +90,25 @@ const LeaguePost = () => {
       case 'levelType':
         setLevelType(value);
         break;
-      case 'period':
-        setPeriod(value);
+      case 'formation':
+        setFormation(value);
+        break;
+      case 'uniformType':
+        setUniformType(value);
         break;
       case 'frequency':
         setFrequency(value);
-        break;
-      case 'matchCount':
-        setMatchCount(value);
         break;
       default:
         break;
     }
   };
 
-  const handleCreateLeague = async () => {
+  const handleCreateTeam = async () => {
     const authToken = localStorage.getItem('authToken'); 
 
     try {
-      const response = await fetch(process.env.REACT_APP_SERVER_API_ENDPOINT+'/api/leagues', {
+      const response = await fetch(process.env.REACT_APP_SERVER_API_ENDPOINT+'/api/teams', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -118,71 +117,57 @@ const LeaguePost = () => {
         body: JSON.stringify(
           {
           userId: userId,
-          teamId: teamId,
-          leagueName: leagueName,
+          teamName: teamName,
           ageType: ageType,
           locationType: locationType,
           sportsType: sportsType,
           levelType: levelType,
-          period: period,
-          frequency: frequency,
-          matchCount: matchCount
+          formation: formation,
+          uniformType: uniformType,
+          frequency: frequency
         })
       });
       if (response.ok) {
-        console.log('리그 생성 성공');
-        alert('리그 생성 성공')
-        window.location.href = basicURL+'/league'
+        console.log('팀 생성 성공');
+        alert('팀 생성 성공')
+        window.location.href = basicURL+'/team'
+        // 팀 생성 성공 시 추가 작업 수행
       } else {
-        console.error('리그 생성 실패');
-        alert('리그 생성 실패')
-        window.location.href = basicURL+'/league-post'
+        console.error('팀 생성 실패');
+        alert('팀 생성 실패')
+        // 팀 생성 실패 시 에러 처리
+        window.location.href = basicURL+'/team-post'
       }
     } catch (error) {
       console.error('API 요청 중 오류 발생:', error);
       alert('에러 발생')
-      window.location.href = basicURL+'/league-post'
-    }
-  };
-
-  const [selectedDate, setSelectedDate] = useState(null);
-
-  const handleDateChange = (date) => {
-    // 선택한 날짜를 상태 변수에 저장합니다.
-    setSelectedDate(date);
-  };
-
-  const handleNumberInputChange = (e) => {
-    // 입력된 값이 숫자인지 확인하고 숫자이면 state를 업데이트합니다.
-    const value = e.target.value;
-    if (/^\d+$/.test(value) || value === '') {
-      setMatchCount(value);
+      window.location.href = basicURL+'/team-post'
     }
   };
 
   return (
-    <StyledLeaguePost>
+    <StyledTeam>
       <BoardSports />
-      <LeaguePostContainer>
-        <LeaguePostTop>
-          <LeaguePostTopAdvertisement>
+      <TeamContainer>
+        <TeamTop>
+          <TeamTopAdvertisement>
             <SimpleSlider />
-          </LeaguePostTopAdvertisement>
-        </LeaguePostTop>
+          </TeamTopAdvertisement>
+        </TeamTop>
 
-        <LeaguePostBody>
+        <TeamBody>
           <BoardCategory />
-          <LeaguePostBodyCalender>
+          <TeamBodyCalender>
             {/* 여기에 캘린더 컴포넌트 추가 */}
-          </LeaguePostBodyCalender>
+          </TeamBodyCalender>
 
-          <LeaguePostSchedule>
+          <TeamSchedule>
             <div>
               <input
                 type="text"
-                name="leagueName"
-                placeholder="리그 이름"
-                value={leagueName}
+                name="teamName"
+                placeholder="팀 이름"
+                value={teamName}
                 onChange={handleInputChange}
               />
               <select
@@ -233,31 +218,30 @@ const LeaguePost = () => {
                   </option>
                 ))}
               </select>
-                <div>
-                {/* 달력 입력란 */}
-                <label>리그 기간:</label>
-                <DatePicker
-                    selected={selectedDate}
-                    onChange={handleDateChange}
-                    dateFormat="yyyy/MM/dd" // 날짜 표시 형식 설정 (원하는 형식으로 변경 가능)
-                    placeholderText="날짜를 선택하세요"
-                />
-                {/* 나머지 컴포넌트 내용 */}
-                </div>
-              <div>
-                {/* 숫자 입력란 */}
-                <label>경기 수:</label>
-                <input 
-                    type="number" 
-                    value={matchCount} 
-                    onChange={handleNumberInputChange} 
-                    min="1" 
-                    max="50" 
-                    step="1" 
-                    placeholder="1부터 50까지의 숫자를 입력하세요" 
-                />
-                {/* 나머지 컴포넌트 내용 */}
-                </div>
+              <select
+                name="formation"
+                value={formation}
+                onChange={handleInputChange}
+              >
+                <option value="">팀 포메이션</option>
+                {formationOptions.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
+              <select
+                name="uniformType"
+                value={uniformType}
+                onChange={handleInputChange}
+              >
+                <option value="">유니폼 색상</option>
+                {uniformTypeOptions.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
               <select
                 name="frequency"
                 value={frequency}
@@ -270,15 +254,15 @@ const LeaguePost = () => {
                   </option>
                 ))}
               </select>
-              <button onClick={handleCreateLeague}>팀 생성</button>
+              <button onClick={handleCreateTeam}>팀 생성</button>
             </div>
-          </LeaguePostSchedule>
-        </LeaguePostBody>
+          </TeamSchedule>
+        </TeamBody>
 
         <Stat />
-      </LeaguePostContainer>
-    </StyledLeaguePost>
+      </TeamContainer>
+    </StyledTeam>
   );
 };
 
-export default LeaguePost;
+export default TeamPost;

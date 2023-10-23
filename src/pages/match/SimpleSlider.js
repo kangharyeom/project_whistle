@@ -21,8 +21,8 @@ const SimpleSlider = () => {
     {
         items.map(
             (item, i) =>
-                <div style={{width: '868px',height:'360px'}} >
-                    <img alt="Advertisement" src={item.imgAddress} style={{width: '100%', height: '100%'}} />
+                <div style={{width: '470px',height:'360px'}} >
+                    <img alt="Advertisement" src={item.imgAddress} style={{width: '200%', height: '100%'}} />
                 </div>
         )
     }

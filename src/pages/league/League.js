@@ -56,11 +56,13 @@ const LeagueBodyCalender = styled.div`
 const League = () => {
   const [Leaguees, setLeaguees] = useState([]);
   const [pageInfo, setPageInfo] = useState({});
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
+    const authToken = localStorage.getItem('authToken');
     const fetchData = async () => {
       try {
-        const response = await fetch(process.env.REACT_APP_SERVER_API_ENDPOINT+'/api/leaguees?page=1&size=40');
+        const response = await fetch(process.env.REACT_APP_SERVER_API_ENDPOINT+'/api/leagues?page=1&size=40');
         if (response.ok) {
           const jsonData = await response.json();
           setLeaguees(jsonData.data);
@@ -71,6 +73,11 @@ const League = () => {
       } catch (error) {
         console.error('에러 발생:', error);
       }
+      if (authToken) {
+        setIsLoggedIn(true);
+    } else {
+        setIsLoggedIn(false);
+    }
     };
 
     fetchData();
@@ -92,14 +99,13 @@ const League = () => {
           </LeagueBodyCalender>
 
           <LeagueSchedule>
-            {Leaguees.map(League => (
-              <div key={League.LeagueId}>
+            {Leaguees.map(league => (
+              <div key={league.leagueId}>
                 {/* 각 매치 ID에 대한 링크를 생성합니다. */}
-                <Link to={`/League-detail/${League.LeagueId}`}>
-                  <h2>매치 ID: {League.LeagueId}</h2>
+                <Link to={`/League-detail/${league.leagueId}`}>
+                  <h2>매치 ID: {league.leagueId}</h2>
                 </Link>
-                <p>홈 팀 이름: {League.homeTeamName}</p>
-                <p>매치 시간: {League.LeagueTime}</p>
+                <p>리그 이름: {league.leagueName}</p>
               </div>
             ))}
             <div>
@@ -107,6 +113,7 @@ const League = () => {
               <p>전체 페이지 수: {pageInfo.totalPages}</p>
             </div>
           </LeagueSchedule>
+            {isLoggedIn && <Link to="/league-post">리그 생성</Link>}
         </LeagueBody>
 
         <Stat />

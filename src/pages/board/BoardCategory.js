@@ -5,18 +5,14 @@ import Tab from '@mui/material/Tab';
 
 const StyledBoardCategory = styled.div`
   height: 38px;
-  width: 100vw;
+  width: 470px;
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
 const BoardCategoryContainer = styled.div`
-  position: sticky;
-  top: 0;
-  left: 0;
-  right: 0;
-  width: 100vw;
+  width: 470px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -62,17 +58,16 @@ const BoardCategory = () => {
             indicatorColor='primary'
             value={middleValue}
             onChange={MiddleHandleChange}
-            variant="scrollable"
-            scrollButtons="auto"
+            scrollButtons="1"
             allowScrollButtonsMobile
             aria-label="scrollable auto tabs example"
             centered
           >
-            <Tab style={{ width: '180px', fontSize: '18px', fontWeight:'bold'}}  onClick={handleClickMatch} label="경기 매칭" />
-            <Tab style={{ width: '180px', fontSize: '18px', fontWeight: 'bold' }} onClick={handleClickLeague} label="리그" />
-            <Tab style={{ width: '180px', fontSize: '18px', fontWeight:'bold'}}  onClick={handleClickTeams} label="팀" />
-            <Tab style={{ width: '180px', fontSize: '18px', fontWeight:'bold'}}  onClick={handleClickRank} label="랭킹" />
-            <Tab style={{ width: '180px', fontSize: '18px', fontWeight:'bold'}}  onClick={handleClickBoard} label="자유 게시판" />
+            <Tab style={{ width: '100px', fontSize: '14px', fontWeight:'bold'}}  onClick={handleClickMatch} label="경기 매칭" />
+            <Tab style={{ width: '80px', fontSize: '14px', fontWeight:'bold' }} onClick={handleClickLeague} label="리그" />
+            <Tab style={{ width: '80px', fontSize: '14px', fontWeight:'bold'}}  onClick={handleClickTeams} label="팀" />
+            <Tab style={{ width: '80px', fontSize: '14px', fontWeight:'bold'}}  onClick={handleClickRank} label="랭킹" />
+            <Tab style={{ width: '110px', fontSize: '14px', fontWeight:'bold'}}  onClick={handleClickBoard} label="자유게시판" />
           </Tabs>
         </BoardCategoryMiddle>
       </BoardCategoryContainer>

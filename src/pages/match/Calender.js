@@ -8,17 +8,18 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 const StyledCalender = styled.div`
   z-index: 9;
-  width: 100vw;
+  width: 470px;
 `;
 
 const CalenderContainer = styled.div`
+  width: 470px;
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
 const DayButtons = styled.div`
-  width: 700px;
+  width: 470px;
   height: 120px;
   display: flex;
   justify-content: center;
@@ -43,17 +44,17 @@ const CalendarButton = styled.button`
   border-right: 1px solid #d8d8d8;
   border-bottom: 1px solid #d8d8d8;
   cursor: pointer;
-  margin: 10px;
+  margin: 6px;
   padding: 0;
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
   border-radius: 10px;
   display: flex;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 18px;
+  font-size: 12px;
   color: ${(props) =>
     props.isSaturday ? 'blue' : props.isHoliday ? 'red' : 'black'};
 `;

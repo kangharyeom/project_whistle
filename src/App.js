@@ -10,14 +10,13 @@ import Match from './pages/match/Match';
 import MatchPost from './pages/match/MatchPost';
 import MatchDetail from './pages/match/MatchPost';
 import League from './pages/league/League';
+import LeaguePost from './pages/league/LeaguePost';
 import Team from './pages/team/Team';
+import TeamPost from './pages/team/TeamPost';
 
 import './App.css';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
-
-
 
 const App = () => {
 
@@ -31,9 +30,11 @@ const App = () => {
           <Route path="/match-post" element={<MatchPost />} />
           <Route path="/match-detail/:matchId" element={<MatchDetail />} />
           <Route path="/league" element={<League />} />
+          <Route path="/league-post" element={<LeaguePost />} />
           <Route path="/team" element={<Team />} />
+          <Route path="/team-post" element={<TeamPost />} />
         </Routes>
-        <Footer />
+      <Footer />
     </BrowserRouter>
   );
 };

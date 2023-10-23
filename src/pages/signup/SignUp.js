@@ -8,7 +8,6 @@ const SignUp = () => {
     const [loginId, setLoginId] = useState('');
     const [password, setPassword] = useState('');
     const [phone, setPhone] = useState('');
-    const [position, setPosition] = useState('');
 
     const basicURL = process.env.REACT_APP_API_ENDPOINT;
 
@@ -29,7 +28,6 @@ const SignUp = () => {
                     loginId: loginId,
                     password: password,
                     phone: phone,
-                    position: position,
                 }),
             });
 
@@ -85,12 +83,6 @@ const SignUp = () => {
                         placeholder="전화번호"
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
-                    />
-                    <input
-                        type="text"
-                        placeholder="포지션"
-                        value={position}
-                        onChange={(e) => setPosition(e.target.value)}
                     />
                     <button type="submit" onClick={handleSignUp}>회원가입</button>
                 </s.SignUpColumn>
