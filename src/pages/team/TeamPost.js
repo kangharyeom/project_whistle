@@ -6,10 +6,12 @@ const StyledTeam = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100vw;
+  height: 100vh;
 `;
 
 const TeamContainer = styled.div`
-  width: 470px;
+  width: 100%;
+  height: 100%;
   background-color: #F0FFFF;
   display: flex;
   flex-direction: column;
@@ -17,12 +19,13 @@ const TeamContainer = styled.div`
 `;
 
 const TeamBody = styled.div`
-  width: 470px;
-  margin: 10px 0 10px 0;
-  height: 500px;
+   width: 100%;
+  height: 100%;
+  gap: 2%;
   display: flex;
   place-items: center;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
 `;
 
@@ -120,11 +123,10 @@ const TeamPost = () => {
   };
 
   return (
-    <StyledTeam>
-      <TeamContainer>
+    <StyledTeam id = 'StyledTeam'>
+      <TeamContainer id = 'TeamContainer'>
 
-        <TeamBody>
-            <div>
+        <TeamBody id = 'TeamBody'>
               <input
                 type="text"
                 name="teamName"
@@ -217,7 +219,6 @@ const TeamPost = () => {
                 ))}
               </select>
               <button onClick={handleCreateTeam}>팀 생성</button>
-            </div>
         </TeamBody>
       </TeamContainer>
     </StyledTeam>

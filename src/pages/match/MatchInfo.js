@@ -23,13 +23,13 @@ const PageInfo = styled.div`
 `;
 
 const TeamInfo = styled.div`
-border-bottom: 8px solid #d3d4d6;
-border-top: 1px solid #d3d4d6;
-border-left: 1px solid #d3d4d6;
-border-right: 6px solid #d3d4d6;
-background-color: #cae7ff;
+border-bottom: 0.1px solid gray;
+box-shadow: rgba(50, 50, 93, 0.25) 3px 4px 8px -1px;
+max-width: 470px;
+background-color: white;
 border-radius: 10px;
-width: 440px;
+margin-bottom: 5%;
+width: 90%;
 height: 180px;
 display: flex;
   flex-direction: row;
@@ -38,7 +38,7 @@ display: flex;
 `;
 
 const TeamInfoContainer = styled.div`
-  width: 400px;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: row;
@@ -47,7 +47,7 @@ const TeamInfoContainer = styled.div`
 `;
 
 const TeamInfoLeft = styled.div`
-  width: 120px;
+  width: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -75,14 +75,14 @@ const TeamInfoLeft = styled.div`
 
 const TeamInfoDiv = styled.div`
 height: 100%;
-width: 240px;
+width: 100%;
 display: flex;
 flex-direction: column;
 `;
 
 const TeamInfoFirstNav = styled.nav`
-height: 100%;
-width: 240px;
+height: 50%;
+width: 100%;
 display: flex;
 flex-direction: row;
 align-items: center;
@@ -90,8 +90,8 @@ justify-content: center;
 `;
 
 const TeamInfoSecondNav = styled.nav`
-height: 100%;
-width: 240px;
+height: 50%;
+width: 100%;
 display: flex;
 flex-direction: row;
 align-items: center;
@@ -100,12 +100,22 @@ justify-content: center;
 
 const TeamInfoThirdNav = styled.nav`
 height: 100%;
-width: 240px;
+width: 100%;
 display: flex;
 flex-direction: row;
 align-items: center;
 justify-content: center;
 `;
+
+const TeamInfoFourthNav = styled.nav`
+height: 100%;
+width: 100%;
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: center;
+`;
+
 
 const MatchTime = styled.div`
   display: flex;
@@ -118,7 +128,6 @@ const MatchTime = styled.div`
 const Location = styled.div``;
 const HomeTeamAge = styled.div``;
 const HomeTeamLevel = styled.div``;
-const MatchRule = styled.div``;
 
   const BattleSuggestionButton = styled.div``;
 
@@ -174,7 +183,6 @@ const MatchInfo = () => {
               <Link to={`/match-detail/${match.matchId}`}>
               </Link>
               <TeamInfoContainer id = 'TeamInfoContainer'>
-           
              
               <TeamInfoLeft id = 'TeamInfoLeft'>
                 <TeamProfile/>
@@ -189,15 +197,17 @@ const MatchInfo = () => {
                   {match.homeTeamTotalDrawRecord}무 
                   {match.homeTeamTotalLoseRecord}패
                 </HomeTeamRecord>
-                
               </TeamInfoLeft>
+
               <TeamInfoDiv id = 'TeamInfoDiv'>
                 <TeamInfoFirstNav id = 'TeamInfoFirstNav'>
-                  <MatchTime>
-                      <p>{formatDate(match.matchDate)} {match.matchTime}</p>
-                  </MatchTime>
+                    <MatchTime>
+                        <p>{formatDate(match.matchDate)} {match.matchTime}</p>
+                    </MatchTime>
+                </TeamInfoFirstNav>
 
-                  <Location>
+                <TeamInfoSecondNav id = 'TeamInfoSecondNav'>
+                    <Location>
                       {match.locationType === 'SEOUL' && '서울'}
                       {match.locationType === 'INCHEON' && '인천'}
                       {match.locationType === 'DAEGU' && '대구'}
@@ -214,16 +224,16 @@ const MatchInfo = () => {
                       {match.locationType === 'JEOLLABUK' && '전라북도'}
                       {match.locationType === 'JEOLLANAM' && '전라남도'}
                       {match.locationType === 'GANGWON' && '강원도'}
-                    </Location>
-                </TeamInfoFirstNav>
+                  </Location>
+                </TeamInfoSecondNav>
 
-                <TeamInfoSecondNav id = 'TeamInfoSecondNav'>
+                <TeamInfoThirdNav id = 'TeamInfoThirdNav'>
                   <HomeTeamLevel>
-                  {match.homeTeamLevelType === 'LOWEST' && '최하'}
-                  {match.homeTeamLevelType === 'LOWER' && '하'}
-                  {match.homeTeamLevelType === 'MIDDLE' && '중'}
-                  {match.homeTeamLevelType === 'UPPER' && '상'}
-                  {match.homeTeamLevelType === 'HIGHEST' && '최상'}
+                    {match.homeTeamLevelType === 'LOWEST' && '최하'}
+                    {match.homeTeamLevelType === 'LOWER' && '하'}
+                    {match.homeTeamLevelType === 'MIDDLE' && '중'}
+                    {match.homeTeamLevelType === 'UPPER' && '상'}
+                    {match.homeTeamLevelType === 'HIGHEST' && '최상'}
                   </HomeTeamLevel>
                   <HomeTeamUniformType color={match.homeTeamUniformType}>
                     유니폼:
@@ -250,24 +260,23 @@ const MatchInfo = () => {
                   {match.homeTeamUniformType === 'WHITE' && <Circle color="WHITE" />}
                   {match.homeTeamUniformType === 'SKY_BLUE' && <Circle color="SKY_BLUE" />}
                   {match.homeTeamUniformType === 'GRAY' && <Circle color="GRAY" />}
-                </HomeTeamUniformType>
+                  </HomeTeamUniformType>
                     
-                    <HomeTeamAge>
-                      {match.homeTeamAgeType === 'TEENAGER' && '10대'}
-                      {match.homeTeamAgeType === 'UNIVERSITY_STUDENT' && '대학생'}
-                      {match.homeTeamAgeType === 'TWENTIES' && '20대'}
-                      {match.homeTeamAgeType === 'OFFICE_WORKER' && '회사원'}
-                      {match.homeTeamAgeType === 'EARLY_SOCCER' && '조기축구회'}
-                      {match.homeTeamAgeType === 'THIRTIETH' && '30대'}
-                      {match.homeTeamAgeType === 'FORTIES' && '40대'}
-                      {match.homeTeamAgeType === 'FIFTIES' && '50대'}
-                    </HomeTeamAge>
-                </TeamInfoSecondNav>
-              <TeamInfoThirdNav id = 'TeamInfoThirdNav'>
-                    <MatchRule>경기 규칙: {match.matchRules}</MatchRule>
-                    <BattleSuggestionButton>대결 신청</BattleSuggestionButton>
+                  <HomeTeamAge>
+                    {match.homeTeamAgeType === 'TEENAGER' && '10대'}
+                    {match.homeTeamAgeType === 'UNIVERSITY_STUDENT' && '대학생'}
+                    {match.homeTeamAgeType === 'TWENTIES' && '20대'}
+                    {match.homeTeamAgeType === 'OFFICE_WORKER' && '회사원'}
+                    {match.homeTeamAgeType === 'EARLY_SOCCER' && '조기축구회'}
+                    {match.homeTeamAgeType === 'THIRTIETH' && '30대'}
+                    {match.homeTeamAgeType === 'FORTIES' && '40대'}
+                    {match.homeTeamAgeType === 'FIFTIES' && '50대'}
+                  </HomeTeamAge>
                 </TeamInfoThirdNav>
 
+                <TeamInfoFourthNav id = 'TeamInfoFourthNav'>
+                  <BattleSuggestionButton>대결 신청</BattleSuggestionButton>
+                </TeamInfoFourthNav>
               </TeamInfoDiv>
             </TeamInfoContainer>
           </TeamInfo>
