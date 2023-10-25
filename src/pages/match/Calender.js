@@ -49,7 +49,7 @@ const CalendarButton = styled.button`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 10px;
+  font-size: 12px;
   color: ${(props) =>
     props.isSaturday ? 'blue' : props.isHoliday ? 'red' : 'black'};
 `;

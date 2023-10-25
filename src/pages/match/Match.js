@@ -17,6 +17,9 @@ const StyledMatch = styled.div`
 const MatchContainer = styled.div`
 width: 100%;
 background-color:white;
+display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const MatchTop = styled.div`
