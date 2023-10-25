@@ -7,7 +7,8 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 const StyledCalender = styled.div`
-  width: 470px;
+  margin-top: 10px;
+  width: 100vw;
 `;
 
 const CalenderContainer = styled.div`
@@ -40,15 +41,15 @@ const CalendarButton = styled.button`
   cursor: pointer;
   margin: 6px;
   padding: 0;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   border-radius: 10px;
   display: flex;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 12px;
+  font-size: 10px;
   color: ${(props) =>
     props.isSaturday ? 'blue' : props.isHoliday ? 'red' : 'black'};
 `;
@@ -139,8 +140,8 @@ function WeeklyCalendar() {
 
 const Calendar = () => {
   return (
-    <StyledCalender>
-      <CalenderContainer>
+    <StyledCalender id = 'StyledCalender'>
+      <CalenderContainer id = 'CalenderContainer'>
         <WeeklyCalendar />
       </CalenderContainer>
     </StyledCalender>

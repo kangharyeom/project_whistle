@@ -8,6 +8,7 @@ const StyledMatchSchedule = styled.div`
 `;
 
 const MatchScheduleContainer = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -106,13 +107,6 @@ align-items: center;
 justify-content: center;
 `;
 
-const TeamInfoMiddle = styled.div`
-  width: 150px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
 const MatchTime = styled.div`
   display: flex;
   text-align: center;
@@ -125,14 +119,6 @@ const Location = styled.div``;
 const HomeTeamAge = styled.div``;
 const HomeTeamLevel = styled.div``;
 const MatchRule = styled.div``;
-
-const TeamInfoRight = styled.div`
-  width: 150px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
 
   const BattleSuggestionButton = styled.div``;
 

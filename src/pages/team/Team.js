@@ -4,14 +4,15 @@ import styled from 'styled-components';
 
 import SimpleSlider from '../match/SimpleSlider';
 import BoardCategory from '../board/BoardCategory';
-import Stat from '../board/stat/Stat';
 
 const StyledTeam = styled.div`
   z-index: 9;
   width: 100vw;
+  height: 100vh;
 `;
 
 const TeamContainer = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,11 +23,11 @@ const TeamTop = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 470px;
+  width: 100%;
 `;
 
 const TeamTopAdvertisement = styled.div`
-  width: 470px;
+  width: 100%;
 `;
 
 const TeamSchedule = styled.div`
@@ -34,13 +35,13 @@ const TeamSchedule = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 470px;
+  width: 100%;
 `;
 
 const TeamBody = styled.div``;
 
 const TeamBodyCalender = styled.div`
-  width: 470px;
+  width: 100%;
   margin: 10px 0 10px 0;
   height: 120px;
   display: flex;
@@ -114,8 +115,6 @@ const Team = () => {
           {/* 사용자가 로그인한 경우에만 "팀 생성" 버튼을 표시합니다. */}
           {isLoggedIn && <Link to="/team-post">팀 생성</Link>}
         </TeamBody>
-
-          {isLoggedIn &&<Stat />}
       </TeamContainer>
     </StyledTeam>
   );

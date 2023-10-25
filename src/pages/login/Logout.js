@@ -4,7 +4,7 @@ import IconButton from '@mui/material/IconButton';
 
 import * as l from '../../style/LoginStyle'
 
-const Login = () => {
+const Logout = () => {
     const basicURL = process.env.REACT_APP_API_ENDPOINT;
 
     const handleClickGoogleLogin = () => {
@@ -23,7 +23,7 @@ const Login = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch(process.env.REACT_APP_SERVER_API_ENDPOINT+'/api/login', {
+            const response = await fetch(process.env.REACT_APP_SERVER_API_ENDPOINT+'/auth/logout', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -65,23 +65,24 @@ const Login = () => {
 
     return (   
         <l.StyledLogin>
-            <l.LoginContainer id = 'LoginContainer'>
-                <l.LoginBody id = 'LoginBody'>
+            <l.LoginContainer>
+                <l.LoginBody>
                     <IconButton onClick={handleClick}>
-                        <img style={{ width: '70%' }} src="/images/whistle-letter.png" alt="Whistle" />
+                        <img width={180} src="/images/whistle-letter.png" alt="Whistle" />
                     </IconButton>
                     
-                    <l.LoginColumn id = 'LoginColumn'>
-                        <l.LoginIdandPassword id = 'LoginIdandPassword'>
+                    <l.LoginColumn>
+                        <l.LoginIdandPassword>
                         <input
-                             style={{ width: '70%' , height: '2rem', color: '#76a6cc' }}
-                            type="email"
+                            size = "24"
+                            type="email" // 이메일 형식을 입력받을 때에는 type을 email로 지정하는 것이 좋습니다.
                             placeholder="이메일"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                        />
+                            color = '#76a6cc'
+                            />
                         <input
-                            style={{ width: '70%', color: '#76a6cc' }}
+                            size = "24"
                             type="password"
                             placeholder="패스워드"
                             value={password}
@@ -89,21 +90,21 @@ const Login = () => {
                             />
                         <button type="submit" onClick={handleLogin}>로그인</button>
                         </l.LoginIdandPassword>
-                        <l.LoginKaKao id = 'LoginKaKao'>
-                        <IconButton onClick={handleClick}>
-                            <img style={{ width: '70%' }} src="/images/kakao.png" alt="Whistle" />
-                        </IconButton>
+                        <l.LoginKaKao>
+                            <IconButton onClick={handleClick}>
+                                <img width={200} src="/images/kakao.png" alt="Whistle" />
+                            </IconButton>
                         </l.LoginKaKao>
                     
-                        <l.LoginNaver id = 'LoginNaver'>
+                        <l.LoginNaver>
                             <IconButton onClick={handleClick}>
-                                <img style={{ width: '70%' }} src="/images/naver.png" alt="Whistle" />
+                                <img width={200} src="/images/naver.png" alt="Whistle" />
                             </IconButton>
                         </l.LoginNaver>
 
-                        <l.LoginGoogle id = 'LoginGoogle'>
-                            <IconButton onClick={handleClickGoogleLogin} style={{ width: '100%' }}>
-                                <img style={{ width: '80%' }} src="/images/google.png" height={45} alt="Whistle" />
+                        <l.LoginGoogle>
+                            <IconButton onClick={handleClickGoogleLogin}>
+                                <img width={210} src="/images/google.png" height={50} alt="Whistle" />
                             </IconButton>
                         </l.LoginGoogle>
                     </l.LoginColumn>
@@ -114,24 +115,24 @@ const Login = () => {
                         </Link>
                     </l.SignUp>
 
-                    <l.LoginRow id = 'LoginRow'>
-                        <l.SignUpKaKao id = 'SignUpKaKao'>
+                    <l.LoginRow>
+                        <l.LoginKaKao>
                             <IconButton onClick={handleClick}>
-                                <img style={{ width: '100%' }} src="/images/kakao-small.png" alt="kakao" />
+                                <img width={44} src="/images/kakao-small.png" alt="kakao" />
                             </IconButton>
-                        </l.SignUpKaKao>
+                        </l.LoginKaKao>
                     
-                        <l.SignUpNaver id = 'SignUpNaver'>
+                        <l.LoginNaver>
                             <IconButton onClick={handleClick}>
-                                <img style={{ width: '100%' }} src="/images/naver-small.png" alt="naver" />
+                                <img width={44} src="/images/naver-small.png" alt="naver" />
                             </IconButton>
-                        </l.SignUpNaver>
+                        </l.LoginNaver>
 
-                        <l.SignUpGoogle id = 'SignUpGoogle'>
+                        <l.LoginGoogle>
                             <IconButton onClick={handleClick}>
-                                <img style={{ width: '100%' }} src="/images/google-small.png" alt="Whistle" />
+                                <img width={50} src="/images/google-small.png" alt="Whistle" />
                             </IconButton>
-                        </l.SignUpGoogle>
+                        </l.LoginGoogle>
                     </l.LoginRow>
                 </l.LoginBody>
             </l.LoginContainer>
@@ -139,4 +140,4 @@ const Login = () => {
     );
 }
   
-export default Login;
+export default Logout;

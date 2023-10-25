@@ -4,10 +4,10 @@ import styled from 'styled-components';
 
 import SimpleSlider from '../match/SimpleSlider';
 import BoardCategory from '../board/BoardCategory';
-import Stat from '../board/stat/Stat';
 
 const StyledLeague = styled.div`
-  width: 100%;
+  width: 100vw;
+  height: 100vh;
 `;
 
 const LeagueContainer = styled.div`
@@ -97,7 +97,6 @@ const League = () => {
             {isLoggedIn && <Link to="/league-post">리그 생성</Link>}
         </LeagueBody>
 
-        <Stat />
       </LeagueContainer>
     </StyledLeague>
   );

@@ -3,27 +3,35 @@ import styled from 'styled-components';
 
 import SimpleSlider from './SimpleSlider';
 import BoardCategory from '../board/BoardCategory';
-import Stat from '../board/stat/Stat';
 import Calender from './Calender';
 import MatchInfo from './MatchInfo';
 
 const StyledMatch = styled.div`
-  width: 100%;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
 const MatchContainer = styled.div`
+width: 100%;
 background-color:white;
 `;
 
 const MatchTop = styled.div`
+width: 100%;
 `;
 
-const MatchTopAdvertisement = styled.div``;
-const MatchBody = styled.div``;
-const MatchBodyCalender = styled.div``;
+const MatchTopAdvertisement = styled.div`
+width: 100%;
+`;
+const MatchBody = styled.div`
+width: 100%;
+`;
+const MatchBodyCalender = styled.div`
+width: 100%;
+`;
 
 const Match = () => {
   
@@ -44,8 +52,6 @@ const Match = () => {
           <MatchInfo/>
        
         </MatchBody>
-
-        <Stat />
       </MatchContainer>
     </StyledMatch>
   );

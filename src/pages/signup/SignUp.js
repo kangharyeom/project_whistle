@@ -47,45 +47,99 @@ const SignUp = () => {
     };
 
     return (   
-        <s.StyledSignUp>
-            <s.SignUpContainer>
-                
-                <s.SignUpColumn>
-                <IconButton onClick={handleClick}>
-                    <img width={240} src="/images/whistle-letter.png" alt="Whistle" />
+        <s.StyledSignUp id = 'StyledSignUp'>
+            <s.SignUpContainer id = 'SignUpContainer'>
+                <s.SignUpBody id = 'SignUpBody'>
+                <s.SignUpColumn id = 'SignUpColumn' style={{ display: 'flex', flexDirection: 'column' }}>
+                <IconButton onClick={handleClick} style={{ height: '100px', width: '100px' }}>
+                    <div style={{
+                        display: 'flex', 
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        width: '100%', 
+                        height: '100%', 
+                        borderRadius: '100%', 
+                        overflow: 'hidden',
+                        backgroundColor: 'white',
+                        boxShadow: '0px 4px 8px rgba(0, 0, 0.1, 0.2)',
+                        marginBottom: '50%'
+                    }}>
+                        <img
+                            style={{
+                                display: 'flex', 
+                                justifyContent: 'center',
+                                width: '60%', 
+                                height: '60%', 
+                                objectFit: 'cover' 
+                            }}
+                            src="/images/whistle.png"
+                            alt="Whistle"
+                        />
+                    </div>
                 </IconButton>
-                    <input
-                        type="email"
-                        placeholder="이메일"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <input
-                        type="text"
-                        placeholder="이름"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                    />
-                    <input
-                        type="text"
-                        placeholder="아이디"
-                        value={loginId}
-                        onChange={(e) => setLoginId(e.target.value)}
-                    />
-                    <input
-                        type="password"
-                        placeholder="패스워드"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                    <input
-                        type="text"
-                        placeholder="전화번호"
-                        value={phone}
-                        onChange={(e) => setPhone(e.target.value)}
-                    />
+                <input
+                    type="email"
+                    placeholder="이메일"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    style={{
+                        marginBottom: '10%',
+                        height: '6%',
+                        backgroundColor: '#cae7ff',
+                        borderRadius: '5px' // 테두리를 5px로 설정하여 둥글게 만듭니다.
+                    }}
+                />
+                <input
+                    type="text"
+                    placeholder="이름"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    style={{
+                        marginBottom: '10%',
+                        height: '6%',
+                        backgroundColor: '#cae7ff',
+                        borderRadius: '5px' // 테두리를 5px로 설정하여 둥글게 만듭니다.
+                    }}
+                />
+                <input
+                    type="text"
+                    placeholder="아이디"
+                    value={loginId}
+                    onChange={(e) => setLoginId(e.target.value)}
+                    style={{
+                        marginBottom: '10%',
+                        height: '6%',
+                        backgroundColor: '#cae7ff',
+                        borderRadius: '5px' // 테두리를 5px로 설정하여 둥글게 만듭니다.
+                    }}
+                />
+                <input
+                    type="password"
+                    placeholder="패스워드"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    style={{
+                        marginBottom: '10%',
+                        height: '6%',
+                        backgroundColor: '#cae7ff',
+                        borderRadius: '5px' // 테두리를 5px로 설정하여 둥글게 만듭니다.
+                    }}
+                />
+                <input
+                    type="text"
+                    placeholder="전화번호"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    style={{
+                        marginBottom: '10%',
+                        height: '6%',
+                        backgroundColor: '#cae7ff',
+                        borderRadius: '5px' // 테두리를 5px로 설정하여 둥글게 만듭니다.
+                    }}
+                />
                     <button type="submit" onClick={handleSignUp}>회원가입</button>
                 </s.SignUpColumn>
+                </s.SignUpBody>
             </s.SignUpContainer>
         </s.StyledSignUp>
     );

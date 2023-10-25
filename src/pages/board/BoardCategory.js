@@ -5,20 +5,22 @@ import Tab from '@mui/material/Tab';
 
 const StyledBoardCategory = styled.div`
   height: 38px;
-  width: 470px;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
+  `;
 
 const BoardCategoryContainer = styled.div`
-  width: 470px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
-const BoardCategoryMiddle = styled.div``;
+const BoardCategoryMiddle = styled.div`
+  width: 100%;
+`;
 
 const BoardCategory = () => {
   const basicURL = process.env.REACT_APP_API_ENDPOINT;
@@ -51,23 +53,27 @@ const BoardCategory = () => {
   };
 
   return (   
-    <StyledBoardCategory>
-      <BoardCategoryContainer>
-        <BoardCategoryMiddle>
-          <Tabs 
-            indicatorColor='primary'
-            value={middleValue}
-            onChange={MiddleHandleChange}
-            allowScrollButtonsMobile
-            aria-label="scrollable auto tabs example"
-            centered
-          >
-            <Tab style={{ width: '40px', fontSize: '15px', fontWeight:'bold'}}  onClick={handleClickMatch} label="경기" />
-            <Tab style={{ width: '40px', fontSize: '15px', fontWeight:'bold' }} onClick={handleClickLeague} label="리그" />
-            <Tab style={{ width: '40px', fontSize: '15px', fontWeight:'bold'}}  onClick={handleClickTeams} label="팀" />
-            <Tab style={{ width: '40px', fontSize: '15px', fontWeight:'bold'}}  onClick={handleClickRank} label="랭킹" />
-            <Tab style={{ width: '110px', fontSize: '15px', fontWeight:'bold'}}  onClick={handleClickBoard} label="자유게시판" />
-          </Tabs>
+    <StyledBoardCategory id = 'StyledBoardCategory'>
+      <BoardCategoryContainer id = 'BoardCategoryContainer'>
+        <BoardCategoryMiddle id = 'BoardCategoryMiddle'>
+          <div style={{ width: '100%' }}>
+              <Tabs id = 'Tabs'
+                  indicatorColor='primary'
+                  value={middleValue}
+                  onChange={MiddleHandleChange}
+                  allowScrollButtonsMobile
+                  aria-label="scrollable auto tabs example"
+                  centered
+              >
+            <div id='tabContainer' style={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
+                <Tab id='match' style={{ minWidth: '20px', flex: '1', fontSize: '12px', fontWeight: 'bold' }} onClick={handleClickMatch} label="경기" />
+                <Tab id='league' style={{ minWidth: '20px', flex: '1', fontSize: '12px', fontWeight: 'bold' }} onClick={handleClickLeague} label="리그" />
+                <Tab id='team' style={{ minWidth: '20px', flex: '1', fontSize: '12px', fontWeight: 'bold' }} onClick={handleClickTeams} label="팀" />
+                <Tab id='ranking' style={{ minWidth: '20px', flex: '1', fontSize: '12px', fontWeight: 'bold' }} onClick={handleClickRank} label="랭킹" />
+                <Tab id='board' style={{ minWidth: '20px', flex: '1', fontSize: '12px', fontWeight: 'bold' }} onClick={handleClickBoard} label="게시판" />
+            </div>
+              </Tabs>
+          </div>
         </BoardCategoryMiddle>
       </BoardCategoryContainer>
     </StyledBoardCategory>

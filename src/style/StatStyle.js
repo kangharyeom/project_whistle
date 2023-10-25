@@ -66,20 +66,11 @@ margin-left: 20px;
 width: 100px;
 `;
 
-export const StatInfoBottomRight = styled.div`
-`;
-
-export const TeamName = styled.div`
-`;
-
-export const TeamHonorScore = styled.div`
-`;
-
-export const TeamRecord = styled.div`
-`;
-
-export const TeamTotalScore = styled.div`
-`;
+export const StatInfoBottomRight = styled.div``;
+export const TeamName = styled.div``;
+export const TeamHonorScore = styled.div``;
+export const TeamRecord = styled.div``;
+export const TeamTotalScore = styled.div``;
 
 export const TeamManagement = styled.div`
 width: 80px;

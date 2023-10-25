@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import DatePicker from 'react-datepicker';
 
 const StyledLeaguePost = styled.div`
-  z-index: 9;
   width: 100vw;
   display: flex;
   flex-direction: column;

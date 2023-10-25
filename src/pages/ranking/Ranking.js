@@ -4,14 +4,15 @@ import styled from 'styled-components';
 
 import SimpleSlider from '../match/SimpleSlider';
 import BoardCategory from '../board/BoardCategory';
-import Stat from '../board/stat/Stat';
 
 const StyledRanking = styled.div`
   z-index: 9;
   width: 100vw;
+  height: 100vh;
 `;
 
 const RankingContainer = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,11 +23,11 @@ const RankingTop = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 470px;
+  width: 100%;
 `;
 
 const RankingTopAdvertisement = styled.div`
-  width: 470px;
+  width: 100%;
 `;
 
 const RankingSchedule = styled.div`
@@ -34,13 +35,13 @@ const RankingSchedule = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 470px;
+  width: 100%;
 `;
 
 const RankingBody = styled.div``;
 
 const RankingBodyCalender = styled.div`
-  width: 470px;
+  width: 100%;
   margin: 10px 0 10px 0;
   height: 120px;
   display: flex;
@@ -115,7 +116,6 @@ const Ranking = () => {
           {isLoggedIn && <Link to="/Ranking-post">팀 생성</Link>}
         </RankingBody>
 
-          {isLoggedIn &&<Stat />}
       </RankingContainer>
     </StyledRanking>
   );
