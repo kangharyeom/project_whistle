@@ -33,7 +33,7 @@ function calculateWeekDates(startDate) {
 }
 
 const CalendarButton = styled.button`
-  background-color: ${(props) => (props.isToday ? '#f8c19f' : 'white')};
+  background-color: ${(props) => (props.isToday ? '#cae7ff' : 'white')};
   border-top: none;
   border-left: none;
   border-right: 1px solid #d8d8d8;
