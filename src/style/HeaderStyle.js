@@ -21,7 +21,7 @@ align-items: center;
 // 헤더 상단
 export const HeaderTopContainer = styled.div`
 border-top: 4px solid #125b9f;
-border-bottom: 4px solid #EBEBEB;
+border-bottom: 4px solid #d3d4d6;
 background-color: white;
 width: 470px;
 display: flex;

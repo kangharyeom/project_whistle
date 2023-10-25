@@ -20,7 +20,6 @@ const MatchPostContainer = styled.div`
 `;
 
 const MatchPostBody = styled.div`
-  width: 470px;
   height: 400px;
   display: flex;
   flex-direction: column;
@@ -30,12 +29,6 @@ const MatchPostBody = styled.div`
 `;
 
 const MatchPostBodySelect = styled.select`
-  width: 470px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-items: center;
-  background-color: #F0FFFF;
 `;
 
 

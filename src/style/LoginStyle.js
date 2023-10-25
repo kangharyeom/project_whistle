@@ -14,19 +14,18 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-background-color: #F0FFFF;
+background-color: #94cefe;
 `;
 
 export const LoginBody = styled.div`
-border-bottom: 8px solid #EBEBEB;
-border-top: 1px solid #EBEBEB;
-border-left: 1px solid #EBEBEB;
-border-right: 6px solid #EBEBEB;
+border-bottom: 8px solid #d3d4d6;
+border-top: 1px solid #d3d4d6;
+border-left: 1px solid #d3d4d6;
+border-right: 6px solid #d3d4d6;
 border-radius: 20px;
-background-color: #F0FFFF;
-height: 600px;
-width: 380px;
 background-color: white;
+height: 600px;
+width: 340px;
 display: flex;
 flex-direction: column;
 justify-content: center;
@@ -49,14 +48,9 @@ justify-content: center;
 align-items: center;
 `;
 
-export const LoginKaKao = styled.div`
-`;
-
-export const LoginNaver = styled.div`
-`;
-
-export const LoginGoogle = styled.div`
-`;
+export const LoginKaKao = styled.div``;
+export const LoginNaver = styled.div``;
+export const LoginGoogle = styled.div``;
 
 export const SignUp = styled.div`
  border-bottom: 2px solid #EBEBEB;

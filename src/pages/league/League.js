@@ -7,8 +7,7 @@ import BoardCategory from '../board/BoardCategory';
 import Stat from '../board/stat/Stat';
 
 const StyledLeague = styled.div`
-  z-index: 9;
-  width: 100vw;
+  width: 100%;
 `;
 
 const LeagueContainer = styled.div`
@@ -22,12 +21,10 @@ const LeagueTop = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 470px;
 `;
 
 const LeagueTopAdvertisement = styled.div`
   width: 470px;
-  height: 360px;
 `;
 
 const LeagueSchedule = styled.div`
@@ -35,7 +32,6 @@ const LeagueSchedule = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 470px;
 `;
 
 const LeagueBody = styled.div``;

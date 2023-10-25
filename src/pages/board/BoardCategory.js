@@ -62,11 +62,11 @@ const BoardCategory = () => {
             aria-label="scrollable auto tabs example"
             centered
           >
-            <Tab style={{ width: '40px', fontSize: '16px', fontWeight:'bold'}}  onClick={handleClickMatch} label="경기" />
-            <Tab style={{ width: '40px', fontSize: '16px', fontWeight:'bold' }} onClick={handleClickLeague} label="리그" />
-            <Tab style={{ width: '40px', fontSize: '16px', fontWeight:'bold'}}  onClick={handleClickTeams} label="팀" />
-            <Tab style={{ width: '40px', fontSize: '16px', fontWeight:'bold'}}  onClick={handleClickRank} label="랭킹" />
-            <Tab style={{ width: '120px', fontSize: '16px', fontWeight:'bold'}}  onClick={handleClickBoard} label="자유게시판" />
+            <Tab style={{ width: '40px', fontSize: '15px', fontWeight:'bold'}}  onClick={handleClickMatch} label="경기" />
+            <Tab style={{ width: '40px', fontSize: '15px', fontWeight:'bold' }} onClick={handleClickLeague} label="리그" />
+            <Tab style={{ width: '40px', fontSize: '15px', fontWeight:'bold'}}  onClick={handleClickTeams} label="팀" />
+            <Tab style={{ width: '40px', fontSize: '15px', fontWeight:'bold'}}  onClick={handleClickRank} label="랭킹" />
+            <Tab style={{ width: '110px', fontSize: '15px', fontWeight:'bold'}}  onClick={handleClickBoard} label="자유게시판" />
           </Tabs>
         </BoardCategoryMiddle>
       </BoardCategoryContainer>

@@ -10,15 +10,47 @@
 }
 
 body {
+  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  @media (max-width: 767px) {
+    body {
+        font-size: 14px;
+    }
+    .container {
+        width: 100%;
+    }
+  }
+  
+  @media (min-width: 768px) and (max-width: 991px) {
+    body {
+      width: 90%;
+        font-size: 16px;
+    }
+    .container {
+        width: 90%;
+    }
+  }
+  
+  @media (min-width: 992px) {
+    body {
+        font-size: 18px;
+    }
+    .container {
+        width: 80%;
+    }
+  }
+}
+
+.scrollable-element {
+  overflow-x: auto;
+  overflow-y: auto;
 }
 
 code {

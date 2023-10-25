@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 const StyledMatchDetail = styled.div`
-  z-index: 9;
   margin-top: 70px;
   width: 100vw;
 `;

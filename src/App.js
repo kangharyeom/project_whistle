@@ -2,8 +2,6 @@ import React from 'react';
 
 import Header from './components/Header';
 
-import Footer from './components/Footer';
-
 import Login from './pages/login/Login';
 import SignUp from './pages/signup/SignUp';
 import Match from './pages/match/Match';
@@ -36,7 +34,6 @@ const App = () => {
           <Route path="/team-post" element={<TeamPost />} />
           <Route path="/ranking" element={<Ranking />} />
         </Routes>
-      <Footer />
     </BrowserRouter>
   );
 };

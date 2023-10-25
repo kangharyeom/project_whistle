@@ -7,19 +7,13 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 const StyledCalender = styled.div`
-  z-index: 9;
   width: 470px;
 `;
 
 const CalenderContainer = styled.div`
-  width: 470px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 `;
 
 const DayButtons = styled.div`
-  width: 470px;
   height: 120px;
   display: flex;
   justify-content: center;

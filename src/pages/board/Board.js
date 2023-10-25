@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledBoard = styled.div`
-    z-index: 9;
     margin-top: 70px;
     width: 100vw;
 `;
@@ -19,7 +18,7 @@ const BoardTop = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100vw;
+    width: 470px;
 `;
 
 const BoardBody = styled.div`

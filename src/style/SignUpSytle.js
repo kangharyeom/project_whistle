@@ -14,17 +14,17 @@ display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: center;
-background-color: #F0FFFF;
+background-color: #94cefe;
 `;
 
 export const SignUpColumn = styled.div`
-border-bottom: 8px solid #EBEBEB;
-border-top: 1px solid #EBEBEB;
-border-left: 1px solid #EBEBEB;
-border-right: 6px solid #EBEBEB;
+border-bottom: 8px solid #d3d4d6;
+border-top: 1px solid #d3d4d6;
+border-left: 1px solid #d3d4d6;
+border-right: 6px solid #d3d4d6;
 border-radius: 20px;
 height: 600px;
-width: 400px;
+width: 340px;
 background-color: white;
 display: flex;
 flex-direction: column;

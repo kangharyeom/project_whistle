@@ -79,6 +79,7 @@ const Login = () => {
                             placeholder="이메일"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
+                            color = '#76a6cc'
                             />
                         <input
                             size = "24"
