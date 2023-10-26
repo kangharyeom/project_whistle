@@ -228,12 +228,6 @@ width: 470px;
  position: relative; 
 `;
 
-const CreateLink = styled(Link)`
-  position: absolute; 
-  bottom: 20px; 
-  text-decoration: none;
-`;
-
 const CircularButton = styled(Link)`
   position: absolute; 
   width: 60px;
