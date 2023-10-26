@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import SimpleSlider from '../match/SimpleSlider';
-import BoardCategory from '../board/BoardCategory';
+import SimpleSlider from '../../components/SimpleSlider';
+import BoardCategory from '../../components/BoardCategory';
 
 const StyledRanking = styled.div`
   z-index: 9;
@@ -19,14 +19,12 @@ const RankingContainer = styled.div`
 `;
 
 const RankingTop = styled.div`
+  width: 100%;
+   max-width: 470px;
   background-color: #F0FFFF;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-`;
-
-const RankingTopAdvertisement = styled.div`
   width: 100%;
 `;
 
@@ -85,9 +83,7 @@ const Ranking = () => {
     <StyledRanking>
       <RankingContainer>
         <RankingTop>
-          <RankingTopAdvertisement>
             <SimpleSlider />
-          </RankingTopAdvertisement>
         </RankingTop>
 
         <RankingBody>

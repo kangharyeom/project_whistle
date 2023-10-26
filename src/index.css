@@ -11,6 +11,7 @@
 
 body {
   width: 100vw;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,6 +32,13 @@ body {
     height: 100vh;
       font-size: 14px;
   }
+  div{
+    -ms-overflow-style: none; /* 인터넷 익스플로러 */
+    scrollbar-width: none; /* 파이어폭스 */
+   }
+   div::-webkit-scrollbar {
+    display:none; /* 크롬, 사파리, 오페라, 엣지 */
+   }
 }
 
 @media (min-width: 471px) and (max-width: 767px) {
@@ -43,6 +51,13 @@ body {
     height: 100vh;
       font-size: 16px;
   }
+  div{
+    -ms-overflow-style: none; /* 인터넷 익스플로러 */
+    scrollbar-width: none; /* 파이어폭스 */
+   }
+   div::-webkit-scrollbar {
+    display:none; /* 크롬, 사파리, 오페라, 엣지 */
+   }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
@@ -54,7 +69,15 @@ body {
     width: 100vw;
     height: 100vh;
       font-size: 16px;
+      
   }
+div{
+  -ms-overflow-style: none; /* 인터넷 익스플로러 */
+  scrollbar-width: none; /* 파이어폭스 */
+ }
+ div::-webkit-scrollbar {
+  display:none; /* 크롬, 사파리, 오페라, 엣지 */
+ }
 }
 
 @media (min-width: 992px) {
@@ -66,6 +89,13 @@ body {
     width: 100vw;
       font-size: 18px;
   }
+  div{
+    -ms-overflow-style: none; /* 인터넷 익스플로러 */
+    scrollbar-width: none; /* 파이어폭스 */
+   }
+   div::-webkit-scrollbar {
+    display:none; /* 크롬, 사파리, 오페라, 엣지 */
+   }
 }
 
 .scrollable-element {

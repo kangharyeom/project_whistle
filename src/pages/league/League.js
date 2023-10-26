@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import SimpleSlider from '../match/SimpleSlider';
-import BoardCategory from '../board/BoardCategory';
+import SimpleSlider from '../../components/SimpleSlider';
+import BoardCategory from '../../components/BoardCategory';
 
 const StyledLeague = styled.div`
   width: 100vw;
@@ -17,14 +17,12 @@ const LeagueContainer = styled.div`
 `;
 
 const LeagueTop = styled.div`
+width: 100%;
+  max-width: 470px;
   background-color: #F0FFFF;
   display: flex;
   align-items: center;
   justify-content: center;
-`;
-
-const LeagueTopAdvertisement = styled.div`
-  width: 470px;
 `;
 
 const LeagueSchedule = styled.div`
@@ -71,14 +69,11 @@ const League = () => {
     <StyledLeague>
       <LeagueContainer>
         <LeagueTop>
-          <LeagueTopAdvertisement>
             <SimpleSlider />
-          </LeagueTopAdvertisement>
         </LeagueTop>
 
         <LeagueBody>
           <BoardCategory />
-
           <LeagueSchedule>
             {Leaguees.map(league => (
               <div key={league.leagueId}>

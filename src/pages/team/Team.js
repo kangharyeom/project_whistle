@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import SimpleSlider from '../match/SimpleSlider';
-import BoardCategory from '../board/BoardCategory';
+import SimpleSlider from '../../components/SimpleSlider';
+import BoardCategory from '../../components/BoardCategory';
 
 const StyledTeam = styled.div`
   z-index: 9;
@@ -19,15 +19,11 @@ const TeamContainer = styled.div`
 `;
 
 const TeamTop = styled.div`
-  background-color: #F0FFFF;
+width: 100%;
+  max-width: 470px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-`;
-
-const TeamTopAdvertisement = styled.div`
-  width: 100%;
 `;
 
 const TeamSchedule = styled.div`
@@ -85,9 +81,7 @@ const Team = () => {
     <StyledTeam>
       <TeamContainer>
         <TeamTop>
-          <TeamTopAdvertisement>
             <SimpleSlider />
-          </TeamTopAdvertisement>
         </TeamTop>
 
         <TeamBody>

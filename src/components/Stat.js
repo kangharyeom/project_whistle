@@ -2,7 +2,7 @@ import React from 'react';
 
 import Button from '@mui/material/Button';
 
-import * as s from '../../../style/StatStyle'
+import * as s from '../style/StatStyle'
 
 const Stat = () => {
     return (   

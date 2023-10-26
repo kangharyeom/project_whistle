@@ -1,17 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import SimpleSlider from './SimpleSlider';
-import BoardCategory from '../board/BoardCategory';
-import Calender from './Calender';
+import SimpleSlider from '../../components/SimpleSlider';
+import BoardCategory from '../../components/BoardCategory';
+import Calender from '../../components/Calender';
 import MatchInfo from './MatchInfo';
 
 const StyledMatch = styled.div`
   width: 100vw;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 `;
 
 const MatchContainer = styled.div`
@@ -24,15 +21,22 @@ display: flex;
 
 const MatchTop = styled.div`
 width: 100%;
+  max-width: 470px;
+display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
-const MatchTopAdvertisement = styled.div`
-width: 100%;
-`;
 const MatchBody = styled.div`
+
 width: 100%;
 `;
+
 const MatchBodyCalender = styled.div`
+border-bottom: 0.1px solid gray;
+display: flex;
+  flex-direction: column;
+  align-items: center;
 width: 100%;
 `;
 
@@ -40,16 +44,14 @@ const Match = () => {
   
   return (
     <StyledMatch id="StyledMatchId">
-      <MatchContainer>
-        <MatchTop>
-          <MatchTopAdvertisement>
-            <SimpleSlider />
-          </MatchTopAdvertisement>
+      <MatchContainer id = 'MatchContainer'>
+        <MatchTop id = 'MatchTop'>
+          <SimpleSlider />
         </MatchTop>
 
-        <MatchBody>
+        <MatchBody id = 'MatchBody'>
           <BoardCategory />
-          <MatchBodyCalender>
+          <MatchBodyCalender id = 'MatchBodyCalender'>
             <Calender />
           </MatchBodyCalender>
           <MatchInfo/>

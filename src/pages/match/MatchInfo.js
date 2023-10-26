@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import TeamProfile from '../team/TeamProfile';
 
 const StyledMatchSchedule = styled.div`
+background-color: #94cefe;
   width: 100%;
 `;
 
@@ -28,59 +29,150 @@ box-shadow: rgba(50, 50, 93, 0.25) 3px 4px 8px -1px;
 max-width: 470px;
 background-color: white;
 border-radius: 10px;
-margin-bottom: 5%;
+margin: 5% 0 5% 0;
 width: 90%;
-height: 180px;
+height: 200px;
 display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
 `;
 
-const TeamInfoContainer = styled.div`
+const TeamInfoRow = styled.div`
   width: 100%;
-  height: 100%;
+  height: 180px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: space-around;
 `;
 
+const TeamInfoContainer = styled.div`
+border-radius: 3%;
+box-shadow: rgba(50, 50, 93, 0.25) 0px 1px 2px 0px;
+  width: 94%;
+  height: 95%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+
 const TeamInfoLeft = styled.div`
-  width: 80%;
+border-radius: 3%;
+  width: 35%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: space-between;
+  align-items: center;
+`;
+
+const HomeTeamName = styled.div`
+font-size: medium;
+font-weight: bold;
+`;
+const HomeTeamHonorScore = styled.div``;
+const HomeTeamRecord = styled.div`
+font-size: medium;
+`;
+const HomeTeamManager = styled.div`
+display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+gap: 3px;
+font-size: small;
+`;
+const Location = styled.div`
+font-weight: bolder;
+`;
+const HomeTeamAge = styled.div`
+width: 80%;
+height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 `;
+const HomeTeamLevel = styled.div`
+width: 80%;
+height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  `;
 
-  const HomeTeamName = styled.div``;
-  const HomeTeamHonorScore = styled.div``;
-  const HomeTeamRecord = styled.div``;
-  const HomeTeamManager = styled.div``;
+const HomeTeamUniformType = styled.div`
+width: 60%;
+height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+${props => props.color === 'ORANGE' && `
+  ${Circle} {
+    background-color: ORANGE;
+  }
+`}
+`;
+const ManagerValue = styled.div`
+font-size: small;
+font-weight: bold;
+`;
+const LevelValue = styled.div`
+height: 30px;
+font-size: 20px;
+font-weight: bold;
+`;
+const AgeValue = styled.div`
+color: #064452;
+font-size: 20px;
+height: 30px;
+font-weight: bold;
+`;
+const UniformValue = styled.div`
+font-size: 20px;
+height: 30px;
+font-weight: bold;
+`;
+
+  const BattleSuggestionButton = styled.div``;
 
   const Circle = styled.div`
   width: 20px;
+  margin-top: 25%;
   height: 20px;
   border-radius: 50%;
   background-color: ${({ color }) => color || 'transparent'};
-  `;
-  const HomeTeamUniformType = styled.div`
-  ${props => props.color === 'ORANGE' && `
-    ${Circle} {
-      background-color: ORANGE;
-    }
-  `}
+  display: flex;
+  justify-content: center;
+  align-items: center;
   `;
 
+
 const TeamInfoDiv = styled.div`
+border-radius: 3%;
+box-shadow: rgba(50, 50, 93, 0.25) 0px 1px 0px 0px;
 height: 100%;
-width: 100%;
+width: 65%;
 display: flex;
 flex-direction: column;
 `;
 
+const TeamInfoFirstNavAndSencondNav = styled.nav`
+border-radius: 3%;
+box-shadow: rgba(50, 50, 93, 0.25) 0px 1px 0px 0px;
+height: 30%;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+`;
+
 const TeamInfoFirstNav = styled.nav`
+
 height: 50%;
 width: 100%;
 display: flex;
@@ -99,23 +191,25 @@ justify-content: center;
 `;
 
 const TeamInfoThirdNav = styled.nav`
-height: 100%;
+border-radius: 3%;
+box-shadow: rgba(50, 50, 93, 0.25) 0px 1px 0px 0px;
+height: 35%;
 width: 100%;
+font-size: smaller;
 display: flex;
 flex-direction: row;
-align-items: center;
-justify-content: center;
+justify-content: space-evenly;
 `;
 
 const TeamInfoFourthNav = styled.nav`
-height: 100%;
+height: 35%;
 width: 100%;
+font-size: smaller;
 display: flex;
-flex-direction: row;
+flex-direction: column;
 align-items: center;
 justify-content: center;
 `;
-
 
 const MatchTime = styled.div`
   display: flex;
@@ -125,18 +219,49 @@ const MatchTime = styled.div`
   align-items: center;
 `;
 
-const Location = styled.div``;
-const HomeTeamAge = styled.div``;
-const HomeTeamLevel = styled.div``;
-
-  const BattleSuggestionButton = styled.div``;
-
 const MatchCreate = styled.div`
 display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: center;
 width: 470px;
+ position: relative; 
+`;
+
+const CreateLink = styled(Link)`
+  position: absolute; 
+  bottom: 20px; 
+  text-decoration: none;
+`;
+
+const CircularButton = styled(Link)`
+  position: absolute; 
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #FF5733; /* 버튼 배경색 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none; /* 링크 텍스트 스타일 제거 */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 추가 */
+  right: 15%; /* 화면 오른쪽에서 20px 떨어진 위치 */
+  bottom: 20px; /* 화면 아래에서 20px 떨어진 위치 */
+  z-index: 9999; /* 다른 컴포넌트 위에 보이도록 하는 z-index 값 */
+
+  &:hover {
+    background-color: #FF8C5A; /* 마우스 호버 시 배경색 변경 */
+  }
+
+  &:active {
+    background-color: #FF3D00; /* 클릭 시 배경색 변경 */
+  }
+
+  .plus {
+    font-size: 24px;
+    line-height: 1;
+    color: #ffffff; /* + 모양 색상 */
+  }
 `;
 
 const MatchInfo = () => {
@@ -182,87 +307,94 @@ const MatchInfo = () => {
               {/* 각 매치 ID에 대한 링크를 생성합니다. */}
               <Link to={`/match-detail/${match.matchId}`}>
               </Link>
+            <TeamInfoRow>
               <TeamInfoContainer id = 'TeamInfoContainer'>
              
               <TeamInfoLeft id = 'TeamInfoLeft'>
                 <TeamProfile/>
-                <HomeTeamName>{match.homeTeamName}</HomeTeamName>
-                  <HomeTeamManager>매니저: {match.homeTeamManagerName}</HomeTeamManager>
-                <HomeTeamHonorScore> 명예점수 {match.homeTeamHonorScore} 점</HomeTeamHonorScore>
-                <HomeTeamRecord> 
-                  {match.homeTeamTotalWinRecord+
-                  match.homeTeamTotalDrawRecord+
-                  match.homeTeamTotalLoseRecord}전 
-                  {match.homeTeamTotalWinRecord}승 
-                  {match.homeTeamTotalDrawRecord}무 
-                  {match.homeTeamTotalLoseRecord}패
-                </HomeTeamRecord>
+                <HomeTeamName id = 'HomeTeamName'>{match.homeTeamName}</HomeTeamName>
+                  <HomeTeamManager id = 'HomeTeamManager'>매니저 
+                    <ManagerValue>
+                      {match.homeTeamManagerName}
+                    </ManagerValue>
+                  </HomeTeamManager>
+                <HomeTeamHonorScore id = 'HomeTeamHonorScore'> 명예 점수 {match.homeTeamHonorScore} 점</HomeTeamHonorScore>
               </TeamInfoLeft>
 
               <TeamInfoDiv id = 'TeamInfoDiv'>
-                <TeamInfoFirstNav id = 'TeamInfoFirstNav'>
-                    <MatchTime>
-                        <p>{formatDate(match.matchDate)} {match.matchTime}</p>
-                    </MatchTime>
-                </TeamInfoFirstNav>
+                <TeamInfoFirstNavAndSencondNav>
+                  <TeamInfoFirstNav id = 'TeamInfoFirstNav'>
+                      <MatchTime id = 'MatchTime'>
+                          <p>{formatDate(match.matchDate)} {match.matchTime}</p>
+                      </MatchTime>
+                  </TeamInfoFirstNav>
 
-                <TeamInfoSecondNav id = 'TeamInfoSecondNav'>
-                    <Location>
-                      {match.locationType === 'SEOUL' && '서울'}
-                      {match.locationType === 'INCHEON' && '인천'}
-                      {match.locationType === 'DAEGU' && '대구'}
-                      {match.locationType === 'BUSAN' && '부산'}
-                      {match.locationType === 'GWANGJU' && '광주'}
-                      {match.locationType === 'DAEJEON' && '대전'}
-                      {match.locationType === 'GYEONGGI' && '경기도'}
-                      {match.locationType === 'JEJU' && '제주'}
-                      {match.locationType === 'ULSAN' && '울산'}
-                      {match.locationType === 'CHUNGCHEONGNAM' && '충청남도'}
-                      {match.locationType === 'CHUNGCHEONGBUK' && '충청북도'}
-                      {match.locationType === 'GYEONGSANGBUK' && '경상북도'}
-                      {match.locationType === 'GYEONGSANGNAM' && '경상남도'}
-                      {match.locationType === 'JEOLLABUK' && '전라북도'}
-                      {match.locationType === 'JEOLLANAM' && '전라남도'}
-                      {match.locationType === 'GANGWON' && '강원도'}
-                  </Location>
-                </TeamInfoSecondNav>
+                  <TeamInfoSecondNav id = 'TeamInfoSecondNav'>
+                      <Location id = 'Location'>
+                        {match.locationType === 'SEOUL' && '서울'}
+                        {match.locationType === 'INCHEON' && '인천'}
+                        {match.locationType === 'DAEGU' && '대구'}
+                        {match.locationType === 'BUSAN' && '부산'}
+                        {match.locationType === 'GWANGJU' && '광주'}
+                        {match.locationType === 'DAEJEON' && '대전'}
+                        {match.locationType === 'GYEONGGI' && '경기도'}
+                        {match.locationType === 'JEJU' && '제주'}
+                        {match.locationType === 'ULSAN' && '울산'}
+                        {match.locationType === 'CHUNGCHEONGNAM' && '충청남도'}
+                        {match.locationType === 'CHUNGCHEONGBUK' && '충청북도'}
+                        {match.locationType === 'GYEONGSANGBUK' && '경상북도'}
+                        {match.locationType === 'GYEONGSANGNAM' && '경상남도'}
+                        {match.locationType === 'JEOLLABUK' && '전라북도'}
+                        {match.locationType === 'JEOLLANAM' && '전라남도'}
+                        {match.locationType === 'GANGWON' && '강원도'}
+                    </Location>
+                  </TeamInfoSecondNav>
+                </TeamInfoFirstNavAndSencondNav>
+
 
                 <TeamInfoThirdNav id = 'TeamInfoThirdNav'>
-                  <HomeTeamLevel>
-                    {match.homeTeamLevelType === 'LOWEST' && '최하'}
-                    {match.homeTeamLevelType === 'LOWER' && '하'}
-                    {match.homeTeamLevelType === 'MIDDLE' && '중'}
-                    {match.homeTeamLevelType === 'UPPER' && '상'}
-                    {match.homeTeamLevelType === 'HIGHEST' && '최상'}
+                  <HomeTeamLevel id = 'HomeTeamLevel'>
+                    실력
+                    <LevelValue>
+                      {match.homeTeamLevelType === 'LOWEST' && '최하'}
+                      {match.homeTeamLevelType === 'LOWER' && '하'}
+                      {match.homeTeamLevelType === 'MIDDLE' && '중'}
+                      {match.homeTeamLevelType === 'UPPER' && '상'}
+                      {match.homeTeamLevelType === 'HIGHEST' && '최상'}
+                    </LevelValue>
                   </HomeTeamLevel>
-                  <HomeTeamUniformType color={match.homeTeamUniformType}>
-                    유니폼:
-                  {match.homeTeamUniformType === 'NONE' && '없음'}
-                  {match.homeTeamUniformType === 'RED' && "빨간색"}
-                  {match.homeTeamUniformType === 'ORANGE' && "주황색" }
-                  {match.homeTeamUniformType === 'YELLOW' && "노란색" }
-                  {match.homeTeamUniformType === 'GREEN' && "초록색" }
-                  {match.homeTeamUniformType === 'BLUE' && "파란색" }
-                  {match.homeTeamUniformType === 'PURPLE' && "보라색" }
-                  {match.homeTeamUniformType === 'BLACK' && "검정색" }
-                  {match.homeTeamUniformType === 'WHITE' && "흰색" }
-                  {match.homeTeamUniformType === 'SKY_BLUE' && "하늘색" }
-                  {match.homeTeamUniformType === 'GRAY' && "회색" }
+                  <HomeTeamUniformType id = 'HomeTeamUniformType' color={match.homeTeamUniformType}>
+                    유니폼
+                    <UniformValue>
+                      {/* {match.homeTeamUniformType === 'NONE' && '없음'}
+                      {match.homeTeamUniformType === 'RED' && "빨간색"}
+                      {match.homeTeamUniformType === 'ORANGE' && "주황색" }
+                      {match.homeTeamUniformType === 'YELLOW' && "노란색" }
+                      {match.homeTeamUniformType === 'GREEN' && "초록색" }
+                      {match.homeTeamUniformType === 'BLUE' && "파란색" }
+                      {match.homeTeamUniformType === 'PURPLE' && "보라색" }
+                      {match.homeTeamUniformType === 'BLACK' && "검정색" }
+                      {match.homeTeamUniformType === 'WHITE' && "흰색" }
+                      {match.homeTeamUniformType === 'SKY_BLUE' && "하늘색" }
+                      {match.homeTeamUniformType === 'GRAY' && "회색" } */}
 
-                  {match.homeTeamUniformType === 'NONE' && <Circle color="NONE" />}
-                  {match.homeTeamUniformType === 'RED' && <Circle color="RED" />}
-                  {match.homeTeamUniformType === 'ORANGE' && <Circle color="ORANGE" />}
-                  {match.homeTeamUniformType === 'YELLOW' && <Circle color="YELLOW" />}
-                  {match.homeTeamUniformType === 'GREEN' && <Circle color="GREEN" />}
-                  {match.homeTeamUniformType === 'BLUE' && <Circle color="BLUE" />}
-                  {match.homeTeamUniformType === 'PURPLE' && <Circle color="PURPLE" />}
-                  {match.homeTeamUniformType === 'BLACK' && <Circle color="BLACK" />}
-                  {match.homeTeamUniformType === 'WHITE' && <Circle color="WHITE" />}
-                  {match.homeTeamUniformType === 'SKY_BLUE' && <Circle color="SKY_BLUE" />}
-                  {match.homeTeamUniformType === 'GRAY' && <Circle color="GRAY" />}
+                      {match.homeTeamUniformType === 'NONE' && <Circle color="NONE" />}
+                      {match.homeTeamUniformType === 'RED' && <Circle color="RED" />}
+                      {match.homeTeamUniformType === 'ORANGE' && <Circle color="ORANGE" />}
+                      {match.homeTeamUniformType === 'YELLOW' && <Circle color="YELLOW" />}
+                      {match.homeTeamUniformType === 'GREEN' && <Circle color="GREEN" />}
+                      {match.homeTeamUniformType === 'BLUE' && <Circle color="BLUE" />}
+                      {match.homeTeamUniformType === 'PURPLE' && <Circle color="PURPLE" />}
+                      {match.homeTeamUniformType === 'BLACK' && <Circle color="BLACK" />}
+                      {match.homeTeamUniformType === 'WHITE' && <Circle color="WHITE" />}
+                      {match.homeTeamUniformType === 'SKY_BLUE' && <Circle color="SKY_BLUE" />}
+                      {match.homeTeamUniformType === 'GRAY' && <Circle color="GRAY" />}
+                    </UniformValue>
                   </HomeTeamUniformType>
                     
-                  <HomeTeamAge>
+                  <HomeTeamAge id = 'HomeTeamAge'>
+                    연령대
+                    <AgeValue>
                     {match.homeTeamAgeType === 'TEENAGER' && '10대'}
                     {match.homeTeamAgeType === 'UNIVERSITY_STUDENT' && '대학생'}
                     {match.homeTeamAgeType === 'TWENTIES' && '20대'}
@@ -271,14 +403,24 @@ const MatchInfo = () => {
                     {match.homeTeamAgeType === 'THIRTIETH' && '30대'}
                     {match.homeTeamAgeType === 'FORTIES' && '40대'}
                     {match.homeTeamAgeType === 'FIFTIES' && '50대'}
+                    </AgeValue>
                   </HomeTeamAge>
                 </TeamInfoThirdNav>
-
-                <TeamInfoFourthNav id = 'TeamInfoFourthNav'>
-                  <BattleSuggestionButton>대결 신청</BattleSuggestionButton>
+                <TeamInfoFourthNav>
+                  전적
+                  <HomeTeamRecord id = 'HomeTeamRecord'> 
+                  {match.homeTeamTotalWinRecord+
+                  match.homeTeamTotalDrawRecord+
+                  match.homeTeamTotalLoseRecord}전 
+                  {match.homeTeamTotalWinRecord}승 
+                  {match.homeTeamTotalDrawRecord}무 
+                  {match.homeTeamTotalLoseRecord}패
+                </HomeTeamRecord>
+                <BattleSuggestionButton id = 'BattleSuggestionButton'>경기 신청</BattleSuggestionButton>
                 </TeamInfoFourthNav>
               </TeamInfoDiv>
             </TeamInfoContainer>
+            </TeamInfoRow>
           </TeamInfo>
         ))}
         <PageInfo>
@@ -286,8 +428,11 @@ const MatchInfo = () => {
           <p>전체 페이지 수: {pageInfo.totalPages}</p>
         </PageInfo>
         <MatchCreate id = 'MatchCreate'>
-           {/* 사용자가 로그인한 경우에만 "팀 생성" 버튼을 표시합니다. */}
-           {isLoggedIn && <Link to="/match-post">경기 생성</Link>}
+          {isLoggedIn && (
+            <CircularButton to="/match-post">
+            <div className="plus">+</div>
+          </CircularButton>
+          )}
         </MatchCreate>
       </MatchScheduleContainer>
     </StyledMatchSchedule>
