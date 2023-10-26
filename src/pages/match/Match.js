@@ -32,14 +32,6 @@ const MatchBody = styled.div`
 width: 100%;
 `;
 
-const MatchBodyCalender = styled.div`
-border-bottom: 0.1px solid gray;
-display: flex;
-  flex-direction: column;
-  align-items: center;
-width: 100%;
-`;
-
 const Match = () => {
   
   return (
@@ -51,9 +43,7 @@ const Match = () => {
 
         <MatchBody id = 'MatchBody'>
           <BoardCategory />
-          <MatchBodyCalender id = 'MatchBodyCalender'>
             <Calender />
-          </MatchBodyCalender>
           <MatchInfo/>
        
         </MatchBody>

@@ -4,12 +4,17 @@ import styled from 'styled-components';
 import TeamProfile from '../team/TeamProfile';
 
 const StyledMatchSchedule = styled.div`
-background-color: #94cefe;
-  width: 100%;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 const MatchScheduleContainer = styled.div`
+background-color: #94cefe;
   width: 100%;
+  max-width: 470px;
   display: flex;
   flex-direction: column;
   align-items: center;

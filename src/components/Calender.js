@@ -10,15 +10,19 @@ const StyledCalender = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  
   width: 100vw;
-  box-shadow: rgba(50, 50, 93, 0.25) 3px 4px 8px -1px;
-`;
+  `;
 
 const CalenderContainer = styled.div`
+width: 100%;
+
+max-width: 470px;
 
 `;
 
 const DayButtons = styled.div`
+box-shadow: rgba(50, 50, 93, 0.25) 1px 0px 2px -1px;
   height: 60px;
   display: flex;
   justify-content: center;

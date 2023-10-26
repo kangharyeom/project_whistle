@@ -5,7 +5,6 @@ import Tab from '@mui/material/Tab';
 
 const StyledBoardCategory = styled.div`
   width: 100vw;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 1px 4px -1px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,7 +12,8 @@ const StyledBoardCategory = styled.div`
 
 const BoardCategoryContainer = styled.div`
   width: 100%;
-   max-width: 470px;
+  max-width: 470px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 1px 4px -1px;
   display: flex;
   flex-direction: column;
   align-items: center;
