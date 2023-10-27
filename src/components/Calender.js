@@ -7,26 +7,42 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 const StyledCalender = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  
   width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   `;
 
 const CalenderContainer = styled.div`
-width: 100%;
+  width: 100%;
+  max-width: 470px;
+  display: flex;
+  padding: 2% 0 2% 0;
+  justify-content: center;
+  align-items: center;
+  background-color: #94cefe;
+  max-width: 470px;
 
-max-width: 470px;
+`;
+
+const WeeklyCalendarContainer = styled.div`
+  width: 90%;
+box-shadow: rgba(50, 50, 93, 0.25) 1px 2px 4px 0px;
+  display: flex;
+  border-radius: 20px;
+  background-color: white;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
 
 `;
 
 const DayButtons = styled.div`
-box-shadow: rgba(50, 50, 93, 0.25) 1px 0px 2px -1px;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: row;
+
 `;
 
 function calculateWeekDates(startDate) {
@@ -43,20 +59,21 @@ const CalendarButton = styled.button`
   background-color: ${(props) => (props.isToday ? '#cae7ff' : 'white')};
   border-top: none;
   border-left: none;
+  box-shadow: rgba(50, 50, 93, 0.25) 1px 2px 4px 0px;
   border-right: 1px solid #d8d8d8;
   border-bottom: 1px solid #d8d8d8;
   cursor: pointer;
   margin: 3px;
   padding: 0;
-  width: 30px;
-  height: 30px;
-  border-radius: 10px;
+  width: 15%;
+  height: 15%;
+  border-radius: 100%;
   display: flex;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 12px;
+  font-size: 100%;
   color: ${(props) =>
     props.isSaturday ? 'blue' : props.isHoliday ? 'red' : 'black'};
 `;
@@ -125,7 +142,8 @@ function WeeklyCalendar() {
   }
 
   return (
-    <div className="weekly-calendar">
+    <WeeklyCalendarContainer id = 'WeeklyCalendarContainer'>
+    <div style={{ width: '100%' }} className="weekly-calendar">
       <DayButtons>
       <div className="calendar-header">
         <IconButton onClick={handlePrevWeek}>
@@ -142,6 +160,7 @@ function WeeklyCalendar() {
         </IconButton>
     </DayButtons>
     </div>
+    </WeeklyCalendarContainer>
   );
 }
 

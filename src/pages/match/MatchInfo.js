@@ -8,6 +8,7 @@ import {LevelComponent} from "../../components/info/LevelType";
 import {LocationComponent} from "../../components/info/Location";
 import {AgeComponent} from "../../components/info/Age";
 import {RecordComponent} from "../../components/info/Record";
+import {UniformTypeComponent} from "../../components/info/UniformType";
 
 const MatchInfo = () => {
   const [matches, setMatches] = useState([]);
@@ -86,35 +87,13 @@ const MatchInfo = () => {
                   <m.HomeTeamLevel id = 'HomeTeamLevel'>
                     실력
                     <m.LevelValue id="LevelValue">
-                    <LevelComponent levelType = {match.homeTeamLevelType} id ='HomeTeamLevelComponent'/>
+                      <LevelComponent levelType = {match.homeTeamLevelType} id ='HomeTeamLevelComponent'/>
                     </m.LevelValue>
                   </m.HomeTeamLevel>
                   <HomeTeamUniformType id = 'HomeTeamUniformType' color={match.homeTeamUniformType}>
                     유니폼
                     <UniformValue>
-                      {/* {match.homeTeamUniformType === 'NONE' && '없음'}
-                      {match.homeTeamUniformType === 'RED' && "빨간색"}
-                      {match.homeTeamUniformType === 'ORANGE' && "주황색" }
-                      {match.homeTeamUniformType === 'YELLOW' && "노란색" }
-                      {match.homeTeamUniformType === 'GREEN' && "초록색" }
-                      {match.homeTeamUniformType === 'BLUE' && "파란색" }
-                      {match.homeTeamUniformType === 'PURPLE' && "보라색" }
-                      {match.homeTeamUniformType === 'BLACK' && "검정색" }
-                      {match.homeTeamUniformType === 'WHITE' && "흰색" }
-                      {match.homeTeamUniformType === 'SKY_BLUE' && "하늘색" }
-                      {match.homeTeamUniformType === 'GRAY' && "회색" } */}
-
-                      {match.homeTeamUniformType === 'NONE' && <Circle color="NONE" />}
-                      {match.homeTeamUniformType === 'RED' && <Circle color="RED" />}
-                      {match.homeTeamUniformType === 'ORANGE' && <Circle color="ORANGE" />}
-                      {match.homeTeamUniformType === 'YELLOW' && <Circle color="YELLOW" />}
-                      {match.homeTeamUniformType === 'GREEN' && <Circle color="GREEN" />}
-                      {match.homeTeamUniformType === 'BLUE' && <Circle color="BLUE" />}
-                      {match.homeTeamUniformType === 'PURPLE' && <Circle color="PURPLE" />}
-                      {match.homeTeamUniformType === 'BLACK' && <Circle color="BLACK" />}
-                      {match.homeTeamUniformType === 'WHITE' && <Circle color="WHITE" />}
-                      {match.homeTeamUniformType === 'SKY_BLUE' && <Circle color="SKY_BLUE" />}
-                      {match.homeTeamUniformType === 'GRAY' && <Circle color="GRAY" />}
+                      <UniformTypeComponent id = 'HomeTeamUniformType' uniformType = {match.homeTeamUniformType} />
                     </UniformValue>
                   </HomeTeamUniformType>
                     
@@ -158,7 +137,6 @@ const MatchInfo = () => {
 
 export default MatchInfo;
 
-
 const HomeTeamUniformType = styled.div`
 width: 60%;
 height: 100%;
@@ -166,11 +144,6 @@ height: 100%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-${props => props.color === 'ORANGE' && `
-  ${Circle} {
-    background-color: ORANGE;
-  }
-`}
 `;
 
 const UniformValue = styled.div`
@@ -179,16 +152,7 @@ height: 30px;
 font-weight: bold;
 `;
 
-  const Circle = styled.div`
-  width: 20px;
-  margin-top: 25%;
-  height: 20px;
-  border-radius: 50%;
-  background-color: ${({ color }) => color || 'transparent'};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  `;
+ 
 
 const CircularButton = styled(Link)`
   position: absolute; 

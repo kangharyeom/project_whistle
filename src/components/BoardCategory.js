@@ -1,36 +1,40 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
+
+import Button from '@mui/material/Button';
 
 const StyledBoardCategory = styled.div`
   width: 100vw;
+
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   `;
 
 const BoardCategoryContainer = styled.div`
   width: 100%;
+  padding: 2% 0 2% 0;
   max-width: 470px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 1px 4px -1px;
+  height: 100%;
+  background-color: #94cefe;
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
+  justify-content: center;
+  `;
 
 const BoardCategoryMiddle = styled.div`
-  width: 100%;
+  width: 90%;
+  max-width: 470px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
 `;
 
 const BoardCategory = () => {
   const basicURL = process.env.REACT_APP_API_ENDPOINT;
-
-  const [middleValue, setMiddleValue] = useState(0);
-
-  const MiddleHandleChange = (newValue) => {
-    setMiddleValue(newValue);
-  };
 
   const handleClickMatch = () => {
     // 리그 탭을 클릭하면 basicURL/league 페이지로 이동합니다.
@@ -57,24 +61,11 @@ const BoardCategory = () => {
     <StyledBoardCategory id = 'StyledBoardCategory'>
       <BoardCategoryContainer id = 'BoardCategoryContainer'>
         <BoardCategoryMiddle id = 'BoardCategoryMiddle'>
-          <div style={{ width: '100%' }}>
-              <Tabs id = 'Tabs'
-                  indicatorColor='primary'
-                  value={middleValue}
-                  onChange={MiddleHandleChange}
-                  allowScrollButtonsMobile
-                  aria-label="scrollable auto tabs example"
-                  centered
-              >
-            <div id='tabContainer' style={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
-                <Tab id='match' style={{ minWidth: '20px', flex: '1', fontSize: '12px', fontWeight: 'bold' }} onClick={handleClickMatch} label="경기" />
-                <Tab id='league' style={{ minWidth: '20px', flex: '1', fontSize: '12px', fontWeight: 'bold' }} onClick={handleClickLeague} label="리그" />
-                <Tab id='team' style={{ minWidth: '20px', flex: '1', fontSize: '12px', fontWeight: 'bold' }} onClick={handleClickTeams} label="팀" />
-                <Tab id='ranking' style={{ minWidth: '20px', flex: '1', fontSize: '12px', fontWeight: 'bold' }} onClick={handleClickRank} label="랭킹" />
-                <Tab id='board' style={{ minWidth: '20px', flex: '1', fontSize: '12px', fontWeight: 'bold' }} onClick={handleClickBoard} label="게시판" />
-            </div>
-              </Tabs>
-          </div>
+          <Button variant="contained" sx={{backgroundColor: "white", color: "#064452",  fontWeight: "bold",  fontSize: "14px"}} size="small" onClick={handleClickMatch}>경기</Button>
+          <Button variant="contained" sx={{backgroundColor: "white", color: "#064452",  fontWeight: "bold",  fontSize: "14px"}} size="small" onClick={handleClickLeague}>리그</Button>
+          <Button variant="contained" sx={{backgroundColor: "white", color: "#064452",  fontWeight: "bold",  fontSize: "14px"}} size="small" onClick={handleClickTeams}>팀</Button>
+          <Button variant="contained" sx={{backgroundColor: "white", color: "#064452",  fontWeight: "bold",  fontSize: "14px"}} size="small" onClick={handleClickRank}>랭킹</Button>
+          <Button variant="contained" sx={{backgroundColor: "white", color: "#064452",  fontWeight: "bold",  fontSize: "14px"}} size="small" onClick={handleClickBoard}>게시판</Button>
         </BoardCategoryMiddle>
       </BoardCategoryContainer>
     </StyledBoardCategory>
