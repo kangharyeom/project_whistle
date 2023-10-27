@@ -11,6 +11,7 @@ const StyledLeague = styled.div`
 `;
 
 const LeagueContainer = styled.div`
+width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -88,8 +89,8 @@ const League = () => {
               <p>현재 페이지: {pageInfo.page}</p>
               <p>전체 페이지 수: {pageInfo.totalPages}</p>
             </div>
-          </LeagueSchedule>
             {isLoggedIn && <Link to="/league-post">리그 생성</Link>}
+          </LeagueSchedule>
         </LeagueBody>
 
       </LeagueContainer>

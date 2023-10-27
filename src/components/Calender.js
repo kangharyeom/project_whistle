@@ -23,7 +23,6 @@ max-width: 470px;
 
 const DayButtons = styled.div`
 box-shadow: rgba(50, 50, 93, 0.25) 1px 0px 2px -1px;
-  height: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -47,7 +46,7 @@ const CalendarButton = styled.button`
   border-right: 1px solid #d8d8d8;
   border-bottom: 1px solid #d8d8d8;
   cursor: pointer;
-  margin: 6px;
+  margin: 3px;
   padding: 0;
   width: 30px;
   height: 30px;
