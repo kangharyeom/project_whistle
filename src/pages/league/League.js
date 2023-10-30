@@ -3,15 +3,21 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import SimpleSlider from '../../components/SimpleSlider';
-import BoardCategory from '../../components/BoardCategory';
+import Category from '../../components/category/Category';
+import LeagueCategory from '../../components/category/LeagueCategory';
 
 const StyledLeague = styled.div`
   width: 100vw;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const LeagueContainer = styled.div`
 width: 100%;
+max-width: 470px;
+background-color: #e5f6fd;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -74,7 +80,8 @@ const League = () => {
         </LeagueTop>
 
         <LeagueBody>
-          <BoardCategory />
+          <Category />
+          <LeagueCategory />
           <LeagueSchedule>
             {Leaguees.map(league => (
               <div key={league.leagueId}>

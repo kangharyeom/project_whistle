@@ -17,19 +17,18 @@ const CalenderContainer = styled.div`
   width: 100%;
   max-width: 470px;
   display: flex;
-  padding: 2% 0 2% 0;
+  padding: 1% 0 0.5% 0;
   justify-content: center;
   align-items: center;
-  background-color: #94cefe;
+  background-color: white;
   max-width: 470px;
 
 `;
 
 const WeeklyCalendarContainer = styled.div`
-  width: 90%;
-box-shadow: rgba(50, 50, 93, 0.25) 1px 2px 4px 0px;
+  width: 100%;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 3px 0px 0px;
   display: flex;
-  border-radius: 20px;
   background-color: white;
   justify-content: center;
   align-items: center;
@@ -39,8 +38,8 @@ box-shadow: rgba(50, 50, 93, 0.25) 1px 2px 4px 0px;
 
 const DayButtons = styled.div`
   width: 100%;
+   max-width: 470px;
   display: flex;
-  justify-content: center;
   align-items: center;
 
 `;
@@ -65,15 +64,15 @@ const CalendarButton = styled.button`
   cursor: pointer;
   margin: 3px;
   padding: 0;
-  width: 15%;
-  height: 15%;
-  border-radius: 100%;
+  width: 10%;
+  height: 10%;
+  border-radius: 10%;
   display: flex;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 100%;
+  font-size: 80%;
   color: ${(props) =>
     props.isSaturday ? 'blue' : props.isHoliday ? 'red' : 'black'};
 `;
@@ -124,7 +123,7 @@ function WeeklyCalendar() {
   while (currentDate <= endOfWeek) {
     const dayOfWeek = currentDate.toLocaleDateString('en-US', { weekday: 'short' });
     days.push(
-      <CalendarButton
+      <CalendarButton id = 'CalendarButton'
         className="calendar-day"
         key={currentDate.toISOString()}
         onClick={() => handleDayClick(currentDate)}
@@ -144,15 +143,13 @@ function WeeklyCalendar() {
   return (
     <WeeklyCalendarContainer id = 'WeeklyCalendarContainer'>
     <div style={{ width: '100%' }} className="weekly-calendar">
-      <DayButtons>
-      <div className="calendar-header">
+      <DayButtons id = 'DayButtons'>
         <IconButton onClick={handlePrevWeek}>
           <ArrowBackIcon />
         </IconButton>
-        </div>
         <div>
       </div>
-      <div className="calendar-body" style={{ display: 'flex', flexWrap: 'wrap' }}>
+      <div className="calendar-body" style={{ width:'100%', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-evenly' }}>
         {days}
       </div>
       <IconButton onClick={handleNextWeek}>

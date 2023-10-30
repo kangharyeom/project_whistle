@@ -1,11 +1,12 @@
+
+
 import React from 'react';
 import styled from 'styled-components';
 
 import SimpleSlider from '../../components/SimpleSlider';
-import Category from '../../components/category/Category';
 import MatchCategory from '../../components/category/MatchCategory';
+import Category from '../../components/category/Category';
 import Calender from '../../components/Calender';
-
 
 const StyledMatch = styled.div`
   width: 100vw;
@@ -13,7 +14,6 @@ const StyledMatch = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 `;
 
 const MatchContainer = styled.div`

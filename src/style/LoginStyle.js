@@ -1,8 +1,7 @@
 import styled from "styled-components";
 
 export const StyledLogin = styled.div`
-
-width: 100%;
+width: 100vw;
 display: flex;
 flex-direction: column;
 align-items: center;
@@ -16,7 +15,7 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-background-color: #94cefe;
+background-color: #e5f6fd;
 `;
 
 export const LoginBody = styled.div`
@@ -45,7 +44,13 @@ align-items: center;
 `;
 
 export const LoginIdandPassword = styled.div`
-gap:20px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+`;
+
+export const LoginBox = styled.div`
 display: flex;
 flex-direction: column;
 justify-content: center;

@@ -3,16 +3,22 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import SimpleSlider from '../../components/SimpleSlider';
-import BoardCategory from '../../components/BoardCategory';
+import BoardCategory from '../../components/category/Category';
 
 const StyledRanking = styled.div`
   z-index: 9;
   width: 100vw;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const RankingContainer = styled.div`
   width: 100%;
+  max-width: 470px;
+  height: 100%;
+  background-color: #e5f6fd;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -36,7 +42,10 @@ const RankingSchedule = styled.div`
   width: 100%;
 `;
 
-const RankingBody = styled.div``;
+const RankingBody = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;`;
 
 const RankingBodyCalender = styled.div`
   width: 100%;

@@ -8,14 +8,14 @@ align-items: center;
 `;
 
 export const SignUpContainer = styled.div`
-width: 100vw;
+width: 100%;
 max-width: 470px;
 height: 100vh;
 display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: center;
-background-color: #94cefe;
+background-color: #e5f6fd;
 `;
 
 export const SignUpBody = styled.div`
@@ -28,16 +28,17 @@ height: 80%;
     max-height: 600px;  
 width: 80%;
     max-width: 240px;
-    background-color: #f7f6f5;
+    background-color: white;
 display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-gap : 40px;
 `;
 
 export const SignUpColumn = styled.div`
+width: 80%;
 height: 100%;
+gap: 1%;
 display: flex;
 flex-direction: column;
 justify-content: center;

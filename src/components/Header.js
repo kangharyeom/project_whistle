@@ -5,6 +5,10 @@ import IconButton from '@mui/material/IconButton';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import Fade from '@mui/material/Fade';
 
 import * as h from "../style/HeaderStyle";
 
@@ -24,7 +28,7 @@ const Header = () => {
         }
     }, []);
 
-    const handleClick = () => {
+    const handleClickHome = () => {
     // 클릭 시 "/match" 페이지로 이동
     navigate('/match');
     };
@@ -37,14 +41,22 @@ const Header = () => {
     const handleLogout = () => {
         // 로그아웃 로직을 처리한 후, 홈 페이지로 리다이렉트
         // 로그아웃 로직을 처리하고나면 아래의 코드를 호출
-        // logout();
-
-        // 로그아웃 시 토큰을 제거합니다.
+        // 로그아웃 시 토큰 제거
         localStorage.removeItem('authToken');
         setIsLoggedIn(false);
 
         navigate('/');
     };
+
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
 
     return (   
         <h.StyledHeader id="StyledHeader">
@@ -52,7 +64,7 @@ const Header = () => {
                 <h.HeaderTopContainer id="HeaderTopContainer">
                     <h.HeaderTop id="HeaderTopId">
                             <h.HeaderTopLogo id="HeaderTopLogo">
-                            <IconButton onClick={handleClick} style={{ width: '100%' }}>
+                            <IconButton onClick={handleClickHome} style={{ width: '100%' }}>
                                     <img style={{ width: '100px', height: 'auto'}} 
                                     src="/images/whistle-letter.png" alt="Whistle" />
                                 </IconButton>
@@ -69,13 +81,41 @@ const Header = () => {
                                  <h.HeaderTopLoginButton id="HeaderTopLoginButton">
                                     {isLoggedIn ? (
                                         // 로그인 상태이면서 authorization이 있는 경우 로그아웃 버튼 렌더링
-                                        <IconButton onClick={handleLogout}>
-                                            <img width={'40'} src="/images/jersey-red.png" alt="로그아웃" />
-                                        </IconButton>
+                                        <>
+                                        <div>
+                                        <Button
+                                            id="fade-button"
+                                            aria-controls={open ? 'fade-menu' : undefined}
+                                            aria-haspopup="true"
+                                            aria-expanded={open ? 'true' : undefined}
+                                            onClick={handleClick}
+                                        >
+                                            <IconButton >
+                                                <img width={'30'} src="/images/jersey-blue.png" alt="마이페이지" />
+                                            </IconButton>
+                                        </Button>
+                                        <Menu
+                                            id="fade-menu"
+                                            MenuListProps={{
+                                                'aria-labelledby': 'fade-button',
+                                            }}
+                                            anchorEl={anchorEl}
+                                            open={open}
+                                            onClose={handleClose}
+                                            TransitionComponent={Fade}
+                                            variant="temporary"
+                                            >
+                                            <MenuItem id='mypage' onClick={handleClose}>마이페이지</MenuItem>
+                                            <MenuItem onClick={handleClose}>내팀 정보</MenuItem>
+                                            <MenuItem onClick={handleLogout}>로그아웃</MenuItem>
+                                            
+                                        </Menu>
+                                        </div>
+                                        </>
                                     ) : (
                                         // 로그인 상태가 아닌 경우 로그인 버튼 렌더링
                                         <IconButton onClick={handleLogin}>
-                                            <img width={'35'} src="/images/jersey-blue.png" alt="로그인" />
+                                              <img width={'30'} src="/images/jersey-blue.png" alt="로그인" />
                                         </IconButton>
                                     )}
                                 </h.HeaderTopLoginButton>

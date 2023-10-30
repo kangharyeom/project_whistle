@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
+
 import IconButton from '@mui/material/IconButton';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+
 import * as s from '../../style/SignUpSytle';
 
 const SignUp = () => {
@@ -51,93 +55,15 @@ const SignUp = () => {
             <s.SignUpContainer id = 'SignUpContainer'>
                 <s.SignUpBody id = 'SignUpBody'>
                 <s.SignUpColumn id = 'SignUpColumn' style={{ display: 'flex', flexDirection: 'column' }}>
-                <IconButton onClick={handleClick} style={{ height: '100px', width: '100px' }}>
-                    <div style={{
-                        display: 'flex', 
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        width: '100%', 
-                        height: '100%', 
-                        borderRadius: '100%', 
-                        overflow: 'hidden',
-                        backgroundColor: 'white',
-                        boxShadow: '0px 4px 8px rgba(0, 0, 0.1, 0.2)',
-                        marginBottom: '50%'
-                    }}>
-                        <img
-                            style={{
-                                display: 'flex', 
-                                justifyContent: 'center',
-                                width: '60%', 
-                                height: '60%', 
-                                objectFit: 'cover' 
-                            }}
-                            src="/images/whistle.png"
-                            alt="Whistle"
-                        />
-                    </div>
-                </IconButton>
-                <input
-                    type="email"
-                    placeholder="이메일"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    style={{
-                        marginBottom: '10%',
-                        height: '6%',
-                        backgroundColor: '#cae7ff',
-                        borderRadius: '5px' // 테두리를 5px로 설정하여 둥글게 만듭니다.
-                    }}
-                />
-                <input
-                    type="text"
-                    placeholder="이름"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    style={{
-                        marginBottom: '10%',
-                        height: '6%',
-                        backgroundColor: '#cae7ff',
-                        borderRadius: '5px' // 테두리를 5px로 설정하여 둥글게 만듭니다.
-                    }}
-                />
-                <input
-                    type="text"
-                    placeholder="아이디"
-                    value={loginId}
-                    onChange={(e) => setLoginId(e.target.value)}
-                    style={{
-                        marginBottom: '10%',
-                        height: '6%',
-                        backgroundColor: '#cae7ff',
-                        borderRadius: '5px' // 테두리를 5px로 설정하여 둥글게 만듭니다.
-                    }}
-                />
-                <input
-                    type="password"
-                    placeholder="패스워드"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    style={{
-                        marginBottom: '10%',
-                        height: '6%',
-                        backgroundColor: '#cae7ff',
-                        borderRadius: '5px' // 테두리를 5px로 설정하여 둥글게 만듭니다.
-                    }}
-                />
-                <input
-                    type="text"
-                    placeholder="전화번호"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    style={{
-                        marginBottom: '10%',
-                        height: '6%',
-                        backgroundColor: '#cae7ff',
-                        borderRadius: '5px' // 테두리를 5px로 설정하여 둥글게 만듭니다.
-                    }}
-                />
-                    <button type="submit" onClick={handleSignUp}>회원가입</button>
+                    <IconButton onClick={handleClick} style={{ height: '10%', width: '30%', marginBottom: '8%' }}>
+                            <img style={{display: 'flex', justifyContent: 'center', width: '100%', height: '100%', objectFit: 'cover'}} src="/images/whistle.png" alt="Whistle"/>
+                    </IconButton>
+                    <TextField size="small" sx={{ height: '10%' }} required id="outlined-required" label="이메일" value={email} onChange={(e) => setEmail(e.target.value)} type="email"/>
+                    <TextField size="small" sx={{ height: '10%' }} required id="outlined-required" label="이름" value={name} onChange={(e) => setName(e.target.value)} type="text"/>
+                    <TextField size="small" sx={{ height: '10%' }} required id="outlined-required" label="아이디" value={loginId} onChange={(e) => setLoginId(e.target.value)}/>
+                    <TextField size="small" sx={{ height: '10%' }} required id="outlined-required" label="비밀번호" value={password} onChange={(e) => setPassword(e.target.value)} type="password"/>
+                    <TextField size="small" sx={{ height: '10%' }} required id="outlined-required" label="전화번호" value={phone} onChange={(e) => setPhone(e.target.value)} type="text"/>
+                    <Button sx={{width:'100%', marginTop: '8%'}}variant="contained" size="small" type="submit" onClick={handleSignUp}> 회원가입 </Button>
                 </s.SignUpColumn>
                 </s.SignUpBody>
             </s.SignUpContainer>

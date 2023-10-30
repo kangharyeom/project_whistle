@@ -1,6 +1,17 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+
+import {AgeTypePostComponent} from '../../components/info/post/Age'
+import {LocationTypePostComponent} from '../../components/info/post/Location'
+
+
 const StyledTeam = styled.div`
   display: flex;
   flex-direction: column;
@@ -12,7 +23,7 @@ const StyledTeam = styled.div`
 const TeamContainer = styled.div`
   width: 100%;
   height: 100%;
-  background-color: #F0FFFF;
+  background-color: #e5f6fd;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,6 +40,11 @@ const TeamBody = styled.div`
   align-items: center;
 `;
 
+const TeamName = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 const TeamPost = () => {
   const basicURL = process.env.REACT_APP_API_ENDPOINT;
   const userId = parseInt(localStorage.getItem('userId'));
@@ -41,8 +57,6 @@ const TeamPost = () => {
   const [uniformType, setUniformType] = useState('');
   const [frequency, setFrequency] = useState('');
   
-  const ageTypeOptions = ['TEENAGER', 'UNIVERSITY_STUDENT', 'OFFICE_WORKER', 'EARLY_SOCCER'];
-  const locationTypeOptions = ['SEOUL', 'INCHEON', 'DAEGU', 'BUSAN', 'GWANGJU', 'DAEJEON', 'GYEONGGI', 'JEJU', 'ULSAN', 'CHUNGCHEONGNAM', 'CHUNGCHEONGBUK', 'GYEONGSANGBUK', 'GYEONGSANGNAM', 'JEOLLABUK', 'JEOLLANAM', 'GANGWON'];
   const sportsTypeOptions = [ 'SOCCER', 'FUTSAL', 'BASEBALL', 'BASKETBALL'];
   const levelTypeOptions = ['LOWEST', 'LOWER', 'MIDDLE', 'UPPER', 'HIGHEST'];
   const formationOptions = [  'NONE', 'FOUR_ONE_TWO_ONE_TWO', 'FOUR_ONE_TWO_TREE', 'FOUR_ONE_TWO_THREE', 'FOUR_TWO_TWO_TWO', 'FOUR_TWO_TREE_ONE', 'FOUR_TREE_TWO_ONE', 'FOUR_THREE_THREE', 'FOUR_FOUR_TWO', 'FOUR_FOUR_ONE_ONE', 'FOUR_FIVE_ONE'];
@@ -82,8 +96,7 @@ const TeamPost = () => {
   };
 
   const handleCreateTeam = async () => {
-    const authToken = localStorage.getItem('authToken'); 
-
+    const authToken = localStorage.getItem('authToken');  
     try {
       const response = await fetch(process.env.REACT_APP_SERVER_API_ENDPOINT+'/api/teams', {
         method: 'POST',
@@ -127,98 +140,46 @@ const TeamPost = () => {
       <TeamContainer id = 'TeamContainer'>
 
         <TeamBody id = 'TeamBody'>
-              <input
-                type="text"
-                name="teamName"
-                placeholder="팀 이름"
-                value={teamName}
-                onChange={handleInputChange}
-              />
-              <select
-                name="ageType"
-                value={ageType}
-                onChange={handleInputChange}
-              >
-                <option value="">연령대</option>
-                {ageTypeOptions.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
-              <select
-                name="locationType"
-                value={locationType}
-                onChange={handleInputChange}
-              >
-                <option value="">지역</option>
-                {locationTypeOptions.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
-              <select
-                name="sportsType"
-                value={sportsType}
-                onChange={handleInputChange}
-              >
-                <option value="">운동 유형</option>
-                {sportsTypeOptions.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
-              <select
-                name="levelType"
-                value={levelType}
-                onChange={handleInputChange}
-              >
-                <option value="">팀 실력</option>
-                {levelTypeOptions.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
-              <select
-                name="formation"
-                value={formation}
-                onChange={handleInputChange}
-              >
-                <option value="">팀 포메이션</option>
-                {formationOptions.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
-              <select
-                name="uniformType"
-                value={uniformType}
-                onChange={handleInputChange}
-              >
-                <option value="">유니폼 색상</option>
-                {uniformTypeOptions.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
-              <select
-                name="frequency"
-                value={frequency}
-                onChange={handleInputChange}
-              >
-                <option value="">팀 활동 빈도</option>
-                {frequencyOptions.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
-              <button onClick={handleCreateTeam}>팀 생성</button>
+            <Box component="form" sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' }, }} noValidate autoComplete="off">  
+            <FormControl fullWidth>
+              <TeamName id= 'TeamName'>
+                팀이름
+                </TeamName>
+              <TextField size='small' labelId="TeamLabelId" name="teamName" value={teamName} onChange={handleInputChange}/>
+              
+              연령대
+              <AgeTypePostComponent ageType={ageType} setAgeType={setAgeType} />
+              
+              지역
+              <LocationTypePostComponent locationType={locationType} setLocationType={setLocationType} />
+             
+              운동 유형
+              <Select size='small' name="sportsType" value={sportsType} onChange={handleInputChange}>
+                {sportsTypeOptions.map((option) => ( <MenuItem key={option} value={option}> {option} </MenuItem> ))}
+              </Select>
+
+              팀 실력
+              <Select size='small' name="levelType" value={levelType} onChange={handleInputChange}>
+                {levelTypeOptions.map((option) => ( <MenuItem key={option} value={option}> {option} </MenuItem> ))}
+              </Select>
+
+              팀 포메이션
+              <Select size='small' name="formation" value={formation} onChange={handleInputChange}>
+                {formationOptions.map((option) => ( <MenuItem key={option} value={option}> {option} </MenuItem> ))}
+              </Select>
+
+              유니폼 색상
+              <Select size='small' name="uniformType" value={uniformType} onChange={handleInputChange}>
+                {uniformTypeOptions.map((option) => ( <MenuItem key={option} value={option}> {option} </MenuItem> ))}
+              </Select>
+
+              팀 활동 빈도
+              <Select size='small' name="frequency" value={frequency} onChange={handleInputChange}>
+                {frequencyOptions.map((option) => ( <MenuItem key={option} value={option}> {option} </MenuItem> ))}
+              </Select>
+              </FormControl>
+            </Box>
+            <Button sx={{width:'50%', marginTop: '8%'}}variant="contained" size="small" type="submit" onClick={handleCreateTeam}> 회원가입 </Button>
         </TeamBody>
       </TeamContainer>
     </StyledTeam>

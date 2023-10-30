@@ -2,6 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import SimpleSlider from '../../components/SimpleSlider';
 
+import Category from '../../components/category/Category';
+import BoardCategory from '../../components/category/BoardCategory';
+
 const StyledBoard = styled.div`
     width: 100vw;
     height: 100vh;
@@ -12,6 +15,9 @@ const StyledBoard = styled.div`
 
 const BoardContainer = styled.div`
     width: 100%;
+    max-width: 470px;
+    height: 100%;
+    background-color: #e5f6fd;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -36,7 +42,10 @@ const Board = () => {
             <BoardContainer>
                 <BoardTop>
                     <SimpleSlider/>
+                    
                 </BoardTop>
+                <Category/>
+                <BoardCategory/>
                 <BoardBody>
 
                 </BoardBody>

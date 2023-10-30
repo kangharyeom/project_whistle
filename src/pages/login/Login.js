@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import IconButton from '@mui/material/IconButton';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 
 import * as l from '../../style/LoginStyle'
 
@@ -44,9 +47,6 @@ const Login = () => {
                 const userId = responseData.userId; // 응답에서 userId 값을 가져옴
                 localStorage.setItem('userId', userId); // userId 값을 localStorage에 저장
                 
-                console.log('토큰 값:', authToken);
-                console.log('유저 ID:', userId);
-                
                 console.log('로그인 성공!');
                 alert('로그인 성공');
                 window.location.href = basicURL;
@@ -70,25 +70,15 @@ const Login = () => {
                     <IconButton onClick={handleClick}>
                         <img style={{ width: '70%' }} src="/images/whistle-letter.png" alt="Whistle" />
                     </IconButton>
-                    
                     <l.LoginColumn id = 'LoginColumn'>
-                        <l.LoginIdandPassword id = 'LoginIdandPassword'>
-                        <input
-                             style={{ width: '70%' , height: '2rem', color: '#76a6cc' }}
-                            type="email"
-                            placeholder="이메일"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
-                        <input
-                            style={{ width: '70%', color: '#76a6cc' }}
-                            type="password"
-                            placeholder="패스워드"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            />
-                        <button type="submit" onClick={handleLogin}>로그인</button>
-                        </l.LoginIdandPassword>
+                            <Box component="form" 
+                            sx={{'& .MuiTextField-root': { m: 1, width: '65%' }}} noValidate autoComplete="off">
+                                <l.LoginBox id = 'LoginBox'>
+                                <TextField size="small" sx={{ height: '10%' }} required id="outlined-required" label="이메일" value={email} onChange={(e) => setEmail(e.target.value)}/>
+                                <TextField size="small" sx={{ height: '10%' }} required id="outlined-required" type="password" label="패스워드" value={password}  onChange={(e) => setPassword(e.target.value)}/>
+                                <Button sx={{width:'65%'}}variant="contained" size="small" type="submit" onClick={handleLogin}> 로그인 </Button>
+                                </l.LoginBox>
+                            </Box>
                         <l.LoginKaKao id = 'LoginKaKao'>
                         <IconButton onClick={handleClick}>
                             <img style={{ width: '70%' }} src="/images/kakao.png" alt="Whistle" />

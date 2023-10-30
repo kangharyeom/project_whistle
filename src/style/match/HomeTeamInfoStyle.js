@@ -9,7 +9,7 @@ export const StyledMatchSchedule = styled.div`
 `;
 
 export const MatchScheduleContainer = styled.div`
-background-color: #94cefe;
+  background-color: #e5f6fd;
   width: 100%;
   max-width: 470px;
   display: flex;
@@ -31,7 +31,7 @@ box-shadow: rgba(50, 50, 93, 0.25) 3px 4px 8px -1px;
 max-width: 470px;
 background-color: white;
 border-radius: 10px;
-margin: 5% 0 5% 0;
+margin: 3% 0 3% 0;
 width: 90%;
 height: 200px;
 display: flex;
@@ -42,7 +42,7 @@ display: flex;
 
 export const TeamInfoRow = styled.div`
   width: 100%;
-  height: 180px;
+  height: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;

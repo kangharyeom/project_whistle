@@ -5,7 +5,7 @@ import SimpleSlider from '../../components/SimpleSlider';
 import Category from '../../components/category/Category';
 import MatchCategory from '../../components/category/MatchCategory';
 import Calender from '../../components/Calender';
-
+import HomeTeamInfo from './HomeTeamInfo';
 
 const StyledMatch = styled.div`
   width: 100vw;
@@ -13,13 +13,11 @@ const StyledMatch = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 `;
 
 const MatchContainer = styled.div`
 width: 100%;
 max-width: 470px;
-height: 100%;
 background-color: #e5f6fd;
 display: flex;
   flex-direction: column;
@@ -35,7 +33,7 @@ display: flex;
 `;
 
 const MatchBody = styled.div`
-display: flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
 width: 100%;
@@ -54,6 +52,7 @@ const Match = () => {
           <Category />
           <Calender />
           <MatchCategory />
+          <HomeTeamInfo/>
        
         </MatchBody>
       </MatchContainer>

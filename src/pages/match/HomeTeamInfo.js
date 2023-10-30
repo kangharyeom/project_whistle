@@ -3,14 +3,17 @@ import { Link } from 'react-router-dom'; // React Router의 Link 컴포넌트를
 import styled from 'styled-components';
 import TeamProfile from '../team/TeamProfile';
 
-import * as m from "../../style/match/MatchInfoStyle";
-import {LevelComponent} from "../../components/info/LevelType";
-import {LocationComponent} from "../../components/info/Location";
-import {AgeComponent} from "../../components/info/Age";
-import {RecordComponent} from "../../components/info/Record";
-import {UniformTypeComponent} from "../../components/info/UniformType";
+import Button from '@mui/material/Button';
 
-const MatchInfo = () => {
+import * as m from "../../style/match/HomeTeamInfoStyle";
+import {LevelComponent} from "../../components/info/get/LevelType";
+import {LocationComponent} from "../../components/info/get/Location";
+import {AgeComponent} from "../../components/info/get/Age";
+import {RecordComponent} from "../../components/info/get/Record";
+import {UniformTypeComponent} from "../../components/info/get/UniformType";
+import {AddIconComponent} from "../../components/info/AddIcon";
+
+const HomeTeamInfo = () => {
   const [matches, setMatches] = useState([]);
   const [pageInfo, setPageInfo] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -112,7 +115,7 @@ const MatchInfo = () => {
                     loseRecord={match.homeTeamTotalLoseRecord}
                   />
                 </m.HomeTeamRecord>
-                <m.BattleSuggestionButton id = 'BattleSuggestionButton'>경기 신청</m.BattleSuggestionButton>
+                <Button variant="outlined" size="small" sx = {{width: '60%', height: '30%'}} >경기 신청</Button>
                 </m.TeamInfoFourthNav>
               </m.TeamInfoRight>
             </m.TeamInfoContainer>
@@ -125,9 +128,9 @@ const MatchInfo = () => {
         </m.PageInfo>
         <m.MatchCreate id = 'MatchCreate'>
           {isLoggedIn && (
-            <CircularButton to="/match-post">
-            <div className="plus">+</div>
-          </CircularButton>
+            <Link to="/match-post">
+              <AddIconComponent />
+          </Link>
           )}
         </m.MatchCreate>
       </m.MatchScheduleContainer>
@@ -135,7 +138,7 @@ const MatchInfo = () => {
   );
 };
 
-export default MatchInfo;
+export default HomeTeamInfo;
 
 const HomeTeamUniformType = styled.div`
 width: 60%;
@@ -150,36 +153,4 @@ const UniformValue = styled.div`
 font-size: 20px;
 height: 30px;
 font-weight: bold;
-`;
-
- 
-
-const CircularButton = styled(Link)`
-  position: absolute; 
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background-color: #FF5733; /* 버튼 배경색 */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none; /* 링크 텍스트 스타일 제거 */
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 추가 */
-  right: 15%; /* 화면 오른쪽에서 20px 떨어진 위치 */
-  bottom: 20px; /* 화면 아래에서 20px 떨어진 위치 */
-  z-index: 9999; /* 다른 컴포넌트 위에 보이도록 하는 z-index 값 */
-
-  &:hover {
-    background-color: #FF8C5A; /* 마우스 호버 시 배경색 변경 */
-  }
-
-  &:active {
-    background-color: #FF3D00; /* 클릭 시 배경색 변경 */
-  }
-
-  .plus {
-    font-size: 24px;
-    line-height: 1;
-    color: #ffffff; /* + 모양 색상 */
-  }
 `;

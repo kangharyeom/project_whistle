@@ -3,16 +3,22 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import SimpleSlider from '../../components/SimpleSlider';
-import BoardCategory from '../../components/BoardCategory';
+import Category from '../../components/category/Category';
+import TeamCategory from '../../components/category/TeamCategory';
 
 const StyledTeam = styled.div`
   z-index: 9;
   width: 100vw;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const TeamContainer = styled.div`
   width: 100%;
+  max-width: 470px;
+  background-color: #e5f6fd;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -85,7 +91,8 @@ const Team = () => {
         </TeamTop>
 
         <TeamBody>
-          <BoardCategory />
+          <Category />
+          <TeamCategory />
           <TeamBodyCalender>
             {/* 여기에 캘린더 컴포넌트 추가 */}
           </TeamBodyCalender>

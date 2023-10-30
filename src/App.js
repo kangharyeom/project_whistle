@@ -5,6 +5,8 @@ import Header from './components/Header';
 import Login from './pages/login/Login';
 import SignUp from './pages/signup/SignUp';
 import Match from './pages/match/Match';
+import MatchEnd from './pages/match/MatchEnd';
+import MatchFindRival from './pages/match/MatchFindRival';
 import MatchPost from './pages/match/MatchPost';
 import MatchDetail from './pages/match/MatchPost';
 import League from './pages/league/League';
@@ -12,6 +14,8 @@ import LeaguePost from './pages/league/LeaguePost';
 import Team from './pages/team/Team';
 import TeamPost from './pages/team/TeamPost';
 import Ranking from './pages/ranking/Ranking';
+import Board from './pages/board/Board';
+import Home from './pages/Home';
 
 import './App.css';
 
@@ -26,6 +30,9 @@ const App = () => {
           <Route path="/log-in" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/match" element={<Match />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/match/end" element={<MatchEnd />} />
+          <Route path="/match/find/rival" element={<MatchFindRival />} />
           <Route path="/match-post" element={<MatchPost />} />
           <Route path="/match-detail/:matchId" element={<MatchDetail />} />
           <Route path="/league" element={<League />} />
@@ -33,6 +40,7 @@ const App = () => {
           <Route path="/team" element={<Team />} />
           <Route path="/team-post" element={<TeamPost />} />
           <Route path="/ranking" element={<Ranking />} />
+          <Route path="/board" element={<Board />} />
         </Routes>
     </BrowserRouter>
   );
