@@ -10,6 +10,7 @@ import FormControl from '@mui/material/FormControl';
 
 import {AgeTypePostComponent} from '../../components/info/post/Age'
 import {LocationTypePostComponent} from '../../components/info/post/Location'
+import {FormationPostComponent} from '../../components/info/post/Formation'
 
 
 const StyledTeam = styled.div`
@@ -59,7 +60,6 @@ const TeamPost = () => {
   
   const sportsTypeOptions = [ 'SOCCER', 'FUTSAL', 'BASEBALL', 'BASKETBALL'];
   const levelTypeOptions = ['LOWEST', 'LOWER', 'MIDDLE', 'UPPER', 'HIGHEST'];
-  const formationOptions = [  'NONE', 'FOUR_ONE_TWO_ONE_TWO', 'FOUR_ONE_TWO_TREE', 'FOUR_ONE_TWO_THREE', 'FOUR_TWO_TWO_TWO', 'FOUR_TWO_TREE_ONE', 'FOUR_TREE_TWO_ONE', 'FOUR_THREE_THREE', 'FOUR_FOUR_TWO', 'FOUR_FOUR_ONE_ONE', 'FOUR_FIVE_ONE'];
   const uniformTypeOptions = [ 'NONE', 'RED', 'ORANGE', 'YELLOW', 'GREEN', 'BLUE', 'PURPLE', 'BLACK', 'WHITE'];
   const frequencyOptions = ['NONE', 'WEEK_DAY', 'WEEK_END', 'ANY_TIME', 'SUNDAY', 'MONDAY','TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
 
@@ -164,9 +164,7 @@ const TeamPost = () => {
               </Select>
 
               팀 포메이션
-              <Select size='small' name="formation" value={formation} onChange={handleInputChange}>
-                {formationOptions.map((option) => ( <MenuItem key={option} value={option}> {option} </MenuItem> ))}
-              </Select>
+              <FormationPostComponent formation={formation} setFormation={setFormation} />
 
               유니폼 색상
               <Select size='small' name="uniformType" value={uniformType} onChange={handleInputChange}>
