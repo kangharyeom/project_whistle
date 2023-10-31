@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -23,24 +23,9 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 const App = () => {
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-    useEffect(() => {
-        const authToken = localStorage.getItem('authToken');
-
-        // 토큰이 있으면 로그인 상태로 간주
-        if (authToken) {
-            setIsLoggedIn(true);
-        } else {
-            setIsLoggedIn(false);
-        }
-        console.log(authToken)
-        console.log(isLoggedIn)
-    }, [isLoggedIn]);
-
   return (
     <BrowserRouter >
-      <Header isLoggedIn = {isLoggedIn}/>
+      <Header />
         <Routes>
           <Route path="/log-in" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
@@ -56,7 +41,7 @@ const App = () => {
           <Route path="/ranking" element={<Ranking />} />
           <Route path="/board" element={<Board />} />
         </Routes>
-      <Footer isLoggedIn = {isLoggedIn} />
+      <Footer  />
     </BrowserRouter>
   );
 };

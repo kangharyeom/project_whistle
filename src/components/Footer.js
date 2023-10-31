@@ -22,8 +22,8 @@ align-items: center;
 justify-content: center;
 `;
 
-const Footer = (props) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(props);
+const Footer = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState('');
 
   useEffect(() => {
     

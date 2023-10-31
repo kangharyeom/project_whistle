@@ -12,15 +12,14 @@ import Fade from '@mui/material/Fade';
 
 import * as h from "../style/HeaderStyle";
 
-const Header = (props) => {
-    const [isLoggedIn, setIsLoggedIn] = useState(props);
+const Header = () => {
+    const [isLoggedIn, setIsLoggedIn] = useState();
     // 동작
     const navigate = useNavigate();
 
     useEffect(() => {
         const authToken = localStorage.getItem('authToken');
 
-        // 토큰이 있으면 로그인 상태로 간주합니다.
         if (authToken) {
             setIsLoggedIn(true);
         } else {
@@ -43,8 +42,6 @@ const Header = (props) => {
 
         const refreshToken = localStorage.getItem('refreshToken');
         const token = 'Bearer '+refreshToken;
-        
-        console.log('로그'+props)
         
         try {
             const response = await fetch(process.env.REACT_APP_SERVER_API_ENDPOINT+'/auth/logout', {
