@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import IconButton from '@mui/material/IconButton';
@@ -16,18 +16,17 @@ const Header = (props) => {
     const [isLoggedIn, setIsLoggedIn] = useState(props);
     // 동작
     const navigate = useNavigate();
-    // const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-    // useEffect(() => {
-    //     const authToken = localStorage.getItem('authToken');
+    useEffect(() => {
+        const authToken = localStorage.getItem('authToken');
 
-    //     // 토큰이 있으면 로그인 상태로 간주합니다.
-    //     if (authToken) {
-    //         setIsLoggedIn(true);
-    //     } else {
-    //         setIsLoggedIn(false);
-    //     }
-    // }, []);
+        // 토큰이 있으면 로그인 상태로 간주합니다.
+        if (authToken) {
+            setIsLoggedIn(true);
+        } else {
+            setIsLoggedIn(false);
+        }
+    }, []);
 
     const handleClickHome = () => {
     // 클릭 시 "/match" 페이지로 이동
@@ -40,11 +39,12 @@ const Header = (props) => {
     };
 
     const handleLogout = async () => {
+        const basicURL = process.env.REACT_APP_API_ENDPOINT;
+
         const refreshToken = localStorage.getItem('refreshToken');
         const token = 'Bearer '+refreshToken;
-        // 로그아웃 로직을 처리한 후, 홈 페이지로 리다이렉트
-        // 로그아웃 로직을 처리하고나면 아래의 코드를 호출
-        // 로그아웃 시 토큰 제거
+        
+        console.log('로그'+props)
         
         try {
             const response = await fetch(process.env.REACT_APP_SERVER_API_ENDPOINT+'/auth/logout', {
@@ -60,7 +60,7 @@ const Header = (props) => {
                 console.log('로그아웃 성공');
                 alert('로그아웃 성공');
                 setIsLoggedIn('false');
-                navigate('/')
+                window.location.href = basicURL+'/'
               } else {
                 console.log(token);
                 console.error('로그아웃 실패:', response.statusText);

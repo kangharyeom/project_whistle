@@ -34,7 +34,9 @@ const App = () => {
         } else {
             setIsLoggedIn(false);
         }
-    }, []);
+        console.log(authToken)
+        console.log(isLoggedIn)
+    }, [isLoggedIn]);
 
   return (
     <BrowserRouter >
