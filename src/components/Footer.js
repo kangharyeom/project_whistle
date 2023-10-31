@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -23,7 +23,18 @@ justify-content: center;
 `;
 
 const Footer = (props) => {
-  const [isLoggedIn] = useState(props);
+  const [isLoggedIn, setIsLoggedIn] = useState(props);
+
+  useEffect(() => {
+    
+    const authToken = localStorage.getItem('authToken');
+
+    if (authToken) {
+        setIsLoggedIn(true);
+    } else {
+        setIsLoggedIn(false);
+    }
+}, []);
 
     return (   
         <StyledFooter id="StyledFooterId">
