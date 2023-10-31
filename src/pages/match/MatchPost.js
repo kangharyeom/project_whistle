@@ -42,7 +42,8 @@ const MatchPost = () => {
 
   const matchType = 'NORMAL'
   const [teamId, setTeamId] = useState(null);
-  const [sportsType, setSportsType] = useState('');
+  const [sportsType] = useState('SOCCER');
+  // const [sportsType, setSportsType] = useState(''); //기능 추가시 주석해제
   const [ageType, setAgeType] = useState('');
   const [locationType, setLocationType] = useState('');
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -58,7 +59,7 @@ const MatchPost = () => {
         const responseData = await response.json();
         if (responseData) {
           setTeamId(responseData.teamId);
-          setSportsType(responseData.sportsType);
+          // setSportsType(responseData.sportsType);
           setAgeType(responseData.ageType);
           setLevelType(responseData.levelType);
           setUniformType(responseData.uniformType);

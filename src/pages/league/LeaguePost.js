@@ -1,7 +1,19 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import DatePicker from 'react-datepicker';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import FormControl from '@mui/material/FormControl';
+
+import {LevelTypePostComponent} from '../../components/info/post/LevelType'
+import {FrequencyPostComponent} from '../../components/info/post/Frequency'
+import {LeagueNamePostComponent} from '../../components/info/post/LeagueName'
+import {AgeTypePostComponent} from '../../components/info/post/Age'
+import {LocationTypePostComponent} from '../../components/info/post/Location'
+import {MatchCountPostComponent} from '../../components/info/post/MatchCount'
+import {LeaguePeriodPostComponent} from '../../components/info/post/LeguePeriod'
+// import {UniformTypePostComponent} from '../../components/info/post/UniformType'
+// import {FormationPostComponent} from '../../components/info/post/Formation'
 
 const StyledLeaguePost = styled.div`
   width: 100vw;
@@ -16,14 +28,6 @@ const LeaguePostContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
-
-const LeaguePostTop = styled.div`
-  background-color: #F0FFFF;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 470px;
 `;
 
 const LeaguePostBody = styled.div`
@@ -41,50 +45,13 @@ const LeaguePost = () => {
   const [leagueName, setLeagueName] = useState('');
   const [ageType, setAgeType] = useState('');
   const [locationType, setLocationType] = useState('');
-  const [sportsType, setSportsType] = useState('');
+  const [sportsType] = useState('SOCCER');
+  // const [sportsType, setSportsType] = useState(''); // 기능 추가시 사용
   const [levelType, setLevelType] = useState('');
   const [period, setPeriod] = useState('');
   const [matchCount, setMatchCount] = useState('');
   const [frequency, setFrequency] = useState('');
   
-  const ageTypeOptions = ['TEENAGER', 'UNIVERSITY_STUDENT', 'OFFICE_WORKER', 'EARLY_SOCCER'];
-  const locationTypeOptions = ['SEOUL', 'INCHEON', 'DAEGU', 'BUSAN', 'GWANGJU', 'DAEJEON', 'GYEONGGI', 'JEJU', 'ULSAN', 'CHUNGCHEONGNAM', 'CHUNGCHEONGBUK', 'GYEONGSANGBUK', 'GYEONGSANGNAM', 'JEOLLABUK', 'JEOLLANAM', 'GANGWON'];
-  const sportsTypeOptions = [ 'SOCCER', 'FUTSAL', 'BASEBALL', 'BASKETBALL'];
-  const levelTypeOptions = ['LOWEST', 'LOWER', 'MIDDLE', 'UPPER', 'HIGHEST'];
-  const frequencyOptions = ['NONE', 'WEEK_DAY', 'WEEK_END', 'ANY_TIME', 'SUNDAY', 'MONDAY','TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    switch (name) {
-      case 'leagueName':
-        setLeagueName(value);
-        break;
-      case 'ageType':
-        setAgeType(value);
-        break;
-      case 'locationType':
-        setLocationType(value);
-        break;
-      case 'sportsType':
-        setSportsType(value);
-        break;
-      case 'levelType':
-        setLevelType(value);
-        break;
-      case 'period':
-        setPeriod(value);
-        break;
-      case 'frequency':
-        setFrequency(value);
-        break;
-      case 'matchCount':
-        setMatchCount(value);
-        break;
-      default:
-        break;
-    }
-  };
-
   const handleCreateLeague = async () => {
     const authToken = localStorage.getItem('authToken'); 
 
@@ -125,124 +92,29 @@ const LeaguePost = () => {
     }
   };
 
-  const [selectedDate, setSelectedDate] = useState(null);
-
-  const handleDateChange = (date) => {
-    // 선택한 날짜를 상태 변수에 저장합니다.
-    setSelectedDate(date);
-  };
-
-  const handleNumberInputChange = (e) => {
-    // 입력된 값이 숫자인지 확인하고 숫자이면 state를 업데이트합니다.
-    const value = e.target.value;
-    if (/^\d+$/.test(value) || value === '') {
-      setMatchCount(value);
-    }
-  };
-
   return (
     <StyledLeaguePost>
       <LeaguePostContainer>
-        <LeaguePostTop>
-        </LeaguePostTop>
-
         <LeaguePostBody>
-
-            <div>
-              <input
-                type="text"
-                name="leagueName"
-                placeholder="리그 이름"
-                value={leagueName}
-                onChange={handleInputChange}
-              />
-              <select
-                name="ageType"
-                value={ageType}
-                onChange={handleInputChange}
-              >
-                <option value="">연령대</option>
-                {ageTypeOptions.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
-              <select
-                name="locationType"
-                value={locationType}
-                onChange={handleInputChange}
-              >
-                <option value="">지역</option>
-                {locationTypeOptions.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
-              <select
-                name="sportsType"
-                value={sportsType}
-                onChange={handleInputChange}
-              >
-                <option value="">운동 유형</option>
-                {sportsTypeOptions.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
-              <select
-                name="levelType"
-                value={levelType}
-                onChange={handleInputChange}
-              >
-                <option value="">팀 실력</option>
-                {levelTypeOptions.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
-                <div>
-                {/* 달력 입력란 */}
-                <label>리그 기간:</label>
-                <DatePicker
-                    selected={selectedDate}
-                    onChange={handleDateChange}
-                    dateFormat="yyyy/MM/dd" // 날짜 표시 형식 설정 (원하는 형식으로 변경 가능)
-                    placeholderText="날짜를 선택하세요"
-                />
-                {/* 나머지 컴포넌트 내용 */}
-                </div>
-              <div>
-                {/* 숫자 입력란 */}
-                <label>경기 수:</label>
-                <input 
-                    type="number" 
-                    value={matchCount} 
-                    onChange={handleNumberInputChange} 
-                    min="1" 
-                    max="50" 
-                    step="1" 
-                    placeholder="1부터 50까지의 숫자를 입력하세요" 
-                />
-                {/* 나머지 컴포넌트 내용 */}
-                </div>
-              <select
-                name="frequency"
-                value={frequency}
-                onChange={handleInputChange}
-              >
-                <option value="">팀 활동 빈도</option>
-                {frequencyOptions.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
-              <button onClick={handleCreateLeague}>팀 생성</button>
-            </div>
+        <Box component="form" sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' }, }} noValidate autoComplete="off">  
+            <FormControl fullWidth>
+            리그 이름
+            <LeagueNamePostComponent leagueName={leagueName} setLeagueName={setLeagueName}/>
+            연령대
+            <AgeTypePostComponent ageType={ageType} setAgeType={setAgeType} />
+            지역
+            <LocationTypePostComponent locationType={locationType} setLocationType={setLocationType} />
+            팀 실력
+            <LevelTypePostComponent levelType={levelType} setLevelType={setLevelType}/>
+            팀 활동 빈도
+            <FrequencyPostComponent frequency={frequency} setFrequency={setFrequency} />
+            경기 수
+            <MatchCountPostComponent matchCount={matchCount} setMatchCount={setMatchCount}/>
+            리그 기간
+            <LeaguePeriodPostComponent period={period} setPeriod={setPeriod}/>
+            <Button sx={{width:'50%', marginTop: '8%'}}variant="contained" size="small" type="submit" onClick={handleCreateLeague}>팀 생성</Button>
+          </FormControl>
+          </Box>
         </LeaguePostBody>
 
       </LeaguePostContainer>

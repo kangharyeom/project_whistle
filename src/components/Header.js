@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import IconButton from '@mui/material/IconButton';
@@ -12,21 +12,22 @@ import Fade from '@mui/material/Fade';
 
 import * as h from "../style/HeaderStyle";
 
-const Header = () => {
+const Header = (props) => {
+    const [isLoggedIn, setIsLoggedIn] = useState(props);
     // 동작
     const navigate = useNavigate();
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    // const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-    useEffect(() => {
-        const authToken = localStorage.getItem('authToken');
+    // useEffect(() => {
+    //     const authToken = localStorage.getItem('authToken');
 
-        // 토큰이 있으면 로그인 상태로 간주합니다.
-        if (authToken) {
-            setIsLoggedIn(true);
-        } else {
-            setIsLoggedIn(false);
-        }
-    }, []);
+    //     // 토큰이 있으면 로그인 상태로 간주합니다.
+    //     if (authToken) {
+    //         setIsLoggedIn(true);
+    //     } else {
+    //         setIsLoggedIn(false);
+    //     }
+    // }, []);
 
     const handleClickHome = () => {
     // 클릭 시 "/match" 페이지로 이동
@@ -38,14 +39,37 @@ const Header = () => {
     navigate('/log-in');
     };
 
-    const handleLogout = () => {
+    const handleLogout = async () => {
+        const refreshToken = localStorage.getItem('refreshToken');
+        const token = 'Bearer '+refreshToken;
         // 로그아웃 로직을 처리한 후, 홈 페이지로 리다이렉트
         // 로그아웃 로직을 처리하고나면 아래의 코드를 호출
         // 로그아웃 시 토큰 제거
-        localStorage.removeItem('authToken');
-        setIsLoggedIn(false);
-
-        navigate('/');
+        
+        try {
+            const response = await fetch(process.env.REACT_APP_SERVER_API_ENDPOINT+'/auth/logout', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: token 
+              },
+            });
+            if (response.ok) {
+                localStorage.removeItem('authToken');
+                localStorage.removeItem('refreshToken');
+                console.log('로그아웃 성공');
+                alert('로그아웃 성공');
+                setIsLoggedIn('false');
+                navigate('/')
+              } else {
+                console.log(token);
+                console.error('로그아웃 실패:', response.statusText);
+                alert('로그아웃 실패');
+              }
+            } catch (error) {
+              console.error('API 요청 중 오류 발생:', error);
+              alert('에러 발생');
+            }
     };
 
     const [anchorEl, setAnchorEl] = React.useState(null);

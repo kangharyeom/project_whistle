@@ -42,12 +42,17 @@ const Login = () => {
 
             if (response.ok) {
                 const authToken = response.headers.get('Authorization'); // Authorization 헤더에서 토큰을 가져옴
+                const refreshToken = authToken.replace("Bearer", "");
                 localStorage.setItem('authToken', authToken);
+                localStorage.setItem('refreshToken', refreshToken);
+
                 const responseData = await response.json(); // 응답 데이터를 JSON 형태로 파싱
                 const userId = responseData.userId; // 응답에서 userId 값을 가져옴
                 localStorage.setItem('userId', userId); // userId 값을 localStorage에 저장
                 
                 console.log('로그인 성공!');
+                console.log(refreshToken);
+
                 alert('로그인 성공');
                 window.location.href = basicURL;
             } else {

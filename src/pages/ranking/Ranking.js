@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
 import styled from 'styled-components';
 
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Box from '@mui/material/Box';
+
 import SimpleSlider from '../../components/SimpleSlider';
-import BoardCategory from '../../components/category/Category';
+import Category from '../../components/category/Category';
+import { TeamInfoComponent } from '../../components/team/TeamInfo'
 
 const StyledRanking = styled.div`
   z-index: 9;
   width: 100vw;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,7 +20,6 @@ const StyledRanking = styled.div`
 const RankingContainer = styled.div`
   width: 100%;
   max-width: 470px;
-  height: 100%;
   background-color: #e5f6fd;
   display: flex;
   flex-direction: column;
@@ -25,68 +27,29 @@ const RankingContainer = styled.div`
 `;
 
 const RankingTop = styled.div`
-  width: 100%;
-   max-width: 470px;
-  background-color: #F0FFFF;
+width: 100%;
+  max-width: 470px;
   display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const RankingInfo = styled.div`
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
 `;
 
-const RankingSchedule = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-`;
-
-const RankingBody = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;`;
-
-const RankingBodyCalender = styled.div`
-  width: 100%;
-  margin: 10px 0 10px 0;
-  height: 120px;
-  display: flex;
-  place-items: center;
-  flex-direction: column;
-  align-items: center;
-`;
+const RankingBody = styled.div``;
 
 const Ranking = () => {
-  const [Rankinges, setRankinges] = useState([]);
-  const [pageInfo, setPageInfo] = useState({});
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [value, setValue] = React.useState(0);
 
-  useEffect(() => {
-    const authToken = localStorage.getItem('authToken');
-    const fetchData = async () => {
-      try {
-        const response = await fetch(process.env.REACT_APP_SERVER_API_ENDPOINT+'/api/rankings?page=1&size=40');
-        if (response.ok) {
-          const jsonData = await response.json();
-          setRankinges(jsonData.data);
-          setPageInfo(jsonData.pageInfo);
-        } else {
-          console.error('데이터를 가져오는 데 실패했습니다.');
-        }
-      } catch (error) {
-        console.error('에러 발생:', error);
-      }
-      if (authToken) {
-        setIsLoggedIn(true);
-    } else {
-        setIsLoggedIn(false);
-    }
-    };
-    
-
-    fetchData();
-  }, []);
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
 
   return (
     <StyledRanking>
@@ -96,31 +59,26 @@ const Ranking = () => {
         </RankingTop>
 
         <RankingBody>
-          <BoardCategory />
-          <RankingBodyCalender>
-            {/* 여기에 캘린더 컴포넌트 추가 */}
-          </RankingBodyCalender>
+          <Category />
 
-          <RankingSchedule>
-            {Rankinges.map(Ranking => (
-              <div key={Ranking.RankingId}>
-                {/* 각 매치 ID에 대한 링크를 생성합니다. */}
-                <Link to={`/Ranking-detail/${Ranking.RankingId}`}>
-                  <h2>팀 ID: {Ranking.RankingId}</h2>
-                </Link>
-                <p>홈 팀 이름: {Ranking.RankingName}</p>
-                <p>팀 시간: {Ranking.RankingTime}</p>
-              </div>
-            ))}
-            <div>
-              <p>현재 페이지: {pageInfo.page}</p>
-              <p>전체 페이지 수: {pageInfo.totalPages}</p>
-            </div>
-          </RankingSchedule>
-          {/* 사용자가 로그인한 경우에만 "팀 생성" 버튼을 표시합니다. */}
-          {isLoggedIn && <Link to="/Ranking-post">팀 생성</Link>}
+          <RankingInfo>
+          <Box sx={{ maxWidth: { xs: 320, sm: 480 }, bgcolor: 'background.paper' }}>
+            <Tabs 
+              value={value} 
+              onChange={handleChange} 
+              variant="scrollable" 
+              scrollButtons 
+              allowScrollButtonsMobile 
+              aria-label="scrollable force tabs example" 
+              >
+              <Tab label="상위 조회"/>
+              <Tab label="하위 조회" />
+            </Tabs>
+          </Box>
+            {value === 0 && <TeamInfoComponent value = {value+1}/>}
+            {value === 1 && <TeamInfoComponent value = {value+1}/>}
+          </RankingInfo>
         </RankingBody>
-
       </RankingContainer>
     </StyledRanking>
   );

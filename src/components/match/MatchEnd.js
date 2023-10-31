@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'; // React Router의 Link 컴포넌트를 불러옵니다.
 import styled from 'styled-components';
-import TeamProfile from '../team/TeamProfile';
+import TeamProfile from '../../pages/team/TeamProfile';
 
 import Button from '@mui/material/Button';
 
-import * as m from "../../style/match/HomeTeamInfoStyle";
-import {LevelComponent} from "../../components/info/get/LevelType";
-import {LocationComponent} from "../../components/info/get/Location";
-import {AgeComponent} from "../../components/info/get/Age";
-import {RecordComponent} from "../../components/info/get/Record";
-import {UniformTypeComponent} from "../../components/info/get/UniformType";
-import {AddIconComponent} from "../../components/info/AddIcon";
+import * as m from "../../style/match/MatchFindRivalStyle";
+import {LevelComponent} from "../info/get/LevelType";
+import {LocationComponent} from "../info/get/Location";
+import {AgeComponent} from "../info/get/Age";
+import {RecordComponent} from "../info/get/Record";
+import {UniformTypeComponent} from "../info/get/UniformType";
+import {AddIconComponent} from "../info/AddIcon";
 
-const HomeTeamInfo = () => {
+const MatchEndComponent = () => {
   const [matches, setMatches] = useState([]);
   const [pageInfo, setPageInfo] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -138,7 +138,7 @@ const HomeTeamInfo = () => {
   );
 };
 
-export default HomeTeamInfo;
+export default MatchEndComponent;
 
 const HomeTeamUniformType = styled.div`
 width: 60%;

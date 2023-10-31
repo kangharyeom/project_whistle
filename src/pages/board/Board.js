@@ -2,8 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import SimpleSlider from '../../components/SimpleSlider';
 
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Box from '@mui/material/Box';
+
 import Category from '../../components/category/Category';
-import BoardCategory from '../../components/category/BoardCategory';
+import { BoardInfoComponent } from '../../components/board/BoardInfo'
 
 const StyledBoard = styled.div`
     width: 100vw;
@@ -36,6 +40,11 @@ width: 100%;
 `;
 
 const Board = () => {
+    const [value, setValue] = React.useState(0);
+
+    const handleChange = (event, newValue) => {
+      setValue(newValue);
+    };
 
     return (
         <StyledBoard>
@@ -45,9 +54,30 @@ const Board = () => {
                     
                 </BoardTop>
                 <Category/>
-                <BoardCategory/>
+                
+                <Box sx={{ maxWidth: { xs: 320, sm: 480 }, bgcolor: 'background.paper' }}>
+                    <Tabs 
+                    value={value} 
+                    onChange={handleChange} 
+                    variant="scrollable" 
+                    scrollButtons 
+                    allowScrollButtonsMobile 
+                    aria-label="scrollable force tabs example" 
+                    >
+                    <Tab label="자유게시판" />
+                    <Tab label="축구" />
+                    <Tab label="풋살" />
+                    <Tab label="농구" />
+                    <Tab label="야구" />
+                    <Tab label="발야구" />
+                    <Tab label="축구선수" />
+                    <Tab label="음악" />
+                    <Tab label="영화" />
+                    </Tabs>
+                </Box>
+                    {value === 0 && <BoardInfoComponent value={value}/>}
+                    {value === 1 && <BoardInfoComponent value={value}/>}
                 <BoardBody>
-
                 </BoardBody>
             </BoardContainer>
         </StyledBoard>

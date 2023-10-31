@@ -3,15 +3,16 @@ import styled from 'styled-components';
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 
 import {AgeTypePostComponent} from '../../components/info/post/Age'
 import {LocationTypePostComponent} from '../../components/info/post/Location'
 import {FormationPostComponent} from '../../components/info/post/Formation'
-
+import {LevelTypePostComponent} from '../../components/info/post/LevelType'
+import {UniformTypePostComponent} from '../../components/info/post/UniformType'
+import {FrequencyPostComponent} from '../../components/info/post/Frequency'
+import {TeamNamePostComponent} from '../../components/info/post/TeamName'
+// import {SportsTypePostComponent} from '../../components/info/post/SportType'
 
 const StyledTeam = styled.div`
   display: flex;
@@ -41,59 +42,18 @@ const TeamBody = styled.div`
   align-items: center;
 `;
 
-const TeamName = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
 const TeamPost = () => {
   const basicURL = process.env.REACT_APP_API_ENDPOINT;
   const userId = parseInt(localStorage.getItem('userId'));
   const [teamName, setTeamName] = useState('');
   const [ageType, setAgeType] = useState('');
   const [locationType, setLocationType] = useState('');
-  const [sportsType, setSportsType] = useState('');
+  const [sportsType] = useState('SOCCER');
+  // const [sportsType, setSportsType] = useState(''); // 기능 추가시 사용
   const [levelType, setLevelType] = useState('');
   const [formation, setFormation] = useState('');
   const [uniformType, setUniformType] = useState('');
   const [frequency, setFrequency] = useState('');
-  
-  const sportsTypeOptions = [ 'SOCCER', 'FUTSAL', 'BASEBALL', 'BASKETBALL'];
-  const levelTypeOptions = ['LOWEST', 'LOWER', 'MIDDLE', 'UPPER', 'HIGHEST'];
-  const uniformTypeOptions = [ 'NONE', 'RED', 'ORANGE', 'YELLOW', 'GREEN', 'BLUE', 'PURPLE', 'BLACK', 'WHITE'];
-  const frequencyOptions = ['NONE', 'WEEK_DAY', 'WEEK_END', 'ANY_TIME', 'SUNDAY', 'MONDAY','TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    switch (name) {
-      case 'teamName':
-        setTeamName(value);
-        break;
-      case 'ageType':
-        setAgeType(value);
-        break;
-      case 'locationType':
-        setLocationType(value);
-        break;
-      case 'sportsType':
-        setSportsType(value);
-        break;
-      case 'levelType':
-        setLevelType(value);
-        break;
-      case 'formation':
-        setFormation(value);
-        break;
-      case 'uniformType':
-        setUniformType(value);
-        break;
-      case 'frequency':
-        setFrequency(value);
-        break;
-      default:
-        break;
-    }
-  };
 
   const handleCreateTeam = async () => {
     const authToken = localStorage.getItem('authToken');  
@@ -140,44 +100,27 @@ const TeamPost = () => {
       <TeamContainer id = 'TeamContainer'>
 
         <TeamBody id = 'TeamBody'>
-            <Box component="form" sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' }, }} noValidate autoComplete="off">  
+          <Box component="form" sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' }, }} noValidate autoComplete="off">  
             <FormControl fullWidth>
-              <TeamName id= 'TeamName'>
                 팀이름
-                </TeamName>
-              <TextField size='small' labelId="TeamLabelId" name="teamName" value={teamName} onChange={handleInputChange}/>
-              
-              연령대
-              <AgeTypePostComponent ageType={ageType} setAgeType={setAgeType} />
-              
-              지역
-              <LocationTypePostComponent locationType={locationType} setLocationType={setLocationType} />
-             
-              운동 유형
-              <Select size='small' name="sportsType" value={sportsType} onChange={handleInputChange}>
-                {sportsTypeOptions.map((option) => ( <MenuItem key={option} value={option}> {option} </MenuItem> ))}
-              </Select>
-
-              팀 실력
-              <Select size='small' name="levelType" value={levelType} onChange={handleInputChange}>
-                {levelTypeOptions.map((option) => ( <MenuItem key={option} value={option}> {option} </MenuItem> ))}
-              </Select>
-
-              팀 포메이션
-              <FormationPostComponent formation={formation} setFormation={setFormation} />
-
-              유니폼 색상
-              <Select size='small' name="uniformType" value={uniformType} onChange={handleInputChange}>
-                {uniformTypeOptions.map((option) => ( <MenuItem key={option} value={option}> {option} </MenuItem> ))}
-              </Select>
-
-              팀 활동 빈도
-              <Select size='small' name="frequency" value={frequency} onChange={handleInputChange}>
-                {frequencyOptions.map((option) => ( <MenuItem key={option} value={option}> {option} </MenuItem> ))}
-              </Select>
-              </FormControl>
-            </Box>
-            <Button sx={{width:'50%', marginTop: '8%'}}variant="contained" size="small" type="submit" onClick={handleCreateTeam}> 회원가입 </Button>
+                <TeamNamePostComponent teamName={teamName} setTeamName={setTeamName}/>
+                연령대
+                <AgeTypePostComponent ageType={ageType} setAgeType={setAgeType} />
+                지역
+                <LocationTypePostComponent locationType={locationType} setLocationType={setLocationType} />
+                팀 실력
+                <LevelTypePostComponent levelType={levelType} setLevelType={setLevelType}/>
+                팀 포메이션
+                <FormationPostComponent formation={formation} setFormation={setFormation} />
+                유니폼 색상
+                <UniformTypePostComponent uniformType={uniformType} setUniformType={setUniformType} />
+                팀 활동 빈도
+                <FrequencyPostComponent frequency={frequency} setFrequency={setFrequency} />
+                {/* 운동 유형 */}
+                {/* <SportsTypePostComponent sportsType={sportsType} setSportsType={setSportsType}/> */}
+            </FormControl>
+          </Box>
+          <Button sx={{width:'50%', marginTop: '8%'}}variant="contained" size="small" type="submit" onClick={handleCreateTeam}> 회원가입 </Button>
         </TeamBody>
       </TeamContainer>
     </StyledTeam>

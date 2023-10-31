@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
 import styled from 'styled-components';
+
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Box from '@mui/material/Box';
 
 import SimpleSlider from '../../components/SimpleSlider';
 import Category from '../../components/category/Category';
-import LeagueCategory from '../../components/category/LeagueCategory';
+import { LeagueInfoComponent } from '../../components/league/LeagueInfo';
 
 const StyledLeague = styled.div`
   width: 100vw;
@@ -41,36 +44,14 @@ const LeagueSchedule = styled.div`
 
 const LeagueBody = styled.div``;
 
-
 const League = () => {
-  const [Leaguees, setLeaguees] = useState([]);
-  const [pageInfo, setPageInfo] = useState({});
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  useEffect(() => {
-    const authToken = localStorage.getItem('authToken');
-    const fetchData = async () => {
-      try {
-        const response = await fetch(process.env.REACT_APP_SERVER_API_ENDPOINT+'/api/leagues?page=1&size=40');
-        if (response.ok) {
-          const jsonData = await response.json();
-          setLeaguees(jsonData.data);
-          setPageInfo(jsonData.pageInfo);
-        } else {
-          console.error('데이터를 가져오는 데 실패했습니다.');
-        }
-      } catch (error) {
-        console.error('에러 발생:', error);
-      }
-      if (authToken) {
-        setIsLoggedIn(true);
-    } else {
-        setIsLoggedIn(false);
-    }
-    };
+  const [value, setValue] = React.useState(0);
 
-    fetchData();
-  }, []);
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
 
   return (
     <StyledLeague>
@@ -81,22 +62,24 @@ const League = () => {
 
         <LeagueBody>
           <Category />
-          <LeagueCategory />
           <LeagueSchedule>
-            {Leaguees.map(league => (
-              <div key={league.leagueId}>
-                {/* 각 매치 ID에 대한 링크를 생성합니다. */}
-                <Link to={`/League-detail/${league.leagueId}`}>
-                  <h2>매치 ID: {league.leagueId}</h2>
-                </Link>
-                <p>리그 이름: {league.leagueName}</p>
-              </div>
-            ))}
-            <div>
-              <p>현재 페이지: {pageInfo.page}</p>
-              <p>전체 페이지 수: {pageInfo.totalPages}</p>
-            </div>
-            {isLoggedIn && <Link to="/league-post">리그 생성</Link>}
+          <Box sx={{ maxWidth: { xs: 320, sm: 480 }, bgcolor: 'background.paper' }}>
+            <Tabs 
+              value={value} 
+              onChange={handleChange} 
+              variant="scrollable" 
+              scrollButtons 
+              allowScrollButtonsMobile 
+              aria-label="scrollable force tabs example" 
+              >
+              <Tab label="온시즌" />
+              <Tab label="오프시즌" />
+              <Tab label="팀모집" />
+            </Tabs>
+          </Box>
+            {value === 0 && <LeagueInfoComponent value = {value}/>}
+            {value === 1 && <LeagueInfoComponent value = {value}/>}
+            {value === 2 && <LeagueInfoComponent value = {value}/>}
           </LeagueSchedule>
         </LeagueBody>
 

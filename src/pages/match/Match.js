@@ -1,11 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Box from '@mui/material/Box';
+
 import SimpleSlider from '../../components/SimpleSlider';
 import Category from '../../components/category/Category';
-import MatchCategory from '../../components/category/MatchCategory';
-import Calender from '../../components/Calender';
-
+import MatchFindRivalComponent from '../../components/match/MatchFindRival'
+import MatchBeforeComponent from '../../components/match/MatchBefore'
+import MatchEndComponent from '../../components/match/MatchEnd'
 
 const StyledMatch = styled.div`
   width: 100vw;
@@ -42,6 +46,11 @@ width: 100%;
 `;
 
 const Match = () => {
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
   
   return (
     <StyledMatch id="StyledMatchId">
@@ -52,8 +61,23 @@ const Match = () => {
 
         <MatchBody id = 'MatchBody'>
           <Category />
-          <Calender />
-          <MatchCategory />
+          <Box sx={{ maxWidth: { xs: 320, sm: 480 }, bgcolor: 'background.paper' }}>
+          <Tabs 
+              value={value} 
+              onChange={handleChange} 
+              variant="scrollable" 
+              scrollButtons 
+              allowScrollButtonsMobile 
+              aria-label="scrollable force tabs example" 
+              >
+              <Tab label="경기 전" />
+              <Tab label="경기 종료" />
+              <Tab label="상대팀 구함" />
+            </Tabs>
+          </Box>
+            {value === 0 && <MatchBeforeComponent />}
+            {value === 1 && <MatchEndComponent />}
+            {value === 2 && <MatchFindRivalComponent />}
        
         </MatchBody>
       </MatchContainer>

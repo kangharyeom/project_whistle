@@ -1,5 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+
+import {AddIconComponent} from "../components/info/AddIcon";
 
 const StyledFooter = styled.div`
 width: 100vw;
@@ -11,20 +14,25 @@ align-items: center;
 
 const FooterContainer = styled.div`
 background-color: #252525;
-width: 470px;
-height: 400px;
+width: 100%;
+max-width: 470px;
 display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: center;
 `;
 
-const Footer = ({ isLoggedIn,handleLogin }) => {
+const Footer = (props) => {
+  const [isLoggedIn] = useState(props);
 
     return (   
         <StyledFooter id="StyledFooterId">
             <FooterContainer>
-                풋터
+            {isLoggedIn && (
+              <Link to="/team-post">
+                <AddIconComponent />
+            </Link>
+            )}
             </FooterContainer>
         </StyledFooter>
     );

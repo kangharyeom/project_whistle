@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 import SimpleSlider from '../components/SimpleSlider';
 import Category from '../components/category/Category';
-import MatchCategory from '../components/category/MatchCategory';
 
 const StyledHome = styled.div`
   width: 100vw;
@@ -49,8 +48,6 @@ const Home = () => {
 
         <HomeBody id = 'HomeBody'>
           <Category />
-          <MatchCategory />
-       
         </HomeBody>
       </HomeContainer>
     </StyledHome>

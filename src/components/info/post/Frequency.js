@@ -2,38 +2,33 @@ import React from 'react';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 
-const locationTypeOptionsKorean = {
-  SEOUL: '서울',
-  INCHEON: '인천',
-  DAEGU: '대구',
-  BUSAN: '부산',
-  GWANGJU: '광주',
-  DAEJEON: '대전',
-  GYEONGGI: '경기도',
-  JEJU: '제주도',
-  ULSAN: '울산',
-  CHUNGCHEONGNAM: '충청남도',
-  CHUNGCHEONGBUK: '충청북도',
-  GYEONGSANGBUK: '경상북도',
-  GYEONGSANGNAM: '경상남도',
-  JEOLLABUK: '전라북도',
-  JEOLLANAM: '전라남도',
-  GANGWON: '강원도',
+const FrequencyOptionsKorean = {
+  NONE: '없음',
+  WEEK_DAY: '평일',
+  WEEK_END: '주말',
+  ANY_TIME: '언제든지',
+  SUNDAY: '일요일',
+  MONDAY: '월요일',
+  TUESDAY: '화요일',
+  WEDNESDAY: '수요일',
+  THURSDAY: '목요일',
+  FRIDAY: '금요일',
+  SATURDAY: '토요일',
 };
 
-const locationTypeOptions = ['SEOUL', 'INCHEON', 'DAEGU', 'BUSAN', 'GWANGJU', 'DAEJEON', 'GYEONGGI', 'JEJU', 'ULSAN', 'CHUNGCHEONGNAM', 'CHUNGCHEONGBUK', 'GYEONGSANGBUK', 'GYEONGSANGNAM', 'JEOLLABUK', 'JEOLLANAM', 'GANGWON'];
+const FrequencyOptions = ['NONE', 'WEEK_DAY', 'WEEK_END', 'ANY_TIME', 'SUNDAY', 'MONDAY','TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
 
-export const LocationTypePostComponent = ({ locationType, setLocationType }) => {
+export const FrequencyPostComponent = ({ frequency, setFrequency }) => {
   const handleInputChange = (e) => {
     const { value } = e.target;
-    setLocationType(value);
+    setFrequency(value);
   };
 
   return (
-    <Select size='small' name="locationType" value={locationType} onChange={handleInputChange}>
-      {locationTypeOptions.map((option) => ( 
+    <Select size='small' name="frequency" value={frequency} onChange={handleInputChange}>
+      {FrequencyOptions.map((option) => ( 
       <MenuItem key={option} value={option}>
-        {locationTypeOptionsKorean[option]}
+        {FrequencyOptionsKorean[option]}
       </MenuItem> 
       ))}
     </Select>

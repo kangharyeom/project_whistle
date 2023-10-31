@@ -1,15 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
 import styled from 'styled-components';
+
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Box from '@mui/material/Box';
 
 import SimpleSlider from '../../components/SimpleSlider';
 import Category from '../../components/category/Category';
-import TeamCategory from '../../components/category/TeamCategory';
+import { TeamInfoComponent } from '../../components/team/TeamInfo'
+import { TeamMemberRecruitComponent } from '../../components/team/Recruit';
 
 const StyledTeam = styled.div`
   z-index: 9;
   width: 100vw;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -32,7 +35,7 @@ width: 100%;
   justify-content: center;
 `;
 
-const TeamSchedule = styled.div`
+const TeamInfo = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -42,46 +45,12 @@ const TeamSchedule = styled.div`
 
 const TeamBody = styled.div``;
 
-const TeamBodyCalender = styled.div`
-  width: 100%;
-  margin: 10px 0 10px 0;
-  height: 120px;
-  display: flex;
-  place-items: center;
-  flex-direction: column;
-  align-items: center;
-`;
-
 const Team = () => {
-  const [teames, setTeames] = useState([]);
-  const [pageInfo, setPageInfo] = useState({});
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [value, setValue] = React.useState(0);
 
-  useEffect(() => {
-    const authToken = localStorage.getItem('authToken');
-    const fetchData = async () => {
-      try {
-        const response = await fetch(process.env.REACT_APP_SERVER_API_ENDPOINT+'/api/teams?page=1&size=40');
-        if (response.ok) {
-          const jsonData = await response.json();
-          setTeames(jsonData.data);
-          setPageInfo(jsonData.pageInfo);
-        } else {
-          console.error('데이터를 가져오는 데 실패했습니다.');
-        }
-      } catch (error) {
-        console.error('에러 발생:', error);
-      }
-      if (authToken) {
-        setIsLoggedIn(true);
-    } else {
-        setIsLoggedIn(false);
-    }
-    };
-    
-
-    fetchData();
-  }, []);
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
 
   return (
     <StyledTeam>
@@ -92,29 +61,24 @@ const Team = () => {
 
         <TeamBody>
           <Category />
-          <TeamCategory />
-          <TeamBodyCalender>
-            {/* 여기에 캘린더 컴포넌트 추가 */}
-          </TeamBodyCalender>
 
-          <TeamSchedule>
-            {teames.map(team => (
-              <div key={team.teamId}>
-                {/* 각 매치 ID에 대한 링크를 생성합니다. */}
-                <Link to={`/team-detail/${team.teamId}`}>
-                  <h2>팀 ID: {team.teamId}</h2>
-                </Link>
-                <p>홈 팀 이름: {team.teamName}</p>
-                <p>팀 시간: {team.TeamTime}</p>
-              </div>
-            ))}
-            <div>
-              <p>현재 페이지: {pageInfo.page}</p>
-              <p>전체 페이지 수: {pageInfo.totalPages}</p>
-            </div>
-          </TeamSchedule>
-          {/* 사용자가 로그인한 경우에만 "팀 생성" 버튼을 표시합니다. */}
-          {isLoggedIn && <Link to="/team-post">팀 생성</Link>}
+          <TeamInfo>
+          <Box sx={{ maxWidth: { xs: 320, sm: 480 }, bgcolor: 'background.paper' }}>
+            <Tabs 
+              value={value} 
+              onChange={handleChange} 
+              variant="scrollable" 
+              scrollButtons 
+              allowScrollButtonsMobile 
+              aria-label="scrollable force tabs example" 
+              >
+              <Tab label="팀 정보" />
+              <Tab label="용병 모집" />
+            </Tabs>
+          </Box>
+            {value === 0 && <TeamInfoComponent value={value}/>}
+            {value === 1 && <TeamMemberRecruitComponent />}
+          </TeamInfo>
         </TeamBody>
       </TeamContainer>
     </StyledTeam>
