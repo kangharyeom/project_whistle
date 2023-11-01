@@ -40,8 +40,8 @@ const LeaguePostBody = styled.div`
 
 const LeaguePost = () => {
   const basicURL = process.env.REACT_APP_API_ENDPOINT;
-  const userId = parseInt(localStorage.getItem('userId'));
-  const teamId = 1;
+  const userId = parseInt(sessionStorage.getItem('userId'));
+  const teamId = parseInt(sessionStorage.getItem('teamId'));
   const [leagueName, setLeagueName] = useState('');
   const [ageType, setAgeType] = useState('');
   const [locationType, setLocationType] = useState('');
@@ -53,7 +53,7 @@ const LeaguePost = () => {
   const [frequency, setFrequency] = useState('');
   
   const handleCreateLeague = async () => {
-    const authToken = localStorage.getItem('authToken'); 
+    const authToken = sessionStorage.getItem('authToken'); 
 
     try {
       const response = await fetch(process.env.REACT_APP_SERVER_API_ENDPOINT+'/api/leagues', {
@@ -77,6 +77,10 @@ const LeaguePost = () => {
         })
       });
       if (response.ok) {
+        const responseData = await response.json(); 
+        const leagueId = responseData.leagueId; 
+        sessionStorage.setItem('leagueId', leagueId); 
+        console.log('leagueId :'+localStorage.getItem('leagueId'));
         console.log('리그 생성 성공');
         alert('리그 생성 성공')
         window.location.href = basicURL+'/league'

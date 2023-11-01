@@ -5,7 +5,6 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 
-import SimpleSlider from '../../components/SimpleSlider';
 import Category from '../../components/category/Category';
 import { TeamInfoComponent } from '../../components/team/TeamInfo'
 
@@ -55,14 +54,14 @@ const Ranking = () => {
     <StyledRanking>
       <RankingContainer>
         <RankingTop>
-            <SimpleSlider />
         </RankingTop>
 
         <RankingBody>
           <Category />
 
           <RankingInfo>
-          <Box sx={{ maxWidth: { xs: 320, sm: 480 }, bgcolor: 'background.paper' }}>
+          <Box sx={{ maxWidth: { xs: 320, sm: 480 }, bgcolor: 'background.paper', borderRadius: '10px'}}>
+
             <Tabs 
               value={value} 
               onChange={handleChange} 

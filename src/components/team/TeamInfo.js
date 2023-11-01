@@ -11,14 +11,12 @@ import {LocationComponent} from "../info/get/Location";
 import {AgeComponent} from "../info/get/Age";
 import {RecordComponent} from "../info/get/Record";
 import {UniformTypeComponent} from "../info/get/UniformType";
-import {AddIconComponent} from "../info/AddIcon";
 
 import * as t from "../../style/match/MatchFindRivalStyle";
 
 export const TeamInfoComponent = (props) => {
     const [teams, setTeames] = useState([]);
     const [pageInfo, setPageInfo] = useState({});
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const {value} = props;
 
   useEffect(() => {
@@ -77,13 +75,7 @@ export const TeamInfoComponent = (props) => {
     };
 
     fetchData();
-
-    const authToken = localStorage.getItem('authToken');
-    if (authToken) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
+   
   }, [value]); // 빈 의존성 배열을 전달하여 컴포넌트가 마운트될 때 한 번만 실행되도록 설정합니다.
 
 
@@ -175,11 +167,7 @@ export const TeamInfoComponent = (props) => {
             <p>전체 페이지 수: {pageInfo.totalPages}</p>
           </t.PageInfo>
           <t.MatchCreate id = 'MatchCreate'>
-            {isLoggedIn && (
-              <Link to="/team-post">
-                <AddIconComponent />
-            </Link>
-            )}
+          
           </t.MatchCreate>
         </t.MatchScheduleContainer>
       </t.StyledMatchSchedule>

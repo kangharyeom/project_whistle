@@ -26,6 +26,7 @@ const CategoryContainer = styled.div`
 const CategoryMiddle = styled.div`
   width: 100%;
   max-width: 470px;
+  margin: 13% 0 3% 0;
   display: flex;
   flex-direction: row;
   align-items: center;

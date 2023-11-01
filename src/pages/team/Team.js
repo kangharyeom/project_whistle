@@ -5,7 +5,6 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 
-import SimpleSlider from '../../components/SimpleSlider';
 import Category from '../../components/category/Category';
 import { TeamInfoComponent } from '../../components/team/TeamInfo'
 import { TeamMemberRecruitComponent } from '../../components/team/Recruit';
@@ -56,14 +55,14 @@ const Team = () => {
     <StyledTeam>
       <TeamContainer>
         <TeamTop>
-            <SimpleSlider />
         </TeamTop>
 
         <TeamBody>
           <Category />
 
           <TeamInfo>
-          <Box sx={{ maxWidth: { xs: 320, sm: 480 }, bgcolor: 'background.paper' }}>
+          <Box sx={{ maxWidth: { xs: 320, sm: 480 }, bgcolor: 'background.paper', borderRadius: '10px'}}>
+
             <Tabs 
               value={value} 
               onChange={handleChange} 

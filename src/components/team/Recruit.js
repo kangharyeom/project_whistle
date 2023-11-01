@@ -12,7 +12,6 @@ const TeamSchedule = styled.div`
 export const TeamMemberRecruitComponent = () => {
     const [teames, setTeames] = useState([]);
     const [pageInfo, setPageInfo] = useState({});
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,13 +30,7 @@ export const TeamMemberRecruitComponent = () => {
     };
 
     fetchData();
-
-    const authToken = localStorage.getItem('authToken');
-    if (authToken) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
+   
   }, []); // 빈 의존성 배열을 전달하여 컴포넌트가 마운트될 때 한 번만 실행되도록 설정합니다.
 
   return (
@@ -56,7 +49,6 @@ export const TeamMemberRecruitComponent = () => {
               <p>현재 페이지: {pageInfo.page}</p>
               <p>전체 페이지 수: {pageInfo.totalPages}</p>
             </div>
-            {isLoggedIn && <Link to="/team-post">팀 생성</Link>}
       </TeamSchedule>
     </>
   );

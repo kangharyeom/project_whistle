@@ -121,6 +121,10 @@ const MatchPost = () => {
       });
     
       if (response.ok) {
+        const responseData = await response.json();
+        const matchId = responseData.matchId;
+        sessionStorage.setItem('matchId', matchId);
+        console.log('matchId :'+localStorage.getItem('matchId'));
         console.log('매치 생성 성공');
         alert('매치 생성 성공');
         window.location.href = basicURL+'/match';

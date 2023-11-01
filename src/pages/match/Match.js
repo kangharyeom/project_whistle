@@ -5,7 +5,6 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 
-import SimpleSlider from '../../components/SimpleSlider';
 import Category from '../../components/category/Category';
 import MatchFindRivalComponent from '../../components/match/MatchFindRival'
 import MatchBeforeComponent from '../../components/match/MatchBefore'
@@ -13,7 +12,6 @@ import MatchEndComponent from '../../components/match/MatchEnd'
 
 const StyledMatch = styled.div`
   width: 100vw;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,7 +21,6 @@ const StyledMatch = styled.div`
 const MatchContainer = styled.div`
 width: 100%;
 max-width: 470px;
-height: 100%;
 background-color: #e5f6fd;
 display: flex;
   flex-direction: column;
@@ -56,18 +53,16 @@ const Match = () => {
     <StyledMatch id="StyledMatchId">
       <MatchContainer id = 'MatchContainer'>
         <MatchTop id = 'MatchTop'>
-          <SimpleSlider />
         </MatchTop>
 
         <MatchBody id = 'MatchBody'>
           <Category />
-          <Box sx={{ maxWidth: { xs: 320, sm: 480 }, bgcolor: 'background.paper' }}>
+          <Box sx={{ maxWidth: { xs: 320, sm: 480 }, bgcolor: 'background.paper', borderRadius: '10px'}}>
+
           <Tabs 
               value={value} 
               onChange={handleChange} 
               variant="scrollable" 
-              scrollButtons 
-              allowScrollButtonsMobile 
               aria-label="scrollable force tabs example" 
               >
               <Tab label="경기 전" />

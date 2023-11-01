@@ -1,11 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import SimpleSlider from '../../components/SimpleSlider';
 
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
-
 import Category from '../../components/category/Category';
 import { BoardInfoComponent } from '../../components/board/BoardInfo'
 
@@ -50,21 +48,18 @@ const Board = () => {
         <StyledBoard>
             <BoardContainer>
                 <BoardTop>
-                    <SimpleSlider/>
                     
                 </BoardTop>
                 <Category/>
                 
-                <Box sx={{ maxWidth: { xs: 320, sm: 480 }, bgcolor: 'background.paper' }}>
+                <Box sx={{ maxWidth: { xs: 320, sm: 480 }, bgcolor: 'background.paper', borderRadius: '10px' }}>
                     <Tabs 
                     value={value} 
                     onChange={handleChange} 
                     variant="scrollable" 
-                    scrollButtons 
-                    allowScrollButtonsMobile 
                     aria-label="scrollable force tabs example" 
                     >
-                    <Tab label="자유게시판" />
+                    <Tab label="자유게시판"/>
                     <Tab label="축구" />
                     <Tab label="풋살" />
                     <Tab label="농구" />
@@ -77,6 +72,15 @@ const Board = () => {
                 </Box>
                     {value === 0 && <BoardInfoComponent value={value}/>}
                     {value === 1 && <BoardInfoComponent value={value}/>}
+                    {value === 2 && <BoardInfoComponent value={value}/>}
+                    {value === 3 && <BoardInfoComponent value={value}/>}
+                    {value === 4 && <BoardInfoComponent value={value}/>}
+                    {value === 5 && <BoardInfoComponent value={value}/>}
+                    {value === 6 && <BoardInfoComponent value={value}/>}
+                    {value === 7 && <BoardInfoComponent value={value}/>}
+                    {value === 8 && <BoardInfoComponent value={value}/>}
+                    {value === 9 && <BoardInfoComponent value={value}/>}
+                    
                 <BoardBody>
                 </BoardBody>
             </BoardContainer>

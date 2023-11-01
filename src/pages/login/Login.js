@@ -37,19 +37,41 @@ const Login = () => {
                 }),
             });
 
-            console.log('로컬'+process.env.REACT_APP_API_ENDPOINT)
-            console.log('서버'+process.env.REACT_APP_SERVER_API_ENDPOINT)
-
             if (response.ok) {
+                const responseData = await response.json(); 
+                const userId = responseData.userId; 
+                sessionStorage.setItem('userId', userId); 
+                
+                try {
+                    const response = await fetch(process.env.REACT_APP_SERVER_API_ENDPOINT+'/api/users/'+userId);
+                    if (response.ok) {
+                        const responseData = await response.json();
+                        const teamId = responseData.teamId;
+                        const leagueId = responseData.leagueId;
+                        const matchId = responseData.matchId;
+                        sessionStorage.setItem('teamId', teamId);
+                        sessionStorage.setItem('leagueId', leagueId);
+                        sessionStorage.setItem('matchId', matchId);
+                        console.log('팀 Id :'+sessionStorage.getItem('teamId'));
+                        console.log('리그 Id :'+sessionStorage.getItem('leagueId'));
+                        console.log('매치 Id :'+sessionStorage.getItem('matchId'));
+                        console.log('유저 Id :'+sessionStorage.getItem('userId'));
+                    } else {
+                        console.error('teamId get 실패!');
+                        alert('teamId get 실패!')
+                        window.location.href = basicURL+'/log-in';
+                        
+                    }
+                } catch (error) {
+                    console.error('에러 발생:', error);
+                    alert('에러 발생했습니다. 다시 시도해주세요.');
+                    window.location.href = basicURL+'/log-in';
+                }
                 const authToken = response.headers.get('Authorization'); // Authorization 헤더에서 토큰을 가져옴
                 const refreshToken = authToken.replace("Bearer", "");
-                localStorage.setItem('authToken', authToken);
+                sessionStorage.setItem('authToken', authToken);
                 localStorage.setItem('refreshToken', refreshToken);
 
-                const responseData = await response.json(); // 응답 데이터를 JSON 형태로 파싱
-                const userId = responseData.userId; // 응답에서 userId 값을 가져옴
-                localStorage.setItem('userId', userId); // userId 값을 localStorage에 저장
-                
                 console.log('로그인 성공!');
                 console.log(refreshToken);
 

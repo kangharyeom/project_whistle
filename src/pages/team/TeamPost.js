@@ -44,7 +44,7 @@ const TeamBody = styled.div`
 
 const TeamPost = () => {
   const basicURL = process.env.REACT_APP_API_ENDPOINT;
-  const userId = parseInt(localStorage.getItem('userId'));
+  const userId = parseInt(sessionStorage.getItem('userId'));
   const [teamName, setTeamName] = useState('');
   const [ageType, setAgeType] = useState('');
   const [locationType, setLocationType] = useState('');
@@ -56,7 +56,8 @@ const TeamPost = () => {
   const [frequency, setFrequency] = useState('');
 
   const handleCreateTeam = async () => {
-    const authToken = localStorage.getItem('authToken');  
+    const authToken = sessionStorage.getItem('authToken');  
+    console.log('authToken:'+ authToken)
     try {
       const response = await fetch(process.env.REACT_APP_SERVER_API_ENDPOINT+'/api/teams', {
         method: 'POST',
@@ -78,14 +79,15 @@ const TeamPost = () => {
         })
       });
       if (response.ok) {
+        const responseData = await response.json();
+        const teamId = responseData.teamId;
+        sessionStorage.setItem('teamId', teamId);
         console.log('팀 생성 성공');
         alert('팀 생성 성공')
         window.location.href = basicURL+'/team'
-        // 팀 생성 성공 시 추가 작업 수행
       } else {
         console.error('팀 생성 실패');
         alert('팀 생성 실패')
-        // 팀 생성 실패 시 에러 처리
         window.location.href = basicURL+'/team-post'
       }
     } catch (error) {
@@ -104,23 +106,35 @@ const TeamPost = () => {
             <FormControl fullWidth>
                 팀이름
                 <TeamNamePostComponent teamName={teamName} setTeamName={setTeamName}/>
+            </FormControl>
+            <FormControl fullWidth>
                 연령대
                 <AgeTypePostComponent ageType={ageType} setAgeType={setAgeType} />
+            </FormControl>
+            <FormControl fullWidth>
                 지역
                 <LocationTypePostComponent locationType={locationType} setLocationType={setLocationType} />
+            </FormControl>
+            <FormControl fullWidth>
                 팀 실력
                 <LevelTypePostComponent levelType={levelType} setLevelType={setLevelType}/>
+            </FormControl>
+            <FormControl fullWidth>
                 팀 포메이션
                 <FormationPostComponent formation={formation} setFormation={setFormation} />
+            </FormControl>
+            <FormControl fullWidth>
                 유니폼 색상
                 <UniformTypePostComponent uniformType={uniformType} setUniformType={setUniformType} />
+            </FormControl>
+            <FormControl fullWidth>
                 팀 활동 빈도
                 <FrequencyPostComponent frequency={frequency} setFrequency={setFrequency} />
+            </FormControl>
                 {/* 운동 유형 */}
                 {/* <SportsTypePostComponent sportsType={sportsType} setSportsType={setSportsType}/> */}
-            </FormControl>
-          </Box>
           <Button sx={{width:'50%', marginTop: '8%'}}variant="contained" size="small" type="submit" onClick={handleCreateTeam}> 회원가입 </Button>
+          </Box>
         </TeamBody>
       </TeamContainer>
     </StyledTeam>

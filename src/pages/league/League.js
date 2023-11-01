@@ -5,7 +5,6 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 
-import SimpleSlider from '../../components/SimpleSlider';
 import Category from '../../components/category/Category';
 import { LeagueInfoComponent } from '../../components/league/LeagueInfo';
 
@@ -57,19 +56,17 @@ const League = () => {
     <StyledLeague>
       <LeagueContainer>
         <LeagueTop>
-            <SimpleSlider />
         </LeagueTop>
 
         <LeagueBody>
           <Category />
           <LeagueSchedule>
-          <Box sx={{ maxWidth: { xs: 320, sm: 480 }, bgcolor: 'background.paper' }}>
+          <Box sx={{ maxWidth: { xs: 320, sm: 480 }, bgcolor: 'background.paper', borderRadius: '10px'}}>
+
             <Tabs 
               value={value} 
               onChange={handleChange} 
               variant="scrollable" 
-              scrollButtons 
-              allowScrollButtonsMobile 
               aria-label="scrollable force tabs example" 
               >
               <Tab label="온시즌" />

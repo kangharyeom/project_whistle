@@ -10,17 +10,14 @@ import {LocationComponent} from "../info/get/Location";
 import {AgeComponent} from "../info/get/Age";
 import {RecordComponent} from "../info/get/Record";
 import {UniformTypeComponent} from "../info/get/UniformType";
-import {AddIconComponent} from "../info/AddIcon";
 
 import * as m from "../../style/match/MatchFindRivalStyle";
 
 const MatchFindRivalComponent = () => {
   const [matches, setMatches] = useState([]);
   const [pageInfo, setPageInfo] = useState({});
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   
   useEffect(() => {
-    const authToken = localStorage.getItem('authToken');
     const fetchData = async () => {
       try {
         const response = await fetch(process.env.REACT_APP_SERVER_API_ENDPOINT+'/api/matches?page=1&size=40');
@@ -35,12 +32,6 @@ const MatchFindRivalComponent = () => {
         console.error('에러 발생:', error);
       }
 
-      // 토큰이 확인 확인되면 로그인으로 간주
-      if (authToken) {
-        setIsLoggedIn(true);
-      } else {
-        setIsLoggedIn(false);
-      }
     };
 
     fetchData();
@@ -127,11 +118,6 @@ const MatchFindRivalComponent = () => {
           <p>전체 페이지 수: {pageInfo.totalPages}</p>
         </m.PageInfo>
         <m.MatchCreate id = 'MatchCreate'>
-          {isLoggedIn && (
-            <Link to="/match-post">
-              <AddIconComponent />
-          </Link>
-          )}
         </m.MatchCreate>
       </m.MatchScheduleContainer>
     </m.StyledMatchSchedule>

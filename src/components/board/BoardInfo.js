@@ -74,7 +74,7 @@ export const BoardInfoComponent = (props) => {
 
     fetchData();
 
-    const authToken = localStorage.getItem('authToken');
+    const authToken = sessionStorage.getItem('authToken');
     if (authToken) {
       setIsLoggedIn(true);
     } else {

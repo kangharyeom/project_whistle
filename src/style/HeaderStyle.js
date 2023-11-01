@@ -7,6 +7,8 @@ flex-direction: column;
 align-items: center;
 justify-content: center;
 position: fixed;
+left: 0px;
+top: -1px;
 z-index: 100;
 `;
 

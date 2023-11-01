@@ -14,7 +14,6 @@ import {AgeComponent} from "../info/get/Age";
 
 export const LeagueInfoComponent = (props) => {
   const [leagues, setLeagues] = useState([]);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const {value} = props;
 
   useEffect(() => {
@@ -75,12 +74,6 @@ export const LeagueInfoComponent = (props) => {
 
     fetchData();
 
-    const authToken = localStorage.getItem('authToken');
-    if (authToken) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
   },[value]);
 
   const formatDate = (dateString) => {
@@ -163,7 +156,6 @@ export const LeagueInfoComponent = (props) => {
           </l.MatchScheduleContainer>
         </l.StyledMatchSchedule>
       <l.LeagueSchedule>
-        {isLoggedIn && <Link to="/league-post">리그 생성</Link>}
       </l.LeagueSchedule>
     </>
   );

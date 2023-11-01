@@ -13,7 +13,9 @@ align-items: center;
 `;
 
 const FooterContainer = styled.div`
-background-color: #252525;
+position: fixed;
+bottom: 5%;
+right: -35%;
 width: 100%;
 max-width: 470px;
 display: flex;
@@ -24,24 +26,62 @@ justify-content: center;
 
 const Footer = () => {
   const [isLoggedIn, setIsLoggedIn] = useState('');
-
+  const [currentUrl, setCurrentUrl] = useState('');
+  const teamId = sessionStorage.getItem('teamId')
+  const matchId = sessionStorage.getItem('matchId')
+  const leagueId = sessionStorage.getItem('leagueId')
+  
   useEffect(() => {
-    
-    const authToken = localStorage.getItem('authToken');
+    const authToken = sessionStorage.getItem('authToken');
 
     if (authToken) {
         setIsLoggedIn(true);
     } else {
         setIsLoggedIn(false);
     }
+
+    setCurrentUrl(window.location.pathname);
+
 }, []);
+
+    let toUrl = '/'; 
+
+    switch (currentUrl) {
+        case '/match':
+          toUrl = '/match-post';
+          break;
+
+        case '/team':
+          toUrl = '/team-post';
+          break;
+
+        case '/league':
+          toUrl = '/league-post';
+          break;
+        
+        case '/ranking':
+          toUrl = '/team-post';
+          break;
+
+        default:
+          toUrl = '/';
+          break;
+      }
 
     return (   
         <StyledFooter id="StyledFooterId">
             <FooterContainer>
             {isLoggedIn && (
-              <Link to="/team-post">
+            <Link to={toUrl}>
+                {toUrl=== '/match-post'&& matchId === 'null' && teamId !== 'null' && (
                 <AddIconComponent />
+                )}
+                {toUrl=== '/team-post'&& teamId === 'null' && (
+                <AddIconComponent />
+                )}
+                 {toUrl === '/league-post' && leagueId === 'null' && teamId !== 'null' && (
+                <AddIconComponent />
+                )}
             </Link>
             )}
             </FooterContainer>
