@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom'; // React Router의 Link 컴포넌트를 불러옵니다.
+import { Link } from 'react-router-dom'; 
 import styled from 'styled-components';
 import TeamProfile from '../../pages/team/TeamProfile';
 

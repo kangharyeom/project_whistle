@@ -94,7 +94,7 @@ export const BoardInfoComponent = (props) => {
           {leagues.map(league => (
 
             <l.BoardInfo id='BoardInfo' key={league.leagueId}>
-                {/* 각 매치 ID에 대한 링크를 생성합니다. */}
+                {/* 각 매치 ID에 대한 링크 생성 */}
               <l.BoardInfoRow>
 
                 <l.BoardInfoContainer id = 'BoardInfoContainer'>

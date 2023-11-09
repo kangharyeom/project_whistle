@@ -37,7 +37,6 @@ const Category = () => {
   const basicURL = process.env.REACT_APP_API_ENDPOINT;
 
   const handleClickMatch = () => {
-    // 리그 탭을 클릭하면 basicURL/league 페이지로 이동합니다.
     window.location.href = `${basicURL}/match`;
   };
 

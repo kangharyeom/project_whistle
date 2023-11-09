@@ -20,22 +20,21 @@ const Header = () => {
     useEffect(() => {
         const authToken = sessionStorage.getItem('authToken');
 
-    // 토큰이 있으면 로그인 상태로 간주합니다.
+    // 토큰이 있으면 로그인 상태로 간주
     if (authToken) {
         setIsLoggedIn(true);
         
-        // 30분 후에 세션 스토리지의 모든 항목을 삭제합니다.
         const sessionTimeout = setTimeout(() => {
             sessionStorage.clear();
             setIsLoggedIn(false);
             alert('시간이 되었습니다')
-            // 여기서 필요한 추가 작업을 수행할 수 있습니다.
+            
         }, 
         // 10000 (10초)
         // 1800000 [30분 (1800000 밀리초)]
         1800000
         ); 
-        // 컴포넌트가 언마운트되거나 로그아웃될 때 타이머를 클리어합니다.
+        // 컴포넌트가 언마운트되거나 로그아웃될 때 타이머를 클리어
         return () => {
             clearTimeout(sessionTimeout);
         };
@@ -130,7 +129,6 @@ const Header = () => {
                                 </h.HeaderTopSearch>
                                  <h.HeaderTopLoginButton id="HeaderTopLoginButton">
                                     {isLoggedIn ? (
-                                        // 로그인 상태이면서 authorization이 있는 경우 로그아웃 버튼 렌더링
                                         <>
                                         <div>
                                         <Button

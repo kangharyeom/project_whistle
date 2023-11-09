@@ -31,7 +31,7 @@ export const TeamMemberRecruitComponent = () => {
 
     fetchData();
    
-  }, []); // 빈 의존성 배열을 전달하여 컴포넌트가 마운트될 때 한 번만 실행되도록 설정합니다.
+  }, []); // 빈 의존성 배열을 전달하여 컴포넌트가 마운트될 때 한 번만 실행되도록 설정
 
   return (
     <>

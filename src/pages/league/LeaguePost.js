@@ -12,8 +12,6 @@ import {AgeTypePostComponent} from '../../components/info/post/Age'
 import {LocationTypePostComponent} from '../../components/info/post/Location'
 import {MatchCountPostComponent} from '../../components/info/post/MatchCount'
 import {LeaguePeriodPostComponent} from '../../components/info/post/LeguePeriod'
-// import {UniformTypePostComponent} from '../../components/info/post/UniformType'
-// import {FormationPostComponent} from '../../components/info/post/Formation'
 
 const StyledLeaguePost = styled.div`
   width: 100vw;
